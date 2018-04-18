@@ -1,4 +1,9 @@
 <?php
+/** file: wow_race_inc.php
+ * Not sure what, if anything to do
+ * with this file at this time
+ * **/
+namespace girvin\wow;
 $wow_races_url="https://us.api.battle.net/wow/data/character/races?locale=en_US&apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
 $wow_races_json = file_get_contents($wow_races_url);
 $wow_races_obj = json_decode($wow_races_json);

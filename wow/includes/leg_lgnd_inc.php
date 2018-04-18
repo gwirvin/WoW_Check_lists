@@ -1,5 +1,6 @@
 <?php
 /* file: legion_inc.php */
+namespace girvin\wow\legion;
 
 function legendCount($toon_legend_count) {
     switch ($toon_legend_count) {

@@ -1,5 +1,8 @@
 <?php
-/* file: leg_fact_inc.php */
+/* file: wow_fact_inc.php 
+ * This file gives us styles for showing the 
+ * faction the character is in */
+namespace girvin\wow;
 function factionStylesRealm ($toon_faction, $toon_realm) {
     switch ($toon_faction) {
         case 1: //Putting a faction color on the realm name
