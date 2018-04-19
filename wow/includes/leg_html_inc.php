@@ -1,6 +1,6 @@
 <?php
 /* File: leg_html_inc.php */
-namespace girvin\wow\legion;
+namespace girvin\wow;
 
 // Generic HTML Variables
 $html_head_open = "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<link rel=\"stylesheet\" href=\"./style.css\">\r\n\t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css\">\r\n\t<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>";

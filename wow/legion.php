@@ -1,6 +1,6 @@
 <?php
 /* file: legion.php */
-
+namspace girvin\wow\legion;
 // Initialize the session
 session_start();
 
@@ -20,6 +20,7 @@ include "./includes/leg_rep_inc.php";
 include "./includes/leg_fact_inc.php";
 include "./includes/leg_ac_inc.php";
 include "./includes/leg_chk_lst.php";
+include "./includes/wow_rep_lvl_inc.php";
 
 // Variables for the start
 $toon_owner_id = $_SESSION['user_id'];
