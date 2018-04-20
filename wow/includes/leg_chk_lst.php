@@ -40,21 +40,18 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 // Variables that need some setting other than empty
 		$rep_obj_counter = 0;
 		$rep_count = 0;
-		$mainspec = "0";
 		$primary_profs_counter = 1;
 		$secondary_profs_counter = 1;
 		$rep_obj_counter = 0;
-		$toon_legend_count = 0;
-		$toon_legend_level_count = 0;
 		$rep_missing_counter = 0;
 		$rep_legion_count = 9;
 		$toon_artifact_rank = 0;
-		$toon_legend_lvl_count = 0;
+		$toonLgndCount = 0;
+		$toonLgndLvlCount = 0;
 		$max_legend_lvl = 1000;
 // Variables that should really be empty on each loop's start
 		$toon_class = "";
 		$toon_faction = "";
-		$toon_mainspec = "";
 		$toon_auto_complete = "";
 		$toon_avg_eilvl = "";
 		$toon_legend_need = "";
@@ -72,14 +69,15 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		$toonLegRepHtml = "";
 		$toon_artf_rank = "";
 		$toon_relic_count = "";
-		$toon_artf_html = "";
+		$toonArtfRankCell = "";
 		$toon_ac_html = "";
-		$toon_lgnd_need_html = "";
-		$toon_lgnd_lvl_need_html = "";
+		$toonLgndCountCell = "";
+		$toonLgndLvlCell = "";
 		$toon_name = $toon_result[$db_toon_counter]['toon_name'];
 		$toon_realm = $toon_result[$db_toon_counter]['toon_realm'];
 		$toon_info_url = $char_url.$toon_realm."/".$toon_name."?".$leg_char_fields."&".$blizz_locale."&".$api_key; // The magic from the Blizzard API
 		$toon_obj = json_decode($toon_json);
+		$toon_json = getToonInfo($toon_info_url);
 		$toon_faction = $toon_obj->faction;
 		$toon_icon = $icon_url.$toon_obj->thumbnail;
 		$toon_realm = $toon_obj->realm;
@@ -91,35 +89,41 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		usort ($toon_sec_profs_obj, function($a, $b) {
 			return strcmp($a->id, $b->id);
 			});
-		while (($mainspec >= 0) && ($mainspec <= 4)) {
-			foreach ($toon_obj->talents as $toon_specs_object) {
-				if (isset($toon_specs_object->selected)) {
-					$toon_mainspec = $toon_specs_object->spec->name;
-					$mainspec++;
-					}
-				}
+		$toon_mainspec = $toon_obj->talents[0]->talents[0]->spec->name;
+		$toon_bg_color = wowClassColors($toon_obj->class);
+		$toon_auto_complete = autoComplete($toon_obj->class);
+#		$possible_item_slots = array('head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands','waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2', 'mainHand', 'offhand');
+#		for ($i = 0; $i < 16; $i++) {
+#			if (isset($toon_obj->items->{$possible_item_slots[$i]})) {
+#				if ($toon_obj->items->{$possible_item_slots[$i]}->quality === 5 && $toon_obj->items->{$possible_item_slots[$i]}->itemLevel >= $max_legend_lvl) { 
+#					$toon_legend_count++;
+#					$toon_legend_lvl_count++;
+#				} elseif ($toon_obj->items->{$possible_item_slots[$i]}->quality === 5 ) {
+#					$toon_legend_count++;
+#					}
+		$itemSlotsObj = json_decode(json_encode(array('head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2', 'mainHand', 'offhand')));
+		foreach ($itemSlotsObj as $itemSlotObj)
+		{
+			if ($toon_obj->items->{$itemSlotObj}->quality === 5 && $toon_obj->items->{$itemSlotObj}->itemLevel >= $maxLgndLvl)
+			{
+				$toonLgndCount++;
+				$toonLgndLvlCount++;
 			}
-		$toon_class_api = $toon_obj->class;
-		$toon_auto_complete = autoComplete($toon_class_api);
-		$possible_item_slots = array('head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands','waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2', 'mainHand', 'offhand');
-		for ($i = 0; $i < 16; $i++) {
-			if (isset($toon_obj->items->{$possible_item_slots[$i]})) {
-				if ($toon_obj->items->{$possible_item_slots[$i]}->quality === 5 && $toon_obj->items->{$possible_item_slots[$i]}->itemLevel >= $max_legend_lvl) { 
-					$toon_legend_count++;
-					$toon_legend_lvl_count++;
-				} elseif ($toon_obj->items->{$possible_item_slots[$i]}->quality === 5 ) {
-					$toon_legend_count++;
-					}
-				if ($toon_obj->items->{$possible_item_slots[$i]}->quality === 6) {
-					$toon_relic_count = count($toon_obj->items->{$possible_item_slots[$i]}->relics);
-					$artifact_traits_count = count($toon_obj->items->{$possible_item_slots[$i]}->artifactTraits);
-					for ($x = 0; $x < $artifact_traits_count; $x++) {
-						$toon_artf_rank = $toon_artf_rank + $toon_obj->items->{$possible_item_slots[$i]}->artifactTraits[$x]->rank;
-						}
-					$toon_artf_rank = $toon_artf_rank - $toon_relic_count;
-					}
-				}
+			elseif ($toon_obj->items->{$itemSlotObj}->quality === 5)
+			{
+				$toonLgndCount++;
 			}
+			if ($toon_obj->items->{$possible_item_slots[$i]}->quality === 6)
+			{
+				$toon_relic_count = count($toon_obj->items->{$possible_item_slots[$i]}->relics);
+				$artifact_traits_count = count($toon_obj->items->{$possible_item_slots[$i]}->artifactTraits);
+				for ($x = 0; $x < $artifact_traits_count; $x++)
+				{
+					$toon_artf_rank = $toon_artf_rank + $toon_obj->items->{$possible_item_slots[$i]}->artifactTraits[$x]->rank;
+				}
+				$toon_artf_rank = $toon_artf_rank - $toon_relic_count;
+			}
+		}
 		$toon_legend_need = legendCount($toon_legend_count);
 		$toon_legend_lvl_need = legendLevelCount($toon_legend_lvl_count);
 		while ($primary_profs_counter <= 2) { //getting primary professions + lvl if not maxed
@@ -178,117 +182,19 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 				$htmlFactCounter++; //Incrementing the counter for table data
 			}
 		}
-
-		if ($toon_obj->class == 1) { //putting in class colors for class spec and lvl data
-			$toon_name_api = $td_open_wr.$toon_obj->name.$td_close_wr;
-			$toon_level = $td_open_wr.$toon_obj->level.$td_close_wr;
-			$toon_curr_spec = $td_open_wr.$toon_mainspec.$td_close_wr;
-			$toon_lgnd_need_html = $td_open_wr.$toon_legend_need.$td_close_wr;
-			$toon_lgnd_lvl_need_html = $td_open_wr.$toon_legend_lvl_need.$td_close_wr;
-			$toon_artf_html = $td_open_wr.$toon_artf_rank.$td_close_wr;
-			$toon_ilvl_html = $td_open_wr.$toon_obj->items->averageItemLevelEquipped.$td_close_wr;
-		} elseif ($toon_obj->class == 2) {
-			$toon_name_api = $td_open_pl.$toon_obj->name.$td_close_pl;
-			$toon_level = $td_open_pl.$toon_obj->level.$td_close_pl;
-			$toon_curr_spec = $td_open_pl.$toon_mainspec.$td_close_pl;
-			$toon_lgnd_need_html = $td_open_pl.$toon_legend_need.$td_close_pl;
-			$toon_lgnd_lvl_need_html = $td_open_pl.$toon_legend_lvl_need.$td_close_pl;
-			$toon_artf_html = $td_open_pl.$toon_artf_rank.$td_close_pl;
-			$toon_ilvl_html = $td_open_pl.$toon_obj->items->averageItemLevelEquipped.$td_close_pl;
-		} elseif ($toon_obj->class == 3) {
-			$toon_name_api = $td_open_ht.$toon_obj->name.$td_close_ht;
-			$toon_level = $td_open_ht.$toon_obj->level.$td_close_ht;
-			$toon_curr_spec = $td_open_ht.$toon_mainspec.$td_close_ht;
-			$toon_lgnd_need_html = $td_open_ht.$toon_legend_need.$td_close_ht;
-			$toon_lgnd_lvl_need_html = $td_open_ht.$toon_legend_lvl_need.$td_close_ht;
-			$toon_artf_html = $td_open_ht.$toon_artf_rank.$td_close_ht;
-			$toon_ilvl_html = $td_open_ht.$toon_obj->items->averageItemLevelEquipped.$td_close_ht;
-		} elseif ($toon_obj->class == 4) {
-			$toon_name_api = $td_open_rg.$toon_obj->name.$td_close_rg;
-			$toon_level = $td_open_rg.$toon_obj->level.$td_close_rg;
-			$toon_curr_spec = $td_open_rg.$toon_mainspec.$td_close_rg;
-			$toon_lgnd_need_html = $td_open_rg.$toon_legend_need.$td_close_rg;
-			$toon_lgnd_lvl_need_html = $td_open_rg.$toon_legend_lvl_need.$td_close_rg;
-			$toon_artf_html = $td_open_rg.$toon_artf_rank.$td_close_rg;
-			$toon_ilvl_html = $td_open_rg.$toon_obj->items->averageItemLevelEquipped.$td_close_rg;
-		} elseif ($toon_obj->class == 5) {
-			$toon_name_api = $td_open_pr.$toon_obj->name.$td_close_pr;
-			$toon_level = $td_open_pr.$toon_obj->level.$td_close_pr;
-			$toon_curr_spec = $td_open_pr.$toon_mainspec.$td_close_pr;
-			$toon_lgnd_need_html = $td_open_pr.$toon_legend_need.$td_close_pr;
-			$toon_lgnd_lvl_need_html = $td_open_pr.$toon_legend_lvl_need.$td_close_pr;
-			$toon_artf_html = $td_open_pr.$toon_artf_rank.$td_close_pr;
-			$toon_ilvl_html = $td_open_pr.$toon_obj->items->averageItemLevelEquipped.$td_close_pr;
-		} elseif ($toon_obj->class == 6) {
-			$toon_name_api = $td_open_dk.$toon_obj->name.$td_close_dk;
-			$toon_level = $td_open_dk.$toon_obj->level.$td_close_dk;
-			$toon_curr_spec = $td_open_dk.$toon_mainspec.$td_close_dk;
-			$toon_lgnd_need_html = $td_open_dk.$toon_legend_need.$td_close_dk;
-			$toon_lgnd_lvl_need_html = $td_open_dk.$toon_legend_lvl_need.$td_close_dk;
-			$toon_artf_html = $td_open_dk.$toon_artf_rank.$td_close_dk;
-			$toon_ilvl_html = $td_open_dk.$toon_obj->items->averageItemLevelEquipped.$td_close_dk;
-		} elseif ($toon_obj->class == 7) {
-			$toon_name_api = $td_open_sm.$toon_obj->name.$td_close_sm;
-			$toon_level = $td_open_sm.$toon_obj->level.$td_close_sm;
-			$toon_curr_spec = $td_open_sm.$toon_mainspec.$td_close_sm;
-			$toon_lgnd_need_html = $td_open_sm.$toon_legend_need.$td_close_sm;
-			$toon_lgnd_lvl_need_html = $td_open_sm.$toon_legend_lvl_need.$td_close_sm;
-			$toon_artf_html = $td_open_sm.$toon_artf_rank.$td_close_sm;
-			$toon_ilvl_html = $td_open_sm.$toon_obj->items->averageItemLevelEquipped.$td_close_sm;
-		} elseif ($toon_obj->class == 8) {
-			$toon_name_api = $td_open_mg.$toon_obj->name.$td_close_mg;
-			$toon_level = $td_open_mg.$toon_obj->level.$td_close_mg;
-			$toon_curr_spec = $td_open_mg.$toon_mainspec.$td_close_mg;
-			$toon_lgnd_need_html = $td_open_mg.$toon_legend_need.$td_close_mg;
-			$toon_lgnd_lvl_need_html = $td_open_mg.$toon_legend_lvl_need.$td_close_mg;
-			$toon_artf_html = $td_open_mg.$toon_artf_rank.$td_close_mg;
-			$toon_ilvl_html = $td_open_mg.$toon_obj->items->averageItemLevelEquipped.$td_close_mg;
-		} elseif ($toon_obj->class == 9) {
-			$toon_name_api = $td_open_wk.$toon_obj->name.$td_close_wk;
-			$toon_level = $td_open_wk.$toon_obj->level.$td_close_wk;
-			$toon_curr_spec = $td_open_wk.$toon_mainspec.$td_close_wk;
-			$toon_lgnd_need_html = $td_open_wk.$toon_legend_need.$td_close_wk;
-			$toon_lgnd_lvl_need_html = $td_open_wk.$toon_legend_lvl_need.$td_close_wk;
-			$toon_artf_html = $td_open_wk.$toon_artf_rank.$td_close_wk;
-			$toon_ilvl_html = $td_open_wk.$toon_obj->items->averageItemLevelEquipped.$td_close_wk;
-		} elseif ($toon_obj->class == 10) {
-			$toon_name_api = $td_open_mk.$toon_obj->name.$td_close_mk;
-			$toon_level = $td_open_mk.$toon_obj->level.$td_close_mk;
-			$toon_curr_spec = $td_open_mk.$toon_mainspec.$td_close_mk;
-			$toon_lgnd_need_html = $td_open_mk.$toon_legend_need.$td_close_mk;
-			$toon_lgnd_lvl_need_html = $td_open_mk.$toon_legend_lvl_need.$td_close_mk;
-			$toon_artf_html = $td_open_mk.$toon_artf_rank.$td_close_mk;
-			$toon_ilvl_html = $td_open_mk.$toon_obj->items->averageItemLevelEquipped.$td_close_mk;
-		} elseif ($toon_obj->class == 11) {
-			$toon_name_api = $td_open_dr.$toon_obj->name.$td_close_dr;
-			$toon_level = $td_open_dr.$toon_obj->level.$td_close_dr;
-			$toon_curr_spec = $td_open_dr.$toon_mainspec.$td_close_dr;
-			$toon_lgnd_need_html = $td_open_dr.$toon_legend_need.$td_close_dr;
-			$toon_lgnd_lvl_need_html = $td_open_dr.$toon_legend_lvl_need.$td_close_dr;
-			$toon_artf_html = $td_open_dr.$toon_artf_rank.$td_close_dr;
-			$toon_ilvl_html = $td_open_dr.$toon_obj->items->averageItemLevelEquipped.$td_close_dr;
-		} elseif ($toon_obj->class == 12) {
-			$toon_name_api = $td_open_dh.$toon_obj->name.$td_close_dh;
-			$toon_level = $td_open_dh.$toon_obj->level.$td_close_dh;
-			$toon_curr_spec = $td_open_dh.$toon_mainspec.$td_close_dh;
-			$toon_lgnd_need_html = $td_open_dh.$toon_legend_need.$td_close_dh;
-			$toon_lgnd_lvl_need_html = $td_open_dh.$toon_legend_lvl_need.$td_close_dh;
-			$toon_artf_html = $td_open_dh.$toon_artf_rank.$td_close_dh;
-			$toon_ilvl_html = $td_open_dh.$toon_obj->items->averageItemLevelEquipped.$td_close_dh;
-		} else {
-			$toon_name_api = "\n\t\t<td>".$toon_obj->name."</td>";
-			$toon_level = "\n\t\t<td>".$toon_obj->level."</td>";
-			$toon_curr_spec = "\n\t\t<td>".$toon_mainspec."</td>";
-			$toon_lgnd_need_html = "\n\t\t<td>".$toon_legend_need."</td>";
-			$toon_lgnd_lvl_need_html = "\n\t\t<td>".$toon_legend_lvl_need."</td>";
-			$toon_artf_html = "\n\t\t<td>".$toon_artf_rank."</td>";
-			$toon_ilvl_html = "\n\t\t<td>".$toon_obj->items->averageItemLevelEquipped."</td>";
-			}
-			$toon_table .= "\n\t<tr>".$toon_realm_html.$toon_name_api.$toon_icon_html.$toon_level.$toon_curr_spec.$toon_auto_complete.$toon_lgnd_need_html.$toon_lgnd_lvl_need_html.$toon_pri_profs.$toon_sec_profs.$toonLegRepHtml.$toon_artf_html.$toon_ilvl_html."\n\t</tr>\n";
-			}
-		sleep(0.15);
-		}
+		
+		$toonClassCellColor = wowClassColors($toon_obj->class);
+		$toonNameCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->name."</font></td>"
+		$toonLvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->level."</font></td>"
+		$toonSpecCell = "\n\t\t<td ".$toonClassCellColor.$toon_mainspec."</font></td>"
+		$toonLgndCountCell = "\n\t\t<td ".$toonClassCellColor.$toon_legend_need."</font></td>"
+		$toonLgndLvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_legend_lvl_need."</font></td>"
+		$toonArtfRankCell = "\n\t\t<td ".$toonClassCellColor.$toon_artf_rank."</font></td>"
+		$toonIlvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->items->averageItemLevelEquipped."</font></td>"
+		$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toon_auto_complete.$toonLgndCountCell.$toonLgndLvlCell.$toon_pri_profs.$toon_sec_profs.$toonLegRepHtml.$toonArtfRankCell.$toonIlvlCell."\n\t</tr>\n";
 	}
+	sleep(0.15);
+}
 $toon_table .= "\n</table>\n</div>\n";
 
 /* echo $toon_table; */

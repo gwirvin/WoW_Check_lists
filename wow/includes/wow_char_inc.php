@@ -15,7 +15,11 @@ $toon_name="Luxalor";
 $blizz_locale = "locale=en_us";
 $wow_url = "https://us.api.battle.net/wow/";
 $api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
-$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild&".$blizz_locale."&".$api_key;
+$toonLgndCount = 0;
+$toonLgndLvlCount = 0;
+$maxLgndLvl = 1000;
+include "./leg_lgnd_inc.php";
+$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
 # END BLOCK for testing
 
 # Using a curl function to get info
@@ -43,11 +47,12 @@ function getToonInfo ($toon_info_url, array $get = NULL, array $options = array(
 
 # What can I do with the objects in the array
 #
-$toon_json = getToonInfo($toon_info_url);
-$toon_obj = json_decode($toon_json);
+$toon_obj = json_decode(getToonInfo($toon_info_url));
+#$toon_json = getToonInfo($toon_info_url);
 #echo gettype($toon_obj), "\n";
 #var_dump(get_object_vars($toon_obj)); echo "\n";
-#print_r($toon_obj); echo "\n";
+#print_r($itemSlotsObj); echo "\n";
+
 
 # BEGIN Mounts Block
 #$mounts_count = count($toon_obj->mounts->collected);

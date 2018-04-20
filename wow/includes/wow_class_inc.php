@@ -1,46 +1,46 @@
 <?php
 /* file: wow_class_inc.php */
 namespace girvin\wow;
-function wowClasses($toon_class_api) {
+function wowClassColors($toon_class_api) {
     switch ($toon_class_api) { //Setting out if the class hall has an autocomplete
         case 1: //Warrior
-            return "Warrior";
+            return "bgcolor=\"CB9B6C\"><font color=\"000000\">";
             break;
         case 2: //Paladin
-            return "Paladin";
+            return "bgcolor=\"FB8EBB\"><font color=\"000000\">";
             break;
         case 3: //Hunter
-            return "Hunter";
+            return "bgcolor=\"A8D373\"><font color=\"000000\">";
             break;
         case 4: //Rogue
-            return "Rogue";
+            return "bgcolor=\"FFF267\"><font color=\"000000\">";
             break;
         case 5: //Priest
-            return "Priest";
+            return "bgcolor=\"F1EBE1\"><font color=\"000000\">";
             break;
         case 6: //Death Knight
-            return "Death Knight";
+            return "bgcolor=\"CD1736\"><font color=\"FFFFFF\">";
             break;
         case 7: //Shaman
-            return "Shaman";
+            return "bgcolor=\"0061FF\"><font color=\"FFFFFF\">";
             break;
         case 8: //Mage
-            return "Mage";
+            return "bgcolor=\"57CEF0\"><font color=\"000000\">";
             break;
         case 9: //Warlock
-            return "Warlock";
+            return "bgcolor=\"9585C9\"><font color=\"FFFFFF\">";
             break;
         case 10: //Monk
-            return "Monk";
+            return "bgcolor=\"00FEBD\"><font color=\"000000\">";
             break;
         case 11: //Druid
-            return "Druid";
+            return "bgcolor=\"FF7B00\"><font color=\"000000\">";
             break;
         case 12: //Demon Hunter
-            return "Demon Hunter";
+            return "bgcolor=\"AA37CA\"><font color=\"FFFFFF\">";
             break;
         default:
-            return "UNKNOWN";
+            return "bgcolor=\"000000\"><font color=\"FFFFFF\">";
         }
     }
 ?>
