@@ -10,16 +10,16 @@
  * https://dev.battle.net/io-docs **/
 namespace girvin\wow;
 # BEGIN Block for testing
-$toon_realm="area-52";
-$toon_name="Luxalor";
-$blizz_locale = "locale=en_us";
-$wow_url = "https://us.api.battle.net/wow/";
-$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
-$toonLgndCount = 0;
-$toonLgndLvlCount = 0;
-$maxLgndLvl = 1000;
-include "./leg_lgnd_inc.php";
-$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
+#$toon_realm="area-52";
+#$toon_name="Luxalor";
+#$blizz_locale = "locale=en_us";
+#$wow_url = "https://us.api.battle.net/wow/";
+#$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
+#$toonLgndCount = 0;
+#$toonLgndLvlCount = 0;
+#$maxLgndLvl = 1000;
+#include "./leg_lgnd_inc.php";
+#$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
 # END BLOCK for testing
 
 # Using a curl function to get info
