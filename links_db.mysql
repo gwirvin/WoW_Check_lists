@@ -1,0 +1,47 @@
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `links` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `links`;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categories` (
+  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cat_name` varchar(75) NOT NULL,
+  `cat_owner` int(10) NOT NULL,
+  PRIMARY KEY (`cat_id`),
+  KEY `cat_owner` (`cat_owner`),
+  CONSTRAINT `cat_owner_fk` FOREIGN KEY (`cat_owner`) REFERENCES `users`.`users` (`user_id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+  UNIQUE KEY `cat_name` (`cat_name`,`cat_owner`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `links`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `links` (
+  `link_id` int(11) NOT NULL AUTO_INCREMENT,
+  `link_owner` int(10) NOT NULL,
+  `link_name` varchar(100) NOT NULL,
+  `link_type` enum('external','internal') DEFAULT NULL,
+  `link_cat` varchar(75) DEFAULT NULL,
+  `link_url` varchar(150) DEFAULT NULL,
+  `link_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`link_id`),
+  KEY `link_cat` (`link_cat`),
+  CONSTRAINT `link_cat_fk` FOREIGN KEY (`link_cat`) REFERENCES `categories` (`cat_name`),
+  KEY `link_owner` (`link_owner`),
+  CONSTRAINT `link_owner_fk` FOREIGN KEY (`link_owner`) REFERENCES `users`.`users` (`user_id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+  UNIQUE KEY `link_name` (`link_name`,`link_owner`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+GRANT ALL PRIVILEGES ON links.* to 'web_app'@'%';

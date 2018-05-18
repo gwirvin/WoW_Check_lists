@@ -1,0 +1,24 @@
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `wow_api` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `wow_api`;
+
+--
+-- Table structure for table `toon`
+--
+
+DROP TABLE IF EXISTS `toon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `toon` (
+  `toon_id` int(10) NOT NULL AUTO_INCREMENT,
+  `toon_name` varchar(25) NOT NULL,
+  `toon_realm` varchar(25) NOT NULL,
+  `toon_owner` int(10) NOT NULL,
+  PRIMARY KEY (`toon_id`),
+  UNIQUE KEY `toon_name` (`toon_name`,`toon_realm`),
+  KEY `toon_owner` (`toon_owner`),
+  CONSTRAINT `toon_ibfk_1` FOREIGN KEY (`toon_owner`) REFERENCES `users`.`users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+GRANT ALL PRIVILEGES ON users.* to 'web_app'@'%';

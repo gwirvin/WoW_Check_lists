@@ -1,0 +1,24 @@
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `users` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `users`;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `user_id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(50) NOT NULL,
+  `user_first` varchar(25) NOT NULL,
+  `user_last` varchar(50) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
+  `user_created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `user_last_access` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_email` (`user_email`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+GRANT ALL PRIVILEGES ON users.* to 'web_app'@'%';
