@@ -74,10 +74,10 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <h2>Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Page</h2>
 <div id="container">
 <form action="./insert_link.php" name="add_link" method="POST">
-<div class="form-group"><label><font color="000000">Link Name:<sup>*</sup></label><input type="text" name="link_name" width="20em" value="">
-<label><font color=000000">Link Type:<sup>*</sup></label><select name="link_type"><option value="external">External Site</option><option value="internal">Internal Page</option><input type="hidden" name="link_owner" value="<?php print $link_owner;?>">
-<label><font color="000000">Link Category:<sup>*</sup></label><select name="link_cat"><?php print $cat_opts;?>
-<label>Link Address:<sup>*</sup></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
+<div class="form-group"><label><font color="000000">Link Name:<sup>*</sup></font></label><input type="text" name="link_name" width="20em" value="">
+<label><font color=000000">Link Type:<sup>*</sup></font></label><select name="link_type"><option value="external">External Site</option><option value="internal">Internal Page</option><input type="hidden" name="link_owner" value="<?php print $link_owner;?>"><br />
+<label><font color="000000">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts?>
+<label>Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 <p />
 <p />
 </div>
