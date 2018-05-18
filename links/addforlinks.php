@@ -47,7 +47,7 @@ $cat_gather_sql = ("SELECT cat_name, cat_owner FROM categories WHERE cat_owner=\
 $cat_query = mysqli_query ($links_conn, $cat_gather_sql);
 while ($cat_row = mysqli_fetch_array($cat_query))
 {
-	$cat_opts .= "<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
+	$cat_opts .= "\n\t<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
 }
 
 ?>
@@ -68,16 +68,20 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <h2>Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Page</h2>
 <div id="container">
 <form action="./insert_cat.php" name="add_cat" method="POST">
-<div class="form-group"><label><font color="000000">Category Name:<sup>*</sup></label><input type="text" name="cat_name"  width="50em" value=""><input type="hidden" name="cat_owner" value="<?php print $cat_owner; ?>"><input type="submit" name="insert" value="ADD"></div>
+<div class="form-group"><label><font color="000000">Category Name:<sup>*</sup></font></label><input type="text" name="cat_name"  width="50em" value=""><input type="hidden" name="cat_owner" value="<?php print $cat_owner; ?>"><input type="submit" name="insert" value="ADD"></div>
 <p />
 <center>
 <h2>Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Page</h2>
 <div id="container">
 <form action="./insert_link.php" name="add_link" method="POST">
-<div class="form-group"><label><font color="000000">Link Name:<sup>*</sup></font></label><input type="text" name="link_name" width="20em" value="">
-<label><font color=000000">Link Type:<sup>*</sup></font></label><select name="link_type"><option value="external">External Site</option><option value="internal">Internal Page</option><input type="hidden" name="link_owner" value="<?php print $link_owner;?>"><br />
+<div class="form-group">
+<input type="hidden" name="link_owner" value="<?php print $link_owner;?>"><br />
+<label><font color="000000">Link Name:<sup>*</sup></font></label><input type="text" name="link_name" width="20em" value="">
+<label><font color=000000">Link Type:<sup>*</sup></font></label><select name="link_type">
+	<option value="external">External Site</option>
+	<option value="internal">Internal Page</option>
 <label><font color="000000">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts?>
-<label>Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
+<label><font color="000000">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 <p />
 <p />
 </div>
