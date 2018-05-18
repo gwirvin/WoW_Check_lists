@@ -77,7 +77,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <div class="form-group">
 <input type="hidden" name="link_owner" value="<?php print $link_owner;?>"><br />
 <label><font color="000000">Link Name:<sup>*</sup></font></label><input type="text" name="link_name" width="20em" value="">
-<label><font color=000000">Link Type:<sup>*</sup></font></label><select name="link_type">
+<label><font color="000000">Link Type:<sup>*</sup></font></label><select name="link_type">
 	<option value="external">External Site</option>
 	<option value="internal">Internal Page</option>
 <label><font color="000000">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts?>
