@@ -80,6 +80,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <label><font color="000000">Link Type:<sup>*</sup></font></label><select name="link_type">
 	<option value="external">External Site</option>
 	<option value="internal">Internal Page</option>
+</select>
 <label><font color="000000">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts."\n"?></select>
 <label><font color="000000">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 <p />
