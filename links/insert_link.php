@@ -3,7 +3,9 @@
 /* FILE: insert_link.php
  *
  * Used to put links in the LINK DB */
-
+// Includes
+include "../cats.php";
+// Passed Variables 
 $link_name = $_POST['link_name'];
 $link_cat = $_POST['link_cat'];
 $link_owner = $_POST['link_owner'];
