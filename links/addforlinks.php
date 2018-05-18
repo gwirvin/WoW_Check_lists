@@ -45,7 +45,7 @@ include "../cats.php";
 
 $cat_gather_sql = ("SELECT cat_name, cat_owner FROM categories WHERE cat_owner=\"".$cat_owner."\" ORDER BY cat_name");
 $cat_query = mysqli_query ($links_conn, $cat_gather_sql);
-while ($cat_row = mysqli_fetch_array($cat_gather_sql))
+while ($cat_row = mysqli_fetch_array($cat_query))
 {
 	$cat_opts .= "<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</optoion>";
 }
