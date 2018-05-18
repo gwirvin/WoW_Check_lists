@@ -38,7 +38,7 @@ $link_url_err = "";
 // Use session to set page variables
 $cat_email = $_SESSION['user_email'];
 $cat_owner = $_SESSION['user_id'];
-$cat_user = $_SESSION_['user_first'];
+$cat_user = $_SESSION['user_first'];
 
 //includes
 include "../cats.php";
