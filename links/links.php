@@ -6,7 +6,8 @@
  * in the links Database, sort their dispaly out by
  * category and display them alphabetically
  * */
-
+// Includes
+include "../cats.php";
 $links_table = "";
 $links_cat_sql = mysqli_query($links_conn, "SELECT cat_name FROM categories WHERE NOT cat_name=\"Navigation\" ORDER BY cat_name") or die (mysqli_error());
 while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
