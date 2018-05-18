@@ -17,11 +17,23 @@ $cat_name = "";
 $cat_owner = "";
 $cat_user = "";
 $cat_opts= "";
+$link_name = "";
+$link_cat = "";
+$link_owner = "";
+$link_url = "";
+$link_type = "";
+$link_url = "";
 
 // Define empty error variables
 $cat_name_err =  "";
 $cat_owner_err =  "";
 $cat_user_err = "";
+$link_nam_erre = "";
+$link_cat_err = "";
+$link_owner_err = "";
+$link_url_err = "";
+$link_type_err = "";
+$link_url_err = "";
 
 // Use session to set page variables
 $cat_email = $_SESSION['user_email'];
