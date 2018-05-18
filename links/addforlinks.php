@@ -47,7 +47,7 @@ $cat_gather_sql = ("SELECT cat_name, cat_owner FROM categories WHERE cat_owner=\
 $cat_query = mysqli_query ($links_conn, $cat_gather_sql);
 while ($cat_row = mysqli_fetch_array($cat_query))
 {
-	$cat_opts .= "<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</optoion>";
+	$cat_opts .= "<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
 }
 
 ?>
@@ -56,7 +56,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Add a Character for <?php echo $_SESSION['user_first']?></title>
+<title>Add Links for <?php echo $_SESSION['user_first']?></title>
 <link rel="stylesheet" href="./style/style.css">
 <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
@@ -75,7 +75,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <div id="container">
 <form action="./insert_link.php" name="add_link" method="POST">
 <div class="form-group"><label><font color="000000">Link Name:<sup>*</sup></label><input type="text" name="link_name" width="20em" value=""><label><font color=000000">Link Type:<sup>*</sup><select name="link_type"><option value="external">External Site</option><option value="internal">Internal Page</option><input type="hidden" name="link_owner" value="<?php print $link_owner;?>">
-<div class="form-group"><label><font color="000000">Link Category:<sup>*</sup><select name="link_cat"><?php print $cat_opts;?><label>Link Address:<sup>*</sup><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
+<div class="form-group"><label><font color="000000">Link Category:<sup>*</sup></label><select name="link_cat"><?php print $cat_opts;?><label>Link Address:<sup>*</sup></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 <p />
 <p />
 </div>
