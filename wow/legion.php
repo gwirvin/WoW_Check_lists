@@ -16,7 +16,7 @@ include "../cats.php";
 include "./includes/wow_char_inc.php";
 include "./includes/leg_html_inc.php";
 include "./includes/leg_lgnd_inc.php";
-include "./includes/leg_rep_inc.php";
+// include "./includes/leg_rep_inc.php";
 include "./includes/leg_fact_inc.php";
 include "./includes/leg_ac_inc.php";
 include "./includes/leg_chk_lst.php";

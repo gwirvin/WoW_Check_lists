@@ -77,6 +77,7 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		$toon_realm = $toon_result[$db_toon_counter]['toon_realm'];
 		$toon_info_url = $char_url.$toon_realm."/".$toon_name."?".$leg_char_fields."&".$blizz_locale."&".$api_key; // The magic from the Blizzard API
 		$toon_obj = json_decode($toon_json);
+		print $toon_info_url;
 		$toon_json = getToonInfo($toon_info_url);
 		$toon_faction = $toon_obj->faction;
 		$toon_icon = $icon_url.$toon_obj->thumbnail;
@@ -184,13 +185,13 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		}
 		
 		$toonClassCellColor = wowClassColors($toon_obj->class);
-		$toonNameCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->name."</font></td>"
-		$toonLvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->level."</font></td>"
-		$toonSpecCell = "\n\t\t<td ".$toonClassCellColor.$toon_mainspec."</font></td>"
-		$toonLgndCountCell = "\n\t\t<td ".$toonClassCellColor.$toon_legend_need."</font></td>"
-		$toonLgndLvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_legend_lvl_need."</font></td>"
-		$toonArtfRankCell = "\n\t\t<td ".$toonClassCellColor.$toon_artf_rank."</font></td>"
-		$toonIlvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->items->averageItemLevelEquipped."</font></td>"
+		$toonNameCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->name."</font></td>";
+		$toonLvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->level."</font></td>";
+		$toonSpecCell = "\n\t\t<td ".$toonClassCellColor.$toon_mainspec."</font></td>";
+		$toonLgndCountCell = "\n\t\t<td ".$toonClassCellColor.$toon_legend_need."</font></td>";
+		$toonLgndLvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_legend_lvl_need."</font></td>";
+		$toonArtfRankCell = "\n\t\t<td ".$toonClassCellColor.$toon_artf_rank."</font></td>";
+		$toonIlvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->items->averageItemLevelEquipped."</font></td>";
 		$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toon_auto_complete.$toonLgndCountCell.$toonLgndLvlCell.$toon_pri_profs.$toon_sec_profs.$toonLegRepHtml.$toonArtfRankCell.$toonIlvlCell."\n\t</tr>\n";
 	}
 	sleep(0.15);
