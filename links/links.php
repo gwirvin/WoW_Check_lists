@@ -6,6 +6,16 @@
  * in the links Database, sort their dispaly out by
  * category and display them alphabetically
  * */
+
+// Initialize the session
+session_start();
+
+// If session variable is not set it will redirect to login page
+if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
+  header("location: login.php");
+  exit;
+}
+
 // Includes
 include "../cats.php";
 
