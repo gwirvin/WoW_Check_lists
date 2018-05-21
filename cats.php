@@ -19,4 +19,20 @@ $api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
 $wow_url = "https://us.api.battle.net/wow/";
 $icon_url = "http://render-us.worldofwarcraft.com/character/";
 $blizz_locale = "locale=en_US";
+
+// Navigation table
+$nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die(mysqli_error());
+$nav_table="<center>\n<div id=\"table-nav\">\n<table>\n<center>\n<tr>\n\t<td><center><form name=\"links\" method=\"POST\" action=\"/opt/bitnami/apache2/htdocs/links/links.php\">";
+while ($nav_link_row = mysqli_fetch_array($nav_link_sql))
+	{
+	if ($nav_link_row['link_type'] == "internal")
+		{
+		$nav_table .= "\t<td><center><form name=\"".$nav_link_row['link_name']."\"method=\"POST\" action=\"".$nav_link_row['link_url']."\"><input type=\"SUBMIT\" value=\"".$nav_link_row['link_name']."\"></form></td>\n";
+		}
+	else
+		{
+		$nav_table .= "\t<td><center><form name=\"".$nav_link_row['link_name']."\"method=\"POST\" action=\"".$nav_link_row['link_url']."\" target=\"_blank\"><input type=\"SUBMIT\" value=\"".$nav_link_row['link_name']."\"></form></td>\n";
+		}
+	}
+$nav_table .= "</tr>\n</center>\n</table>\n</div>\n</center>\n<hr />\n";
 ?>

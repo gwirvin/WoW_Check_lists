@@ -19,7 +19,7 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 // Includes
 include "../cats.php";
 
-// Navigation table
+/*// Navigation table
 $nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die(mysqli_error());
 $nav_table="<center>\r\n<div id=\"table-nav\">\r\n<table>\r\n<center>\r\n<tr>\r\n";
 while ($nav_link_row = mysqli_fetch_array($nav_link_sql))
@@ -33,7 +33,7 @@ while ($nav_link_row = mysqli_fetch_array($nav_link_sql))
                 $nav_table .= "\t<td><center><form name=\"".$nav_link_row['link_name']."\"method=\"POST\" action=\"".$nav_link_row['link_url']."\" target=\"_blank\"><input type=\"SUBMIT\" value=\"".$nav_link_row['link_name']."\"></form></td>\r\n";
                 }
         }
-$nav_table .= "</tr>\r\n</center>\r\n</table>\r\n</div>\r\n</center>\r\n<hr />\r\n";
+$nav_table .= "</tr>\r\n</center>\r\n</table>\r\n</div>\r\n</center>\r\n<hr />\r\n"; */
 
 // Links table(s)
 $links_table_count = 0;
