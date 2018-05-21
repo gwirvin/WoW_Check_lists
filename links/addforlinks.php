@@ -64,8 +64,10 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 </head>
 <div id="body-add">
 <body>
+<center><h1>Making additions for <?php echo $_SESSION['user_first']?>'s links<h1></center>
+<hr />
 <center>
-<h2><font background-color="ffffff">Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Pagei</font></h2>
+<h3>Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Pagei</h3>
 <div id="container">
 <form action="./insert_cat.php" name="add_cat" method="POST">
 <div class="form-group"><label><font color="ffffff">Category Name:<sup>*</sup></font></label><input type="text" name="cat_name"  width="50em" value=""><input type="hidden" name="cat_owner" value="<?php print $cat_owner; ?>"><input type="submit" name="insert" value="ADD"></div>
@@ -73,7 +75,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 </div>
 <p />
 <center>
-<h2>Adding a Link for <?php echo $_SESSION['user_first']?>'s Links Page</h2>
+<h3>Adding a Link for <?php echo $_SESSION['user_first']?>'s Links Page</h3>
 <div id="container">
 <form action="./insert_link.php" name="add_link" method="POST">
 <div class="form-group">
