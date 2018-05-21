@@ -29,19 +29,20 @@ $wow_check = mysqli_fetch_array($toon_chk_query);
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>
 </head>
+<?php echo $nav_table?>
 <div id="body">
 <body>
     <div class="page-header">
         <h1>Hi, <b><?php echo $_SESSION['user_first']; ?></b>. Welcome to the grab bag.</h1>
     </div>
-    <div id="table-nav">
+<!--    <div id="table-nav">
         <table>
             <tr>
                 <td><form name="logout" method="post" action="logout.php"><input value="Logout" type="submit"></form></td>
             </tr>
         </table>
-    </div> 
-	<hr /><center>You last accessed this site on: <?php echo $_SESSION['user_last_access']; ?><!-- <hr /> You signed up on: <?php echo $_SESSION['user_created_at']; ?> --!></center><hr />
+    </div> --!>
+	<hr /><center>You last accessed this site on: <?php echo $_SESSION['user_last_access']; ?><br /> You signed up on: <?php echo $_SESSION['user_created_at']; ?></center><hr />
     <p>
         <div id="table-nav">
         <table><caption>World of Warcraft Things</caption>
@@ -52,7 +53,7 @@ $wow_check = mysqli_fetch_array($toon_chk_query);
             </tr>
         </table>
     <div id="table-nav">
-        <table>
+        <table><caption>Warcraft Info Sites</caption>
             <tr>
                 <div class="form-group">
                     <td><center><form name="wowhead" method="POST" action="http://www.wowhead.com/" target="_blank"><input type="SUBMIT" value="WoW Head"></form></center></td>

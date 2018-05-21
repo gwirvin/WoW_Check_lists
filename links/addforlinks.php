@@ -62,6 +62,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+<?php echo $nav_table?>
 <div id="body-add">
 <body>
 <center><h1>Making additions for <?php echo $_SESSION['user_first']?>'s links<h1></center>

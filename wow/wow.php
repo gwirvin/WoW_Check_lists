@@ -110,14 +110,13 @@ $toon_table .= "\n</table>";
     <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+<?php echo $nav_table?>
 <body>
     <h2><center>World of Warcraft: <?php echo $_SESSION['user_first']; ?>'s Characters</center></h2>
     <div id="table-nav">
         <table>
-            <tr>
                 <div class="form-group"><td><center><form name="home" method="POST" action="../index.php"><input value="Home" type="submit"></form></center></td>
                 <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td>
-                <div class="form-group"><td><center><form name="legion" method="POST" action="./legion.php"><input value="Legion - <?php echo $_SESSION['user_first']; ?>" type="submit"></form></td>
                 <td><form name="logout" method="post" action="../logout.php"><input value="Logout" type="submit"></form></td>
             </div>
             </tr>
@@ -129,7 +128,7 @@ $toon_table .= "\n</table>";
     </div>
     </div>
     <div id="table-nav">
-        <table>
+        <table><caption>WoW Info Sites</caption>
             <tr>
                 <div class="form-group">
                     <td><center><form name="wowhead" method="POST" action="http://www.wowhead.com/" target="_blank"><input type="SUBMIT" value="WoW Head"></form></center></td>

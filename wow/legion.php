@@ -39,16 +39,15 @@ $toon_owner_first = $_SESSION['user_first'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../scripts/jquery.tablesorter.js"></script>
 </head>
+<?php echo $nav_table?>
 <div id="body"><body>
     <h2><center>World of Warcraft: Legion Checklist</center></h2>
     <div id="table-nav">
         <table>
             <tr>
-                <div class="form-group"><td><center><form name="home" method="POST" action="../index.php"><input value="Home" type="submit"></form></center></td></div>
                 <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td></div>
                 <div class="form-group"><td><center><form name="toon" method="POST" action="./wow.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Characters" type="submit"></form></td></div>
                 <div class="form-group"><td><center><form name="refresh" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"><input value="Refresh" type="SUBMIT"></form></center></td></div>
-                <div class="form-group"><td><form name="logout" method="post" action="../logout.php"><input value="Logout" type="submit"></form></td></div>
             </div>
             </tr>
         </table>
