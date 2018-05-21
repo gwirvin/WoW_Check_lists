@@ -20,7 +20,7 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 include "../cats.php";
 
 // Navigation table
-$nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" ORDER BY link_name") or die(mysqli_error());
+$nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" AND cat_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die(mysqli_error());
 $nav_table="<center>\r\n<div id=\"table-nav\">\r\n<table>\r\n<center>\r\n<tr>\r\n";
 while ($nav_link_row = mysqli_fetch_array($nav_link_sql))
         {
@@ -37,11 +37,11 @@ $nav_table .= "</tr>\r\n</center>\r\n</table>\r\n</div>\r\n</center>\r\n<hr />\r
 
 // Links table(s)
 $links_table_count = 0;
-$links_cat_sql = mysqli_query($links_conn, "SELECT cat_name FROM categories WHERE NOT cat_name=\"Navigation\" ORDER BY cat_name") or die (mysqli_error());
+$links_cat_sql = mysqli_query($links_conn, "SELECT cat_name FROM categories WHERE cat_owner=\"".$_SESSION['user_id']."\" AND NOT cat_name=\"Navigation\" ORDER BY cat_name") or die (mysqli_error());
 while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 {
 	$links_table_count = 0;
-	$links_links_sql = mysqli_query($links_conn, "SELECT link_name, link_type, link_cat, link_url FROM links WHERE link_cat=\"".$links_cat_row['cat_name']."\" ORDER BY link_name") or die (mysqli_error());
+	$links_links_sql = mysqli_query($links_conn, "SELECT link_name, link_type, link_cat, link_url FROM links WHERE link_cat=\"".$links_cat_row['cat_name']."\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die (mysqli_error());
 	$links_table = "<div id=\"table-body\">\n<table><center>\n\t<caption><h3>".$links_cat_rom['cat_name']."</h3></caption>\n<tr>\n";
 	while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 	{
