@@ -12,7 +12,8 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 
 // Block for testing
 include "../cats.php";
-include "./includes/wow_char_inc.php";
+#include "./includes/wow_char_inc.php";
+include "./includes/wow_class_inc.php";
 include "./includes/leg_html_inc.php";
 include "./includes/leg_lgnd_inc.php";
 // include "./includes/leg_rep_inc.php";
