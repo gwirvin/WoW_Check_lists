@@ -42,8 +42,8 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 {
 	$links_table_count = 0;
 	$links_links_sql = mysqli_query($links_conn, "SELECT link_name, link_type, link_cat, link_url FROM links WHERE link_cat=\"".$links_cat_row['cat_name']."\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die (mysqli_error());
-	$links_table = "<div id=\"table-body\">\n<table><center>\n\t<caption><h3>".$links_cat_row['cat_name']."</h3></caption>\n<tr>\n";
-	while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
+	$links_table = "<div id=\"table-body\">\n<table><center>\n\t<caption><h3>".$links_cat_row['cat_name']."</h3></caption>\n</center><tr>\n";
+	while ($links_links_row = mysqli_fetch_array($links_links_sql))
 	{
 		$links_table .= "\t<td><a href=\"".$links_link_row['link_url'];
 		if ($links_link_row['link_type'] == "internal")
@@ -82,7 +82,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <div id="body-add">
-<center><?php echo $nav_table?></center>
+<?php echo $nav_table?>
 <body>
 <center><h2><?php echo $_SESSION['user_first']?>'s Page o'Links</h2></center?
 <hr />
