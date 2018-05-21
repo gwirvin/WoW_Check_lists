@@ -1,6 +1,5 @@
 <?php
 /* file: legion.php */
-namespace girvin\wow;
 
 // Block for testing
 /* include "../../cats.php";

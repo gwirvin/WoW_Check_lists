@@ -8,7 +8,6 @@
  * ready check list.
  * The other fields can be found at:
  * https://dev.battle.net/io-docs **/
-namespace girvin\wow;
 # BEGIN Block for testing
 #$toon_realm="area-52";
 #$toon_name="Luxalor";

@@ -1,7 +1,6 @@
 <?php
 /** file index.php
  * the initial page for me website **/
-namespace girvin;
 // Initialize the session
 session_start();
  

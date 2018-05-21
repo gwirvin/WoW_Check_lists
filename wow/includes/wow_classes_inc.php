@@ -8,7 +8,6 @@
  * My hope here, is to do less with processing and
  * more with cramming objects together.
  * **/
-namespace girvin\wow;
 
 
 # BEGIN: Block for testing

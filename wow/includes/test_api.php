@@ -2,7 +2,6 @@
 /** file: leg_rep_inc.php
  * A file to act on all legion counted reputations
  * **/
-namespace girvin\wow;
 
 # BEGIN Block for testing
 include './wow_char_inc.php';

@@ -3,7 +3,6 @@
 /** File: register.php
  * Script for registering new users 
  * **/
-namespace girvin;
 
 // Include config file
 require_once 'cats.php';

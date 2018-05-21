@@ -1,6 +1,5 @@
 <?php
 /* file: legion.php */
-namespace girvin\wow;
 // Initialize the session
 session_start();
 

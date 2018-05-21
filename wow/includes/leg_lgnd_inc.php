@@ -1,6 +1,5 @@
 <?php
 /* file: legion_inc.php */
-namespace girvin\wow;
 
 function legendInfo($itemsSlotObj)
 {

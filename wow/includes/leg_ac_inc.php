@@ -1,6 +1,5 @@
 <?php
 /* file: leg_ac_inc.php */
-namespace girvin\wow;
 function autoComplete($toon_class_api) {
     switch ($toon_class_api) { //Setting out if the class hall has an autocomplete
         case 1: //Warrior

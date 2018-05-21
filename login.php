@@ -1,7 +1,6 @@
 <?php
 
 // File: login.php
-namespace girvin;
 
 // Include config file
 require_once 'cats.php';

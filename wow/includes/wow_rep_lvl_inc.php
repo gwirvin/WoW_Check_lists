@@ -1,6 +1,5 @@
 <?php
 /* file: leg_rep_inc.php */
-namespace girvin\wow;
 
 function factionStanding($faction_standing, $faction_curr, $faction_max, $faction_name) {
     switch ($faction_standing) {

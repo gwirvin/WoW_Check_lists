@@ -1,7 +1,6 @@
 <?php
 /** file logout.php
  * this script that ends the user session **/
-namespace girvin;
 // Initialize the session
 session_start();
  
