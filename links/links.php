@@ -84,7 +84,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 <div id="body-add">
 <?php echo $nav_table?>
 <body>
-<center><h2><?php echo $_SESSION['user_first']?>'s Page o'Links</h2></center?
+<center><h1><?php echo $_SESSION['user_first']?>'s Page o'Links</h1></center>
 <hr />
 <?php echo $links_table?>
 <p />
