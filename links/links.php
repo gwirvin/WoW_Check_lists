@@ -20,7 +20,7 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 include "../cats.php";
 
 // Navigation table
-$nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" AND cat_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die(mysqli_error());
+$nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die(mysqli_error());
 $nav_table="<center>\r\n<div id=\"table-nav\">\r\n<table>\r\n<center>\r\n<tr>\r\n";
 while ($nav_link_row = mysqli_fetch_array($nav_link_sql))
         {
