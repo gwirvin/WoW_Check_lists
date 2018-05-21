@@ -75,7 +75,8 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		$toon_name = $toon_result[$db_toon_counter]['toon_name'];
 		$toon_realm = $toon_result[$db_toon_counter]['toon_realm'];
 		$toon_info_url = $char_url.$toon_realm."/".$toon_name."?".$leg_char_fields."&".$blizz_locale."&".$api_key; // The magic from the Blizzard API
-		$toon_json = getToonInfo($toon_info_url);
+		#$toon_json = getToonInfo($toon_info_url);
+		$toon_json = file_get_contents($toon_info_url);
 		$toon_obj = json_decode($toon_json);
 		#print $toon_info_url;
 		$toon_faction = $toon_obj->faction;
