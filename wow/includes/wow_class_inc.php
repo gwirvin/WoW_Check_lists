@@ -81,6 +81,8 @@ function wowClasses($toon_class_api) {
             return "Demon Hunter";
             break;
         default:
-            return "I Broked it";
+	    return "I Broked it";
+    }
+}
 
 ?>
