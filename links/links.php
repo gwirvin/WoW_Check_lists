@@ -42,7 +42,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 {
 	$links_table_count = 0;
 	$links_links_sql = mysqli_query($links_conn, "SELECT link_name, link_type, link_cat, link_url FROM links WHERE link_cat=\"".$links_cat_row['cat_name']."\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die (mysqli_error());
-	$links_table = "<div id=\"table-body\">\n<table><center>\n\t<caption><h3>".$links_cat_row['cat_name']."</h3></caption>\n</center><tr>\n";
+	$links_table = "<div id=\"table-links\">\n<table><center>\n\t<caption><h3>".$links_cat_row['cat_name']."</h3></caption>\n</center><tr>\n";
 	while ($links_link_row = mysqli_fetch_array($links_links_sql))
 	{
 		$links_table .= "\t<td><a href=\"".$links_link_row['link_url'];
@@ -76,7 +76,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 <head>
 <meta charset="UTF-8">
 <title><?php echo $_SESSION['user_first']?>'s Page o'Links</title>
-<link rel="stylesheet" href="./style/style.css">
+<link rel="stylesheet" href="../style/style.css">
 <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
