@@ -57,7 +57,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <head>
 <meta charset="UTF-8">
 <title>Add Links for <?php echo $_SESSION['user_first']?></title>
-<link rel="stylesheet" href="./style/style.css">
+<link rel="stylesheet" href="../style/style.css">
 <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
