@@ -4,7 +4,7 @@
 include "../cats.php";
 // Passed Variables 
 
-$cat_name = $_POST['cat_name'];
+$cat_name = ucwords($_POST['cat_name']);
 $cat_owner = $_REQUEST['cat_owner'];
 
 $cat_ins_sql = ("INSERT INTO categories (cat_name, cat_owner) VALUES (\"".$cat_name."\", \"".$cat_owner."\")");
