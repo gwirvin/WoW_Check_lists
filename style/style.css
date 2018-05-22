@@ -19,7 +19,7 @@ td { vertical-align:middle; border:1px; border-style:inset; border-width:2px; bo
 #table-links table { background-color: #ffffff; width: 500; table-layout: fixed; border: 2px; text-align:center; border-color: #9999cc; border-style: outset; border-spacing: 1px; border-collapse: seperate; padding: none; word-wrap: break-word; margin-left:auto; margin-right:auto; }
 #table-links th { text-align:center; margin-top: -20px; padding: none; vertical-align:center; border: 1px; border-style:outset; border-width:1px; border-color:#000000; position:relative; }
 #table-links tr { height: 45px; vertical-align:middle; border:2px; border-color:#f2f2f2; }
-#table-links td { vertical-align:middle; border:1px; border-style:inset; border-width:2px; border-color:#000000; padding: 5px; text-align:center; }
+#table-links td { font-family: Arial; vertical-align:middle; border:1px; border-style:inset; border-width:2px; border-color:#000000; padding: 5px; text-align:center; }
 .cascade { display: none; }
 .button { background-color: #f44336; /* Red */ }
 .btn-danger { color: #fff; background-color: #d9534f; border-color: #d43f3a; }
