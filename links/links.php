@@ -52,8 +52,9 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 			}
 		}
 	}
-	$links_table .="</tr></table>\n<hr />\n";
+	$links_table .="</tr></table>\n";
 }
+$links_table .= "<hr />\n";
 ?>
 
 <!DOCTYPE html>
