@@ -78,7 +78,7 @@ jQuery(document).ready(function($) {
 <div id="body-add">
 <body>
 <center><h1>Making additions for <?php echo $_SESSION['user_first']?>'s links<h1></center>
-<center><font style="font-family: 'Times New Roman', Times, serif"><h1>NOTE:</h1><br />You will want to add in a category called Navigation.<br />This category of links will always show as buttons at the top of all pages on this site.<br />Please take care as your links and categories are connected.</font></center>
+<center><hr style="width:30%"><font style="font-family: 'Times New Roman', Times, serif"><h1>NOTE:</h1><br />You will want to add in a category called Navigation.<br />This category of links will always show as buttons at the top of all pages on this site.<br />Please take care as your links and categories are connected.</font></center>
 <hr />
 <center>
 <h3>Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Page</h3>
