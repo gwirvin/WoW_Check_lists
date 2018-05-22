@@ -1,11 +1,13 @@
 h1 { color: #FFFFFF; font-family: Impact, Charcoal, sans-serif; font-size: 24px; text-align: center; }
-h2 { font-family: Arial, Veranda, sans-serif; font-size: 20px; text-align: center; color: #0B0B61; }
+h2 { font-family: "Times New Roman", Times, serif; font-size: 20px; text-align: center; color: #DCE5F8; }
+h3 { font-family: Georgia, serif; font-size: 15px; text-align: center; color: #FADADA; }
 body { color: #FFFFFF; font-family: Impact, Charcoal, sans-serif; background-color:#000000; background-repeat:no-repeat; background-position:center; background-attachment:fixed: }
 table { width 500; border 2px; text-align:center; border-color #9999cc; border-style: outset; border-spacing: 1px; border-collapse: seperate; padding: none; margin-left:auto; margin-right:auto; }
 th { text-align:center; vertical-align:center; border: 1px; border-style:outset; border-width:1px; border-color:#000000; }
 tr { vertical-align:middle; border:2px; border-color:#000000; }
 td { vertical-align:middle; border:1px; border-style:inset; border-width:2px; border-color:#000000; padding:none; text-align:center; }
 /******************ID's****************/
+#body-add body { color: #FFFFFF; font-family: Georgia, serif; background-color: #ABABAB; background-position: center; }
 #table-nav table { width: 502; border: 0px; align: center; border-spacing: 2px; border-collapse: seperate; padding: none;
 /*	margin-left:auto; margin-right:auto; */ margin: 0 auto; }
 #table-nav th { text-align: center; vertical-align: middle; border: 3px; border-color: #000000; col-span: 5; }
