@@ -81,7 +81,7 @@ jQuery(document).ready(function($) {
 <center><hr style="width:30%"><font style="font-family: 'Times New Roman', Times, serif"><h1>NOTE:</h1><br />You will want to add in a category called Navigation.<br />This category of links will always show as buttons at the top of all pages on this site.<br />Please take care as your links and categories are connected.</font></center>
 <hr />
 <center>
-<h2>New things for <?php echo $_SESSION['user_first'?>'s Link page</h2>
+<h2>New things for <?php echo $_SESSION['user_first']?>'s Link page</h2>
 <hr style="width: 50%">
 <h3>Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Page</h3>
 <div id="container">
