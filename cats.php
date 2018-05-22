@@ -2,6 +2,11 @@
 
 /* File: cats.php */
 
+// If session variable is not set it will redirect to login page
+if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
+  header("location: login.php");
+  exit;
+
 $dbhost = 'localhost';
 $dbuser = 'web_app';
 $dbpass = 'zoh6oePohb3a';

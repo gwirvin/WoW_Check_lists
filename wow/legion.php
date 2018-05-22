@@ -11,16 +11,19 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 
 
 // Block for testing
+/*
+include "./includes/wow_char_inc.php";
+include "./includes/leg_rep_inc.php";
+include "./includes/leg_fact_inc.php";
+*/
 include "../cats.php";
-#include "./includes/wow_char_inc.php";
 include "./includes/wow_class_inc.php";
+include "./includes/wow_rep_lvl_inc.php";
+include "./includes/wow_fact_inc.php";
 include "./includes/leg_html_inc.php";
 include "./includes/leg_lgnd_inc.php";
-// include "./includes/leg_rep_inc.php";
-include "./includes/leg_fact_inc.php";
 include "./includes/leg_ac_inc.php";
 include "./includes/leg_chk_lst.php";
-include "./includes/wow_rep_lvl_inc.php";
 
 // Variables for the start
 $toon_owner_id = $_SESSION['user_id'];
