@@ -17,6 +17,7 @@ $cat_name = "";
 $cat_owner = "";
 $cat_user = "";
 $cat_opts= "";
+$catEdits = "\n<div id=\"table-edits\">\n<table>\n\t<caption><h3>Edit ".$_SESSION['user_first']."'s Categories:</h3></cpation>\n\t<tr>\n\t\t<th>Category Name:</th>\n\t</tr>\n\t";
 $link_name = "";
 $link_cat = "";
 $link_owner = "";
@@ -43,12 +44,21 @@ $link_owner = $cat_owner;
 //includes
 include "../cats.php";
 
-$cat_gather_sql = ("SELECT cat_name, cat_owner FROM categories WHERE cat_owner=\"".$cat_owner."\" ORDER BY cat_name");
+$cat_gather_sql = ("SELECT cat_id, cat_name, cat_owner FROM categories WHERE cat_owner=\"".$cat_owner."\" ORDER BY cat_name");
+$link_gather_sql = ("SELECT link_id, link_name, link_type, link_cat, link_url FROM links WHERE link_owner=".$link_owner." ORDER BY link_cat, link_name");
 $cat_query = mysqli_query ($links_conn, $cat_gather_sql);
+$link_query = mysqli_query ($links_conn, $links_gather_sql);
 while ($cat_row = mysqli_fetch_array($cat_query))
 {
 	$cat_opts .= "\n\t<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
 }
+
+
+while ($catEditRow = mysqli_fetch_array($cat_query)
+{
+	$catEdits .= "<tr>\n\t\t<form name=\"update_cat_".$catEditRow['cat_id']."\" method=\"POST\" action=\"update_cats.php\"<td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"".$catEditRow['cat_name']."\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
+}
+$catEdits .= "</table>\n";
 
 ?>
 
@@ -106,7 +116,12 @@ jQuery(document).ready(function($) {
 <label><font color="ffffff">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts."\n"?></select>
 <label><font color="ffffff">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 </div>
-<p />
+<hr />
+<h2>Editing <?php echo $_SESSION['user_first']?>'s Link Stuff<h2>
+<hr style="width: 50%">
+<?php echo $catEdits?>
+<hr style="width: 30%">
+<hr />
 <p />
 </div>
 </form>
