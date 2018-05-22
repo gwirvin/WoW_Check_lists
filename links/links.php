@@ -19,22 +19,6 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 // Includes
 include "../cats.php";
 
-/*// Navigation table
-$nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die(mysqli_error());
-$nav_table="<center>\r\n<div id=\"table-nav\">\r\n<table>\r\n<center>\r\n<tr>\r\n";
-while ($nav_link_row = mysqli_fetch_array($nav_link_sql))
-        {
-        if ($nav_link_row['link_type'] == "internal")
-                {
-                $nav_table .= "\t<td><center><form name=\"".$nav_link_row['link_name']."\"method=\"POST\" action=\"".$nav_link_row['link_url']."\"><input type=\"SUBMIT\" value=\"".$nav_link_row['link_name']."\"></form></td>\r\n";
-                }
-        else
-                {
-                $nav_table .= "\t<td><center><form name=\"".$nav_link_row['link_name']."\"method=\"POST\" action=\"".$nav_link_row['link_url']."\" target=\"_blank\"><input type=\"SUBMIT\" value=\"".$nav_link_row['link_name']."\"></form></td>\r\n";
-                }
-        }
-$nav_table .= "</tr>\r\n</center>\r\n</table>\r\n</div>\r\n</center>\r\n<hr />\r\n"; */
-
 // Links table(s)
 $links_table_count = 0;
 $links_cat_sql = mysqli_query($links_conn, "SELECT cat_name FROM categories WHERE cat_owner=\"".$_SESSION['user_id']."\" AND NOT cat_name=\"Navigation\" ORDER BY cat_name") or die (mysqli_error());
@@ -42,7 +26,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 {
 	$links_table_count = 0;
 	$links_links_sql = mysqli_query($links_conn, "SELECT link_name, link_type, link_cat, link_url FROM links WHERE link_cat=\"".$links_cat_row['cat_name']."\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die (mysqli_error());
-	$links_table = "<hr style=\"width:50%;\" /\">\n<div id=\"table-links\">\n<table><center>\n\t<caption style=\"font-family: 'Times New Roman', Times, serif;\"><h3>".$links_cat_row['cat_name']."</h3></caption>\n</center><tr>\n";
+	$links_table = "<hr style=\"width:50%;\">\n<div id=\"table-links\">\n<table><center>\n\t<caption style=\"font-family: 'Times New Roman', Times, serif;\"><h3>".$links_cat_row['cat_name']."</h3></caption>\n</center><tr>\n";
 	while ($links_link_row = mysqli_fetch_array($links_links_sql))
 	{
 		$links_table .= "\t<td><a href=\"".$links_link_row['link_url'];
