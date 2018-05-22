@@ -54,7 +54,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 }
 
 
-while ($catEditRow = mysqli_fetch_array($cat_query)
+while ($catEditRow = mysqli_fetch_array($cat_query))
 {
 	$catEdits .= "<tr>\n\t\t<form name=\"update_cat_".$catEditRow['cat_id']."\" method=\"POST\" action=\"update_cats.php\"<td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"".$catEditRow['cat_name']."\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
 }
