@@ -100,7 +100,6 @@ jQuery(document).ready(function($) {
 	<option value="external">External Site</option>
 	<option value="internal">Internal Page</option>
 </select>
-<div class="form-group">
 <label><font color="ffffff">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts."\n"?></select>
 <label><font color="ffffff">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 </div>
