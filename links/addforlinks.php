@@ -61,6 +61,18 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+    $('.category').keyup(function(event) {
+        var textBox = event.target;
+        var start = textBox.selectionStart;
+        var end = textBox.selectionEnd;
+        textBox.value = textBox.value.charAt(0).toUpperCase() + textBox.value.slice(1).toLowerCase();
+        textBox.setSelectionRange(start, end);
+    });
+});
+</script>
 </head>
 <?php echo $nav_table?>
 <div id="body-add">
@@ -71,7 +83,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <h3>Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Pagei</h3>
 <div id="container">
 <form action="./insert_cat.php" name="add_cat" method="POST">
-<div class="form-group"><label><font color="ffffff">Category Name:<sup>*</sup></font></label><input type="text" name="cat_name"  width="50em" style="text-transform: capitalize;" placeholder="Enter a Category Name" value=""><input type="hidden" name="cat_owner" value="<?php print $cat_owner; ?>"><input type="submit" name="insert" value="ADD"></div>
+<div class="form-group"><label><font color="ffffff">Category Name:<sup>*</sup></font></label><input type="text" name="cat_name"  class="category" width="50em" style="text-transform: capitalize;" placeholder="Enter a Category Name" value=""><input type="hidden" name="cat_owner" value="<?php print $cat_owner; ?>"><input type="submit" name="insert" value="ADD"></div>
 </form>
 </div>
 <p />

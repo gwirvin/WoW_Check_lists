@@ -42,7 +42,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 {
 	$links_table_count = 0;
 	$links_links_sql = mysqli_query($links_conn, "SELECT link_name, link_type, link_cat, link_url FROM links WHERE link_cat=\"".$links_cat_row['cat_name']."\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die (mysqli_error());
-	$links_table = "<div id=\"table-links\">\n<table><center>\n\t<caption><h3>".$links_cat_row['cat_name']."</h3></caption>\n</center><tr>\n";
+	$links_table = "<hr style=\"width:50%;\" /\">\n<div id=\"table-links\">\n<table><center>\n\t<caption style=\"font-family: 'Times New Roman', Times, serif;\"><h3>".$links_cat_row['cat_name']."</h3></caption>\n</center><tr>\n";
 	while ($links_link_row = mysqli_fetch_array($links_links_sql))
 	{
 		$links_table .= "\t<td><a href=\"".$links_link_row['link_url'];
@@ -86,6 +86,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 <body>
 <center><h1><?php echo $_SESSION['user_first']?>'s Page o'Links</h1></center>
 <hr />
+<center><form name="edit_links" method="POST" action="/links/addforlinks.php"><input type="submit" value="Edit Links"></form></center>
 <?php echo $links_table?>
 <p />
 </div>
