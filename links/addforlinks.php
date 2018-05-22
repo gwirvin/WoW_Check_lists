@@ -89,7 +89,7 @@ jQuery(document).ready(function($) {
 </div>
 <p />
 <center>
-<hr style="width30%">
+<hr style="width: 30%">
 <h3>Adding a Link for <?php echo $_SESSION['user_first']?>'s Links Page</h3>
 <div id="container">
 <form action="./insert_link.php" name="add_link" method="POST">
