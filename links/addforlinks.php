@@ -51,13 +51,13 @@ $link_query = mysqli_query ($links_conn, $links_gather_sql);
 while ($cat_row = mysqli_fetch_array($cat_query))
 {
 	$cat_opts .= "\n\t<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
-}
-
-
-while ($catEditRow = mysqli_fetch_array($cat_query))
-{
 	$catEdits .= "<tr>\n\t\t<form name=\"update_cat_".$catEditRow['cat_id']."\" method=\"POST\" action=\"update_cats.php\"<td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"".$catEditRow['cat_name']."\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
 }
+
+
+#while ($catEditRow = mysqli_fetch_array($cat_query))
+#{
+#}
 $catEdits .= "</table>\n";
 
 ?>
