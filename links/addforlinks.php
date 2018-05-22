@@ -71,7 +71,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 <h3>Adding a Category for <?php echo $_SESSION['user_first']?>'s Links Pagei</h3>
 <div id="container">
 <form action="./insert_cat.php" name="add_cat" method="POST">
-<div class="form-group"><label><font color="ffffff">Category Name:<sup>*</sup></font></label><input type="text" name="cat_name"  width="50em" value=""><input type="hidden" name="cat_owner" value="<?php print $cat_owner; ?>"><input type="submit" name="insert" value="ADD"></div>
+<div class="form-group"><label><font color="ffffff">Category Name:<sup>*</sup></font></label><input type="text" name="cat_name"  width="50em" style="text-transform: capitalize;" placeholder="Enter a Category Name" value=""><input type="hidden" name="cat_owner" value="<?php print $cat_owner; ?>"><input type="submit" name="insert" value="ADD"></div>
 </form>
 </div>
 <p />
