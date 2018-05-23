@@ -25,7 +25,7 @@ if (strpos($cat_name, 'Navigation') !== false)
 else
 {
 	$nav_check = mysqli_num_rows(mysqli_query($links_conn, $nav_chk_sql));
-	if ($nav_check > 0
+	if ($nav_check > 0)
 	{
 		 if ($cat_ins_sql)
 		 {
