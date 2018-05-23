@@ -12,19 +12,22 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
   exit;
 }
 
+//includes
+include "../cats.php";
+
 // Define variables and initialize with empty values
 $cat_name = ""; 
 $cat_owner = "";
 $cat_user = "";
 $cat_opts= "\n";
-$catEdits = "\n<div id=\"table-edits\">\n<table>\n\t<tr>\n\t\t<th>Current Name:</th>\n\t\t<th>New Name:</th>\n\t</tr>\n\t";
+$catEdits = "\n<div id=\"table-edits\">\n<table>\n\t<tr>\n\t\t<th>Current Name:</th>\n\t\t<th>New Name:</th>\n\t</tr>\n";
 $link_name = "";
 $link_cat = "";
 $link_owner = "";
 $link_url = "";
 $link_type = "";
 $link_url = "";
-$catEdits = "\n<div id=\"table-edits\">\n<table>\n\t<tr>\n\t\t<th>Name:</th>\n\t\t<th>Category:</th>\n\t\t<th>Link:</th>\n\t</tr>\n";
+$linkEdits = "\n<div id=\"table-edits\">\n<table>\n\t<tr>\n\t\t<th>Name:</th>\n\t\t<th>Category:</th>\n\t\t<th>Link:</th>\n\t</tr>\n";
 
 // Define empty error variables
 $cat_name_err =  "";
@@ -42,8 +45,6 @@ $cat_email = $_SESSION['user_email'];
 $cat_owner = $_SESSION['user_id'];
 $cat_user = $_SESSION['user_first'];
 $link_owner = $cat_owner;
-//includes
-include "../cats.php";
 
 $cat_gather_sql = ("SELECT cat_id, cat_name, cat_owner FROM categories WHERE cat_owner=\"".$cat_owner."\" ORDER BY cat_name");
 $link_gather_sql = ("SELECT link_id, link_name, link_type, link_cat, link_url, link_owner FROM links WHERE link_owner=".$cat_owner." ORDER BY link_cat, link_name");
@@ -113,7 +114,7 @@ jQuery(document).ready(function($) {
 <!--<label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Type:<sup>*</sup></font></label><select name="link_type">
 	<option value="external">External Site</option>
 	<option value="internal">Internal Page</option>
-</select> -->
+</select> --!>
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts."\n"?></select>
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 </div>
