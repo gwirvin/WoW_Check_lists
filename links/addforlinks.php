@@ -17,7 +17,7 @@ $cat_name = "";
 $cat_owner = "";
 $cat_user = "";
 $cat_opts= "";
-$catEdits = "\n<div id=\"table-edits\">\n<table>\\n\t<tr>\n\t\t<th>Current Name:</th>\n\t\t<th>New Name:</th>\n\t</tr>\n\t";
+$catEdits = "\n<div id=\"table-edits\">\n<table>\n\t<tr>\n\t\t<th>Current Name:</th>\n\t\t<th>New Name:</th>\n\t</tr>\n\t";
 $link_name = "";
 $link_cat = "";
 $link_owner = "";
@@ -45,20 +45,16 @@ $link_owner = $cat_owner;
 include "../cats.php";
 
 $cat_gather_sql = ("SELECT cat_id, cat_name, cat_owner FROM categories WHERE cat_owner=\"".$cat_owner."\" ORDER BY cat_name");
-$link_gather_sql = ("SELECT link_id, link_name, link_type, link_cat, link_url FROM links WHERE link_owner=".$link_owner." ORDER BY link_cat, link_name");
+$link_gather_sql = ("SELECT link_id, link_name, link_type, link_cat, link_url FROM links WHERE link_owner=".$cat_owner." ORDER BY link_cat, link_name");
 $cat_query = mysqli_query ($links_conn, $cat_gather_sql);
-$link_query = mysqli_query ($links_conn, $links_gather_sql);
+$link_query = mysqli_query ($links_conn, $link_gather_sql);
 while ($cat_row = mysqli_fetch_array($cat_query))
 {
 	$cat_opts .= "\n\t<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
 	$catEdits .= "<tr>\n\t\t<td>".$cat_row['cat_name']."</td>\n\t\t<form name=\"update_cat_".$cat_row['cat_id']."\" method=\"POST\" action=\"update_cats.php\"><td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"".$cat_row['cat_name']."\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
 }
 
-#$sr_inc_jira_list .="<tr>\r\n\t\t<form name=\"update_".$sr_inc_jira_row['inc_jira_queue']."_".$sr_inc_jira_row['inc_jira_id']."\" method=\"POST\" action=\"update_inc_jira.php\">\r\n\t<td><input type=\"text\" size=\"10\" name='inc_jira_id' value=\"".$sr_inc_jira_row['inc_jira_id']."\"></td>\r\n\t<td><input type=\"text\" size=\"10\" name='inc_jira_queue' value=\"".$sr_inc_jira_row['inc_jira_queue']."\"></td>\r\n\t<td><input type=\"text\" size=\"60\" value=\"".$sr_inc_jira_row['inc_jira_title']."\" name=\"inc_jira_title\"></td>\r\n\t<td><select name=\"inc_jira_status\">\r\n\t\t\t<option value=\"".$sr_inc_jira_row['inc_jira_status']."\">".$sr_inc_jira_row['inc_jira_status']."</option>".$status_options."</td>\r\n\t<td><select name=\"inc_jira_oncall\">\r\n\t\t\t<option selected=\"selected\" value=\"".$sr_inc_jira_row['inc_jira_oncall']."\">".$sr_inc_jira_row['inc_jira_oncall']."</option>".$oncall_options."</td>\r\n\t<td><input type=\"submit\" name=\"update_".$sr_inc_jira_row['inc_jira_id']."\" value=\"UPDATE\"></td>\r\n\t\t</form>\r\n</tr>\r\n";
 
-#while ($catEditRow = mysqli_fetch_array($cat_query))
-#{
-#}
 $catEdits .= "</table>\n";
 
 ?>
