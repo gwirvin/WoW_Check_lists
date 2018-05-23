@@ -51,7 +51,7 @@ $link_query = mysqli_query ($links_conn, $link_gather_sql);
 while ($cat_row = mysqli_fetch_array($cat_query))
 {
 	$cat_opts .= "\n\t<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
-	$catEdits .= "<tr>\n\t\t<td><font color=\"FFFFFF\" style=\"font-family: \'Times New Roman\', Times, serif; text-align: right;\"".$cat_row['cat_name']."</td>\n\t\t<form name=\"update_cat_".$cat_row['cat_id']."\" method=\"POST\" action=\"update_cats.php\"><td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"Ne Category Name\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
+	$catEdits .= "<tr>\n\t\t<td><font color=\"FFFFFF\" style=\"font-family: 'Times New Roman', Times, serif; text-align: right;\"".$cat_row['cat_name']."</td>\n\t\t<form name=\"update_cat_".$cat_row['cat_id']."\" method=\"POST\" action=\"update_cats.php\"><td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"Ne Category Name\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
 }
 
 
