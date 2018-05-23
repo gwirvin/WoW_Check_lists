@@ -16,7 +16,7 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 $cat_name = ""; 
 $cat_owner = "";
 $cat_user = "";
-$cat_opts= "";
+$cat_opts= "\n";
 $catEdits = "\n<div id=\"table-edits\">\n<table>\n\t<tr>\n\t\t<th>Current Name:</th>\n\t\t<th>New Name:</th>\n\t</tr>\n\t";
 $link_name = "";
 $link_cat = "";
@@ -24,6 +24,7 @@ $link_owner = "";
 $link_url = "";
 $link_type = "";
 $link_url = "";
+$catEdits = "\n<div id=\"table-edits\">\n<table>\n\t<tr>\n\t\t<th>Name:</th>\n\t\t<th>Category:</th>\n\t\t<th>Link:</th>\n\t</tr>\n";
 
 // Define empty error variables
 $cat_name_err =  "";
@@ -45,18 +46,21 @@ $link_owner = $cat_owner;
 include "../cats.php";
 
 $cat_gather_sql = ("SELECT cat_id, cat_name, cat_owner FROM categories WHERE cat_owner=\"".$cat_owner."\" ORDER BY cat_name");
-$link_gather_sql = ("SELECT link_id, link_name, link_type, link_cat, link_url FROM links WHERE link_owner=".$cat_owner." ORDER BY link_cat, link_name");
+$link_gather_sql = ("SELECT link_id, link_name, link_type, link_cat, link_url, link_owner FROM links WHERE link_owner=".$cat_owner." ORDER BY link_cat, link_name");
 $cat_query = mysqli_query ($links_conn, $cat_gather_sql);
 $link_query = mysqli_query ($links_conn, $link_gather_sql);
 while ($cat_row = mysqli_fetch_array($cat_query))
 {
-	$cat_opts .= "\n\t<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
-	$catEdits .= "<tr>\n\t\t<td><font color=\"FFFFFF\" style=\"font-family: 'Times New Roman', Times, serif; float: right;\">".$cat_row['cat_name']."</font></td>\n\t\t<form name=\"update_cat_".$cat_row['cat_id']."\" method=\"POST\" action=\"update_cats.php\"><td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"Ne Category Name\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
+	$cat_opts .= "\t<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
+	$catEdits .= "\t<tr>\n\t\t<td><font color=\"FFFFFF\" style=\"font-family: 'Times New Roman', Times, serif; float: right;\">".$cat_row['cat_name']."</font></td>\n\t\t<form name=\"update_cat_".$cat_row['cat_id']."\" method=\"POST\" action=\"update_cats.php\"><td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"Ne Category Name\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
 }
 
+while ($link_row = mysqli_fetch_array($link_query))
+{
+	$linkEdits .= "\t<tr>\n\t<form name=\"editLink".$link_row['link_id']."\" method=\"POST\" action=\"update_links.php\">\n\t\t<td><input type=\"text\" width=\"50em\" name=\"linkNameUpdate\" value=\"".$link_row['link_name']."\"></td>i\n\t\t<td><input type=\"text\" width=\"30em\" name=\"linkUPdateCat\" value=\"".$link_row['link_cat']."\"></td>\n\t\t<td><input type=\"url\" name=\"linkUpdateUrl\" value=\"".$link_row['link_url']."\"></td>\n\t\t<td><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
 
 $catEdits .= "</table>\n";
-
+$linkEdits .= "</table>\n";
 ?>
 
 <!DOCTYPE html>
@@ -106,18 +110,21 @@ jQuery(document).ready(function($) {
 <div class="form-group">
 <input type="hidden" name="link_owner" value="<?php print $link_owner;?>"><br />
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Name:<sup>*</sup></font></label><input type="text" name="link_name" width="20em" value="">
-<label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Type:<sup>*</sup></font></label><select name="link_type">
+<!--<label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Type:<sup>*</sup></font></label><select name="link_type">
 	<option value="external">External Site</option>
 	<option value="internal">Internal Page</option>
-</select>
+</select> -->
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts."\n"?></select>
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 </div>
 <hr />
 <h2>Editing <?php echo $_SESSION['user_first']?>'s Link Stuff</h2>
 <hr style="width: 50%">
+<h3>Edit <?php echo $_SESSION['user_first']?>'s Categories</h3>
 <?php echo $catEdits?>
 <hr style="width: 30%">
+<h3>Edit <?php echo $_SESSION['user_first']?>'s Links</h3>
+<?php echo $linkEdits?>
 <hr />
 <p />
 </div>
