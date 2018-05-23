@@ -7,14 +7,10 @@
 session_start();
 
 // If session variable is not set it will redirect to login page
-#if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
-#  header("location: login.php");
-#  exit;
-#}
-// BLOCK for TESTING
-#$_SESSION['user_first'] = "Grant";
-#$_SESSION['user_id']=1;
-#$_SESSION['user_email']= "grantirvin@aol.com";
+if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
+  header("location: login.php");
+  exit;
+}
 
 //includes
 include "../cats.php";
@@ -63,6 +59,7 @@ while ($cat_row = mysqli_fetch_array($cat_query))
 while ($link_row = mysqli_fetch_array($link_query))
 {
 	$linkEdits .= "\t<tr>\n\t<form name=\"editLink".$link_row['link_id']."\" method=\"POST\" action=\"update_links.php\">\n\t\t<td><input type=\"text\" width=\"50em\" name=\"linkNameUpdate\" value=\"".$link_row['link_name']."\"></td>i\n\t\t<td><input type=\"text\" width=\"30em\" name=\"linkUPdateCat\" value=\"".$link_row['link_cat']."\"></td>\n\t\t<td><input type=\"url\" name=\"linkUpdateUrl\" value=\"".$link_row['link_url']."\"></td>\n\t\t<td><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
+}
 
 $catEdits .= "</table>\n";
 $linkEdits .= "</table>\n";
@@ -115,6 +112,10 @@ jQuery(document).ready(function($) {
 <div class="form-group">
 <input type="hidden" name="link_owner" value="<?php print $link_owner;?>"><br />
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Name:<sup>*</sup></font></label><input type="text" name="link_name" width="20em" value="">
+<!--<label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Type:<sup>*</sup></font></label><select name="link_type">
+	<option value="external">External Site</option>
+	<option value="internal">Internal Page</option>
+</select> --!>
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts."\n"?></select>
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 </div>
