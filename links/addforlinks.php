@@ -53,12 +53,12 @@ $link_query = mysqli_query ($links_conn, $link_gather_sql);
 while ($cat_row = mysqli_fetch_array($cat_query))
 {
 	$cat_opts .= "\t<option value=\"".$cat_row['cat_name']."\">".$cat_row['cat_name']."</option>";
-	$catEdits .= "\t<tr>\n\t\t<td><font color=\"FFFFFF\" style=\"font-family: 'Times New Roman', Times, serif; float: right;\">".$cat_row['cat_name']."</font></td>\n\t\t<form name=\"update_cat_".$cat_row['cat_id']."\" method=\"POST\" action=\"update_cat.php\"><td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"New Category Name\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"hidden\" name=\"cat_id\" value=\"".$cat_row['cat_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
+	$catEdits .= "\t<tr>\n\t\t<td><font color=\"FFFFFF\" style=\"font-family: 'Times New Roman', Times, serif; float: right;\">".$cat_row['cat_name']."</font></td>\n\t\t<form name=\"update_cat_".$cat_row['cat_id']."\" method=\"POST\" action=\"update_cat.php\"><td><input type=\"text\" width=\"50em\" name=\"catNameUpdate\" placeholder=\"New Category Name\"><input type=\"hidden\" name=\"cat_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"hidden\" name=\"cat_id\" value=\"".$cat_row['cat_id']."\"><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t\t<td><form name=\"deleteCat".$cat_row['cat_id']."\" method=\"POST\" action=\"delete_cat.php\"><input type=\"hidden\" name=\"cat_id\" value=\"".$cat_row['cat_id']."\"><input type=\"submit\" name=\"edit\" value=\"DELETE\"></form></td>\n\t</tr>\n";
 }
 
 while ($link_row = mysqli_fetch_array($link_query))
 {
-	$linkEdits .= "\t<tr>\n\t<form name=\"editLink".$link_row['link_id']."\" method=\"POST\" action=\"update_link.php\">\n\t\t<td><input type=\"text\" width=\"50em\" name=\"linkNameUpdate\" value=\"".$link_row['link_name']."\"></td>\n\t\t<td><input type=\"text\" width=\"30em\" name=\"linkUPdateCat\" value=\"".$link_row['link_cat']."\"></td>\n\t\t<td><input type=\"url\" name=\"linkUpdateUrl\" value=\"".$link_row['link_url']."\"></td>\n\t\t<input type=\"hidden\" name=\"link_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"hidden\" name=\"link_id\" value=\"".$link_row['link_id']."\"><td><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t</tr>\n";
+	$linkEdits .= "\t<tr>\n\t<form name=\"editLink".$link_row['link_id']."\" method=\"POST\" action=\"update_link.php\">\n\t\t<td><input type=\"text\" width=\"50em\" name=\"linkNameUpdate\" value=\"".$link_row['link_name']."\"></td>\n\t\t<td><input type=\"text\" width=\"30em\" name=\"linkUPdateCat\" value=\"".$link_row['link_cat']."\"></td>\n\t\t<td><input type=\"url\" name=\"linkUpdateUrl\" value=\"".$link_row['link_url']."\"></td>\n\t\t<input type=\"hidden\" name=\"link_owner\" value=\"".$_SESSION['user_id']."\"><input type=\"hidden\" name=\"link_id\" value=\"".$link_row['link_id']."\"><td><input type=\"submit\" name=\"edit\" value=\"UPDATE\"></td></form>\n\t\t<td><form name=\"deleteLink".$link_row['link_id']."\" method=\"POST\" action=\"delete_link.php\"><input type=\"hidden\" name=\"link_id\" value=\"".$link_row['link_id']."\"><input type=\"submit\" name=\"edit\" value=\"DELETE\"></form></td>\n\t</tr>\n";
 }
 
 $catEdits .= "</table>\n";
@@ -91,7 +91,7 @@ jQuery(document).ready(function($) {
 <div id="body-add">
 <body>
 <center><h1>Making additions for <?php echo $_SESSION['user_first']?>'s links</h1></center>
-<center><hr style="width:30%"><font style="font-family: 'Times New Roman', Times, serif"><h1>NOTE:</h1><br />You will want to add in a category called Navigation.<br />This category of links will always show as buttons at the top of all pages on this site.<br />Please take care as your links and categories are connected.</font></center>
+<center><hr style="width:30%"><font style="font-family: 'Times New Roman', Times, serif"><h1>NOTE:</h1><br />You will want to be careful using the  Navigation category.<br />This category of links will always show as buttons at the top of all pages on this site.<br />Please take care as your links and categories are connected.</font></center>
 <hr />
 <center>
 <h2>New things for <?php echo $_SESSION['user_first']?>'s Link page</h2>
@@ -112,10 +112,6 @@ jQuery(document).ready(function($) {
 <div class="form-group">
 <input type="hidden" name="link_owner" value="<?php print $link_owner;?>"><br />
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Name:<sup>*</sup></font></label><input type="text" name="link_name" width="20em" value="">
-<!--<label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Type:<sup>*</sup></font></label><select name="link_type">
-	<option value="external">External Site</option>
-	<option value="internal">Internal Page</option>
-</select> --!>
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Category:<sup>*</sup></font></label><select name="link_cat"><?php print $cat_opts."\n"?></select>
 <label><font color="ffffff" style="font-family: 'Times New Roman', Times, serif">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 </div>
