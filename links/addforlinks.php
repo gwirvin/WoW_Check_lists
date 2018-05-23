@@ -114,7 +114,7 @@ jQuery(document).ready(function($) {
 <label><font color="ffffff">Link Address:<sup>*</sup></font></label><input type="url" name="link_url"><input type="submit" name="insert_link" value="Add Link"></div>
 </div>
 <hr />
-<h2>Editing <?php echo $_SESSION['user_first']?>'s Link Stuff<h2>
+<h2>Editing <?php echo $_SESSION['user_first']?>'s Link Stuff</h2>
 <hr style="width: 50%">
 <?php echo $catEdits?>
 <hr style="width: 30%">
