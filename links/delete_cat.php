@@ -4,7 +4,7 @@
 include "../cats.php";
 // Passed Variables 
 
-$cat_del_sql = ("DELETE FROM categories WHERE cat_id=\"".$_REQUST['cat_id']\" ON DELETE CASCADE");
+$cat_del_sql = ("DELETE FROM categories WHERE cat_id=\"".$_REQUST['cat_id']."\" ON DELETE CASCADE");
 $cat_insert = mysqli_query($links_conn, $cat_del_sql);
 
 if ($cat_del_sql) {
