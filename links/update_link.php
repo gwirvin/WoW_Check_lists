@@ -6,10 +6,10 @@
 // Includes
 include "../cats.php";
 // Passed Variables 
-$link_name = ucwords($_POST['link_name']);
-$link_cat = $_POST['link_cat'];
-$link_owner = $_POST['link_owner'];
-$link_url = $_POST['link_url'];
+$link_name = ucwords($_REQUEST['link_name']);
+$link_cat = $_REQUEST['link_cat'];
+$link_owner = $_REQUEST['link_owner'];
+$link_url = $_REQUEST['link_url'];
 $link_id = $_REQUEST['link_id'];
 $link_type = "";
 
