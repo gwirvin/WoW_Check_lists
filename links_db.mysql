@@ -35,7 +35,9 @@ CREATE TABLE `links` (
   `link_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`link_id`),
   KEY `link_cat` (`link_cat`),
-  CONSTRAINT `link_cat_fk` FOREIGN KEY (`link_cat`) REFERENCES `categories` (`cat_name`),
+  CONSTRAINT `link_cat_fk` FOREIGN KEY (`link_cat`) REFERENCES `categories` (`cat_name`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
   KEY `link_owner` (`link_owner`),
   CONSTRAINT `link_owner_fk` FOREIGN KEY (`link_owner`) REFERENCES `users`.`users` (`user_id`)
   ON DELETE CASCADE
