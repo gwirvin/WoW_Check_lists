@@ -36,7 +36,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 			$links_table .= "\">";
 			if (!empty($links_link_row['link_img']))
 			{
-				$links_table .="\"><img src=\"".$links_link_row['link_img']."\" style=\"width:96px; height:96px\" alt=\"".$links_link_row['link_name']."\"></a></td>";
+				$links_table .="<img src=\"".$links_link_row['link_img']."\" style=\"width:25%; height:25%\" alt=\"".$links_link_row['link_name']."\"></a></td>";
 			}
 			else
 			{
@@ -54,7 +54,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 			$links_table .= "\" target=\"_blank\">";
 			if (!empty($links_link_row['link_img']))
 			{
-				$links_table .="\"><img src=\"".$links_link_row['link_img']."\" style=\"width:96px; height:96px\" alt=\"".$links_link_row['link_name']."\"></a></td>";
+				$links_table .="<img src=\"".$links_link_row['link_img']."\" style=\"width:25%; height:25%\" alt=\"".$links_link_row['link_name']."\"></a></td>";
 			}
 			else
 			{
