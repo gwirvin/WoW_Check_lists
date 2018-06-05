@@ -26,14 +26,22 @@ $links_cat_sql = mysqli_query($links_conn, "SELECT cat_name FROM categories WHER
 while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 {
 	$links_table_count = 0;
-	$links_links_sql = mysqli_query($links_conn, "SELECT link_name, link_type, link_cat, link_url FROM links WHERE link_cat=\"".$links_cat_row['cat_name']."\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die (mysqli_error());
+	$links_links_sql = mysqli_query($links_conn, "SELECT link_name, link_type, link_cat, link_url, link_img FROM links WHERE link_cat=\"".$links_cat_row['cat_name']."\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die (mysqli_error());
 	$links_table .= "<hr style=\"width:50%;\">\n<div id=\"table-links\">\n<table>\n\t<caption style=\"font-family: 'Times New Roman', Times, serif;\"><h3>".$links_cat_row['cat_name']."</h3></caption>\n</center><tr>\n";
 	while ($links_link_row = mysqli_fetch_array($links_links_sql))
 	{
 		$links_table .= "\t<td><a href=\"".$links_link_row['link_url'];
 		if ($links_link_row['link_type'] == "internal")
 		{
-			$links_table .= "\">".$links_link_row['link_name']."</a></td>\r\n";
+			$links_table .= "\">";
+			if (!empty($links_link_row['link_img']))
+			{
+				$links_table .="\"><img src=\"".$links_link_row['link_img']."\" style=\"width:96px; height:96px\" alt=\"".$links_link_row['link_name']."\"></a></td>";
+			}
+			else
+			{
+				$links_table .= $links_link_row['link_name']."</a></td>\r\n";
+			}
 			$links_table_count++;
 			if ($links_table_count == 5)
 			{
@@ -43,7 +51,15 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 		}
 		else
 		{
-			$links_table .= "\" target=\"_blank\">".$links_link_row['link_name']."</a></td>\r\n";
+			$links_table .= "\" target=\"_blank\">";
+			if (!empty($links_link_row['link_img']))
+			{
+				$links_table .="\"><img src=\"".$links_link_row['link_img']."\" style=\"width:96px; height:96px\" alt=\"".$links_link_row['link_name']."\"></a></td>";
+			}
+			else
+			{
+				$links_table .= $links_link_row['link_name']."</a></td>\r\n";
+			}
 			$links_table_count++;
 			if ($links_table_count == 5)
 			{
