@@ -7,9 +7,9 @@
 include "../cats.php";
 // Passed Variables 
 $link_name = ucwords($_REQUEST['link_name']);
-$link_cat = $_REQUEST['link_cat'];
+$link_cat = $_REQUEST['linkUpdateCat'];
 $link_owner = $_REQUEST['link_owner'];
-$link_url = $_REQUEST['link_url'];
+$link_url = $_REQUEST['linkUpdateUrl'];
 $link_id = $_REQUEST['link_id'];
 $link_type = "";
 
