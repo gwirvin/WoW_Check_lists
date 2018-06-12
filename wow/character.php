@@ -293,16 +293,17 @@ $toon_table .= "\n</table>\n</div>\n";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <div id="body"><body>
+<?php echo $nav_table?>
     <h2><center>World of Warcraft: Legion Checklist</center></h2>
-    <div id="table-nav">
+<!--    <div id="table-nav">
         <table>
             <tr>
-                <div class="form-group"><td><center><form name="home" method="POST" action="../index.php"><input value="Home" type="submit"></form></center></td></div>
+                <div class="form-group"><td><center><form name="home" method="POST" action="/index.php"><input value="Home" type="submit"></form></center></td></div>
                 <div class="form-group"><td><form name="logout" method="post" action="../logout.php"><input value="Logout" type="submit"></form></td></div>
             </div>
             </tr>
         </table>
-    </div>
+    </div> -->
     <div id="container">
         <?php print $toon_table?>
     <p />

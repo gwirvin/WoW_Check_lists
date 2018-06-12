@@ -117,7 +117,6 @@ $toon_table .= "\n</table>";
         <table>
                 <div class="form-group"><td><center><form name="home" method="POST" action="../index.php"><input value="Home" type="submit"></form></center></td>
                 <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td>
-                <td><form name="logout" method="post" action="../logout.php"><input value="Logout" type="submit"></form></td>
             </div>
             </tr>
         </table>
