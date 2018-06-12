@@ -39,5 +39,5 @@ while ($nav_link_row = mysqli_fetch_array($nav_link_sql))
 		$nav_table .= "\t<td><center><form name=\"".$nav_link_row['link_name']."\"method=\"POST\" action=\"".$nav_link_row['link_url']."\" target=\"_blank\"><input type=\"SUBMIT\" value=\"".$nav_link_row['link_name']."\"></form></td>\n";
 		}
 	}
-$nav_table .= "\t <td><form name=\"logout\" method=\"post\" action=\"logout.php\"><input value=\"Logout\" type=\"submit\"></form></td>\n\t<td><form name=\"logout\" method=\"POST\" action=\"/logout.php\"><input value=\"Logout\" type=\"submit\"></form></td>\n</tr>\n</center>\n</table>\n</div>\n</center>\n<hr />\n";
+$nav_table .= "\t<td><form name=\"logout\" method=\"post\" action=\"logout.php\"><input value=\"Logout\" type=\"submit\"></form></td>\n</tr>\n</center>\n</table>\n</div>\n</center>\n<hr />\n";
 ?>
