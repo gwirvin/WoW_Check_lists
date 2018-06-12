@@ -9,7 +9,8 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
   header("location: /login.php");
   exit;
 
-include "./cats.php";
+#include "./cats.php";
+require "./cats.php";
 $toon_chk_sql = ("SELECT COUNT(toon_name) FROM toon WHERE toon_owner=\"".$_SESSION['user_id']."\"");
 $user_chk_sql = ("SELECT user_email. user_last FROM users.users WHERE user_email=\"".$_SESSION['user_email']."\"");
 $toon_chk_query = mysqli_query($wow_conn, $toon_sql);
@@ -42,7 +43,7 @@ $wow_check = mysqli_fetch_array($toon_chk_query);
         </table>
     </div> --!>
 <hr /><center>You last accessed this site on: <?php echo $_SESSION['user_last_access']; ?><br />
-<?php echo $nav_table?>
+<?php echo $nav_table; ?>
 <br />You signed up on: <?php echo $_SESSION['user_created_at']; ?></center><hr />
     <p>
         <div id="table-nav">
