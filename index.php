@@ -6,7 +6,7 @@ session_start();
  
 // If session variable is not set it will redirect to login page
 if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
-  header("location: login.php");
+  header("location: /login.php");
   exit;
 
 include "cats.php";
@@ -41,7 +41,7 @@ $wow_check = mysqli_fetch_array($toon_chk_query);
             </tr>
         </table>
     </div> --!>
-	<hr /><center>You last accessed this site on: <?php echo $_SESSION['user_last_access']; ?><br /> You signed up on: <?php echo $_SESSION['user_created_at']; ?></center><hr />
+	<hr /><center>You last accessed this site on: <?php echo $_SESSION['user_last_access']; ?><br /><?php echo $nav_table?>You signed up on: <?php echo $_SESSION['user_created_at']; ?></center><hr />
     <p>
         <div id="table-nav">
         <table><caption>World of Warcraft Things</caption>
