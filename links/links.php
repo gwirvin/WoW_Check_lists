@@ -33,15 +33,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 		$links_table .= "\t<td><a href=\"".$links_link_row['link_url'];
 		if ($links_link_row['link_type'] == "internal")
 		{
-			$links_table .= "\">";
-			if (!empty($links_link_row['link_img']))
-			{
-				$links_table .="<img src=\"".$links_link_row['link_img']."\" style=\"max-width:50%; max-height:50%\" alt=\"".$links_link_row['link_name']."\"></a></td>\n";
-			}
-			else
-			{
-				$links_table .= $links_link_row['link_name']."</a></td>\r\n";
-			}
+			$links_table .= "\">".$links_table .= $links_link_row['link_name']."</a></td>\r\n";
 			$links_table_count++;
 			if ($links_table_count == 5)
 			{
@@ -52,14 +44,7 @@ while ($links_cat_row = mysqli_fetch_array($links_cat_sql))
 		else
 		{
 			$links_table .= "\" target=\"_blank\">";
-			if (!empty($links_link_row['link_img']))
-			{
-				$links_table .="<img src=\"".$links_link_row['link_img']."\" style=\"max-width:50%; max-height:50%\" alt=\"".$links_link_row['link_name']."\"></a></td>\n";
-			}
-			else
-			{
-				$links_table .= $links_link_row['link_name']."</a></td>\r\n";
-			}
+			$links_table .= $links_link_row['link_name']."</a></td>\r\n";
 			$links_table_count++;
 			if ($links_table_count == 5)
 			{
