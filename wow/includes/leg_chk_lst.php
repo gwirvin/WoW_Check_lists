@@ -97,19 +97,9 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		usort ($toon_sec_profs_obj, function($a, $b) {
 			return strcmp($a->id, $b->id);
 			});
-#		$toon_mainspec = $toon_obj->talents[0]->talents[0]->spec->name;
 		$toon_mainspec = $toon_obj->talents[0]->spec->name;
 		$toon_bg_color = wowClassColors($toon_obj->class);
 		$toon_auto_complete = autoComplete($toon_obj->class);
-#		$possible_item_slots = array('head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands','waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2', 'mainHand', 'offhand');
-#		for ($i = 0; $i < 16; $i++) {
-#			if (isset($toon_obj->items->{$possible_item_slots[$i]})) {
-#				if ($toon_obj->items->{$possible_item_slots[$i]}->quality === 5 && $toon_obj->items->{$possible_item_slots[$i]}->itemLevel >= $max_legend_lvl) { 
-#					$toon_legend_count++;
-#					$toon_legend_lvl_count++;
-#				} elseif ($toon_obj->items->{$possible_item_slots[$i]}->quality === 5 ) {
-#					$toon_legend_count++;
-#					}
 		$itemSlotsObj = json_decode(json_encode(array('head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2', 'mainHand', 'offhand')));
 		foreach ($itemSlotsObj as $itemSlotObj)
 		{
