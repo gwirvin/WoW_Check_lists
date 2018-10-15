@@ -15,19 +15,19 @@
 #########################################################################
 # Primary Professions Functions
 #
-# This will take in the $toonPriProfs ($toon_obj->professions->primary) and spit out
+# This will take in the $priProfs ($toon_obj->professions->primary) and spit out
 # HTML table data for each expansion page
 #
 
-function bfaPrimaryProfs($toonPriProfs, $priProfCount) {
+function bfaPrimaryProfs($priProfs, $priProfCount) {
 	$return = "";
 	$priProfCount = 0;
 	do {
-		foreach ($toonPriProfs as $priProf) {
+		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Kul Tiran') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 					if ($priProf->rank < $priProf->max) {
-						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
 						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -35,7 +35,7 @@ function bfaPrimaryProfs($toonPriProfs, $priProfCount) {
 					}
 			} elseif (strpos ( $priProf->name, 'Kul Tiran' ) !== false) {
 				if ($priProf->rank < $priProf->max) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
 					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -43,7 +43,7 @@ function bfaPrimaryProfs($toonPriProfs, $priProfCount) {
 				}
 			} else {
 				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-				$priPorfCount++;
+				$priProfCount++;
 			}
 			}
 		}
@@ -51,15 +51,15 @@ function bfaPrimaryProfs($toonPriProfs, $priProfCount) {
 	return $return;
 }
 
-function legPrimaryProfs($toonPriProfs) {
+function legPrimaryProfs($priProfs) {
 	$return = "";
 	$priProfCount = 0;
 	do {
-		foreach ($toonPriProfs as $priProf) {
+		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Legion') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 					if ($priProf->rank < $priProf->max) {
-						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
 						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -67,7 +67,7 @@ function legPrimaryProfs($toonPriProfs) {
 					}
 			} elseif (strpos ( $priProf->name, 'Legion' ) !== false) {
 				if ($priProf->rank < $priProf->max) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
 					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -75,7 +75,7 @@ function legPrimaryProfs($toonPriProfs) {
 				}
 			} else {
 				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-				$priPorfCount++;
+				$priProfCount++;
 			}
 			}
 		}
@@ -83,23 +83,23 @@ function legPrimaryProfs($toonPriProfs) {
 	return $return;
 }
 
-function wodPrimaryProfs($toonPriProfs) {
+function wodPrimaryProfs($priProfs) {
 	$return = "";
 	$priProfCount = 0;
 	do {
-		foreach ($toonPriProfs as $priProf) {
+		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Draenor') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 					if ($priProf->rank < $priProf->max) {
-						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
 						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
 						$priProfCount++;
 					}
-			} elseif (strpos ( $priProf->name, 'Draenor' ) !== false) {
+			} elseif (strpos ( $priProf->name, 'Draenor') !== false) {
 				if ($priProf->rank < $priProf->max) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
 					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -107,7 +107,7 @@ function wodPrimaryProfs($toonPriProfs) {
 				}
 			} else {
 				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-				$priPorfCount++;
+				$priProfCount++;
 			}
 			}
 		}
@@ -115,15 +115,15 @@ function wodPrimaryProfs($toonPriProfs) {
 	return $return;
 }
 
-function mopPrimaryProfs($toonPriProfs) {
+function mopPrimaryProfs($priProfs) {
 	$return = "";
 	$priProfCount = 0;
 	do {
-		foreach ($toonPriProfs as $priProf) {
+		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Pandaria') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 					if ($priProf->rank < $priProf->max) {
-						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
 						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -131,7 +131,7 @@ function mopPrimaryProfs($toonPriProfs) {
 					}
 			} elseif (strpos ( $priProf->name, 'Pandaria' ) !== false) {
 				if ($priProf->rank < $priProf->max) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
 					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -139,7 +139,7 @@ function mopPrimaryProfs($toonPriProfs) {
 				}
 			} else {
 				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-				$priPorfCount++;
+				$priProfCount++;
 			}
 			}
 		}
@@ -147,14 +147,14 @@ function mopPrimaryProfs($toonPriProfs) {
 	return $return;
 }
 
-function cataPrimaryProfs($toonPriProfs, $priProfCount) {
+function cataPrimaryProfs($priProfs, $priProfCount) {
 	$return = "";
 	do {
-		foreach ($toonPriProfs as $priProf) {
+		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Cataclysm') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 					if ($priProf->rank < $priProf->max) {
-						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
 						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -162,7 +162,7 @@ function cataPrimaryProfs($toonPriProfs, $priProfCount) {
 					}
 			} elseif (strpos ( $priProf->name, 'Cataclysm' ) !== false) {
 				if ($priProf->rank < $priProf->max) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
 					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -170,7 +170,7 @@ function cataPrimaryProfs($toonPriProfs, $priProfCount) {
 				}
 			} else {
 				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-				$priPorfCount++;
+				$priProfCount++;
 			}
 			}
 		}
@@ -178,15 +178,15 @@ function cataPrimaryProfs($toonPriProfs, $priProfCount) {
 	return $return;
 }
 
-function wotlkPrimaryProfs($toonPriProfs) {
+function wotlkPrimaryProfs($priProfs) {
 	$return = "";
 	$priProfCount = 0;
 	do {
-		foreach ($toonPriProfs as $priProf) {
+		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Northrend') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 					if ($priProf->rank < $priProf->max) {
-						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
 						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -194,7 +194,7 @@ function wotlkPrimaryProfs($toonPriProfs) {
 					}
 			} elseif (strpos ( $priProf->name, 'Northrend' ) !== false) {
 				if ($priProf->rank < $priProf->max) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
 					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -202,7 +202,7 @@ function wotlkPrimaryProfs($toonPriProfs) {
 				}
 			} else {
 				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-				$priPorfCount++;
+				$priProfCount++;
 			}
 			}
 		}
@@ -210,15 +210,15 @@ function wotlkPrimaryProfs($toonPriProfs) {
 	return $return;
 }
 
-function bcPrimaryProfs($toonPriProfs) {
+function bcPrimaryProfs($priProfs) {
 	$return = "";
 	$priProfCount = 0;
 	do {
-		foreach ($toonPriProfs as $priProf) {
+		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Outland') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 					if ($priProf->rank < $priProf->max) {
-						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
 						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -226,7 +226,7 @@ function bcPrimaryProfs($toonPriProfs) {
 					}
 			} elseif (strpos ( $priProf->name, 'Outland' ) !== false) {
 				if ($priProf->rank < $priProf->max) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".$priProf->rank."</td>\n";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
 					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -234,7 +234,7 @@ function bcPrimaryProfs($toonPriProfs) {
 				}
 			} else {
 				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-				$priPorfCount++;
+				$priProfCount++;
 			}
 			}
 		}
@@ -242,7 +242,7 @@ function bcPrimaryProfs($toonPriProfs) {
 	return $return;
 }
 
-function vanPrimaryProfs($toonPriProfs, $priProfCount) {
+function vanPrimaryProfs($priProfs, $priProfCount) {
 }
 
 # Secondary Professions Functions
@@ -251,29 +251,105 @@ function vanPrimaryProfs($toonPriProfs, $priProfCount) {
 # and spit out table data.
 # NOTE: Archeology is *not* seperated by exapnsion.
 function bfaSecondaryProfs($toonSecProfs) {
-	$return = "";
+	$fishing = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$cooking = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$archaeology = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	foreach ($toonSecProfs as $secProf) {
 		if (strpos ( $secProf->name, 'Kul Tiran Fishing') !== false) {
 				if ($secProf->rank < $secProf->max) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$secProf->name." - ".$secProf->rank."</td>\n";
+					$fishing = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
-					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+					$fishing = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
 					$priProfCount++;
 				}
 		} elseif (strpos ($secProf->name, 'Kul Tiran Cooking') !== false) {
+				if ($secProf->rank < $secProf->max) {
+					$cooking = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+					$priProfCount++;
+				} else {
+					$cooking = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+					$priProfCount++;
+				}
 		} elseif (strpos($secProf->name, 'Archaeology') !== false) {
-		} else {
-				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
+			if ($secProf->rank < $secProf->max) {
+				$archaeology = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+				$priProfCount++;
+			} else {
+				$archaeology = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+				$priProfCount++;
+			}
 		}
 	}
-	return $return;
+	return $fishing.$cooking.$archaeology;
 }
 
 function legSecondaryProfs($toonSecProfs) {
+	$fishing = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$cooking = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$archaeology = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	foreach ($toonSecProfs as $secProf) {
+		if (strpos ( $secProf->name, 'Legion Fishing') !== false) {
+				if ($secProf->rank < $secProf->max) {
+					$fishing = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+					$priProfCount++;
+				} else {
+					$fishing = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+					$priProfCount++;
+				}
+		} elseif (strpos ($secProf->name, 'Legion Cooking') !== false) {
+				if ($secProf->rank < $secProf->max) {
+					$cooking = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+					$priProfCount++;
+				} else {
+					$cooking = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+					$priProfCount++;
+				}
+		} elseif (strpos($secProf->name, 'Archaeology') !== false) {
+			if ($secProf->rank < $secProf->max) {
+				$archaeology = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+				$priProfCount++;
+			} else {
+				$archaeology = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+				$priProfCount++;
+			}
+		}
+	}
+	return $fishing.$cooking.$archaeology;
 }
 
 function wodSecondaryProfs($toonSecProfs) {
+	$fishing = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$cooking = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$archaeology = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	foreach ($toonSecProfs as $secProf) {
+		if (strpos ( $secProf->name, 'Draenor Fishing') !== false) {
+				if ($secProf->rank < $secProf->max) {
+					$fishing = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+					$priProfCount++;
+				} else {
+					$fishing = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+					$priProfCount++;
+				}
+		} elseif (strpos ($secProf->name, 'Draenor Cooking') !== false) {
+				if ($secProf->rank < $secProf->max) {
+					$cooking = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+					$priProfCount++;
+				} else {
+					$cooking = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+					$priProfCount++;
+				}
+		} elseif (strpos($secProf->name, 'Archaeology') !== false) {
+			if ($secProf->rank < $secProf->max) {
+				$archaeology = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+				$priProfCount++;
+			} else {
+				$archaeology = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
+				$priProfCount++;
+			}
+		}
+	}
+	return $fishing.$cooking.$archaeology;
 }
 
 function mopSecondaryProfs($toonSecProfs) {
@@ -292,40 +368,44 @@ function vanSecondaryProfs($toonSecProfs) {
 }
 
 # BEGIN BLOCK for testing
-$toon_realm="area-52";
-$toon_name="Luxalor";
-$blizz_locale = "locale=en_us";
-$wow_url = "https://us.api.battle.net/wow/";
-$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
-$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
-
+#$toon_realm="area-52";
+#$toon_name="Luxalor";
+#$blizz_locale = "locale=en_us";
+#$wow_url = "https://us.api.battle.net/wow/";
+#$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
+#$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
 # Using a curl function to get info
-function getToonInfo ($toon_info_url, array $get = NULL, array $options = array())
-{
-	$defaults = array(
-		CURLOPT_URL => $toon_info_url,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_TIMEOUT => 30,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => "GET",
-		CURLOPT_HTTPHEADER => array(
-			"cache-control: no-cache"
-		),
-	);
-	$ch = curl_init();
-	curl_setopt_array($ch, ($options + $defaults));
-	if ( !$result = curl_exec($ch))
-	{
-		trigger_error(curl_error($ch));
-	}
-	curl_close($ch);
-	return $result;
-}
-
-	$priProfCount = 0;
-$toonObj = json_decode(file_get_contents($toon_info_url));
-$toonPriProfs = bfaPrimaryProfs($toonObj->professions->primary, $priProfCount);
-print $toonPriProfs;
+#function getToonInfo ($toon_info_url, array $get = NULL, array $options = array())
+#{
+#	$defaults = array(
+#		CURLOPT_URL => $toon_info_url,
+#		CURLOPT_RETURNTRANSFER => true,
+#		CURLOPT_TIMEOUT => 30,
+#		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+#		CURLOPT_CUSTOMREQUEST => "GET",
+#		CURLOPT_HTTPHEADER => array(
+#			"cache-control: no-cache"
+#		),
+#	);
+#	$ch = curl_init();
+#	curl_setopt_array($ch, ($options + $defaults));
+#	if ( !$result = curl_exec($ch))
+#	{
+#		trigger_error(curl_error($ch));
+#	}
+#	curl_close($ch);
+#	return $result;
+#}
+#	$priProfCount = 0;
+#$toonObj = json_decode(file_get_contents($toon_info_url));
+#$toonPriProfs = bfaPrimaryProfs($toonObj->professions->primary, $priProfCount);
+#$toonSecProfs = bfaSecondaryProfs($toonObj->professions->secondary);
+#$toonLegPriProfs = legPrimaryProfs($toonObj->professions->primary, $priProfsCount);
+#$toonLegSecProfs = legSecondaryProfs($toonObj->professions->secondary);
+#$toonWodPriProfs = wodPrimaryProfs($toonObj->professions->primary);
+#$toonWodPriProfs = wodSecondaryProfs($toonObj->professions->secondary);
+#print $toonPriProfs.$toonSecProfs.$toonLegPriProfs.$toonLegSecProfs.$toonWodPriProfs.$toonWodSecProfs;
+#print $toonSecProfs;
 # END BLOCK for testing
 
 ?>
