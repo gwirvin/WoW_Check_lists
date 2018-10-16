@@ -36,8 +36,13 @@ $leg_char_fields = "fields=reputation,professions,talents,mounts,pets,titles,gui
 $toon_sql = ("SELECT toon_name, toon_realm FROM toon WHERE toon_owner=\"".$toon_owner_id."\" ORDER BY toon_realm, toon_name");
 $toon_query = mysqli_query($wow_conn, $toon_sql);
 $maxLgndLvl = 1000;
+$toon_pri_profs = "";
+$toon_sec_profs = "";
+$primary_profs_counter = 0;
+$secondary_profs_counter = 0;
+$priProfCount=0;
 // Starting the character table
-$toon_table = "<table>\n\t<caption><center><font color=\"FFFFFF\"><h3>Legion checklist for ".$toon_owner_first."</h3></font></center></caption>\n\t<thead>\n\t<tr>\n\t\t<th rowspan=\"2\"bgcolor=\"BFBCBA\">Realm</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Character</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Icon</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Level</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Current Spec</th>\n\t\t<th rowspan=\"2\" bgcolor=\"FB2723\">Auto Complete</th>\n\t\t<th colspan=\"2\" bgcolor=\"FB7B23\">Legendary</th>\n\t\t<th colspan=\"2\" rowspan=\"2\" bgcolor=\"6C00FF\"><font color=\"FFFFFF\">Primary Professions</font></th>\n\t\t<th colspan=\"4\" bgcolor=\"9E5FF4\"><font color=\"FFFFFF\">Secondary Professions</font></th>\n\t\t<th colspan=\"9\" bgcolor=\"0008FF\"><font color=\"FFFFFF\">Reputations</font></th>\n\t\t<th rowspan=\"2\" bgcolor=\"E6DC43\">Artifact Rank</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Equiped iLvl</th>\n\t</tr>\n\t<tr>\n\t\t<th bgcolor=\"F09456\">Needed Total</th>\n\t\t<th bgcolor=\"D38550\">Needs Lvl</th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">First Aid</font></th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Cooking</font></th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Fishing</font></th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Archaeology</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Highmountain Tribes</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Nightfallen</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Dreamweavers</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Wardens</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Court of Farondis</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Army of the Light</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Argussian Reach</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Valarjar</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Armies of Legionfall</font></th>\n\t</tr>\n\t</thead>\n\t<tbody>";
+$toon_table = "<table>\n\t<caption><center><font color=\"FFFFFF\"><h3>Legion checklist for ".$toon_owner_first."</h3></font></center></caption>\n\t<thead>\n\t<tr>\n\t\t<th rowspan=\"2\"bgcolor=\"BFBCBA\">Realm</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Character</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Icon</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Level</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Current Spec</th>\n\t\t<th colspan=\"2\" bgcolor=\"FB7B23\">Legendary</th>\n\t\t<th colspan=\"2\" rowspan=\"2\" bgcolor=\"6C00FF\"><font color=\"FFFFFF\">Primary Professions</font></th>\n\t\t<th colspan=\"3\" bgcolor=\"9E5FF4\"><font color=\"FFFFFF\">Secondary Professions</font></th>\n\t\t<th colspan=\"9\" bgcolor=\"0008FF\"><font color=\"FFFFFF\">Reputations</font></th>\n\t\t<th rowspan=\"2\" bgcolor=\"E6DC43\">Artifact Rank</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Equiped iLvl</th>\n\t</tr>\n\t<tr>\n\t\t<th bgcolor=\"F09456\">Needed Total</th>\n\t\t<th bgcolor=\"D38550\">Needs Lvl</th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Cooking</font></th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Fishing</font></th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Archaeology</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Highmountain Tribes</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Nightfallen</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Dreamweavers</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Wardens</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Court of Farondis</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Army of the Light</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Argussian Reach</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Valarjar</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Armies of Legionfall</font></th>\n\t</tr>\n\t</thead>\n\t<tbody>";
 // Getting the data from the database for the rest to work
 while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 	$db_toon_count = count($toon_result); // $db_toon_count is the total bumber of resutls, db_toon_counter increments on each run through the script
@@ -46,8 +51,8 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 // Variables that need some setting other than empty
 		$rep_obj_counter = 0;
 		$rep_count = 0;
-		$primary_profs_counter = 1;
-		$secondary_profs_counter = 1;
+		$primary_profs_counter = 0;
+		$secondary_profs_counter = 0;
 		$rep_obj_counter = 0;
 		$rep_missing_counter = 0;
 		$rep_legion_count = 9;
@@ -63,8 +68,6 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		$toon_legend_need = "";
 		$toon_pri_profs = "";
 		$toon_sec_profs = "";
-		$primary_profs_count = "";
-		$secondary_profs_counter = "";
 		$faction_standing_name = "";
 		$faction_name = "";
 		$faction_standing = "";
@@ -82,10 +85,8 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		$toon_name = $toon_result[$db_toon_counter]['toon_name'];
 		$toon_realm = $toon_result[$db_toon_counter]['toon_realm'];
 		$toon_info_url = $char_url.$toon_realm."/".$toon_name."?".$leg_char_fields."&".$blizz_locale."&".$api_key; // The magic from the Blizzard API
-		#$toon_json = getToonInfo($toon_info_url);
 		$toon_json = file_get_contents($toon_info_url);
 		$toon_obj = json_decode($toon_json);
-		#print $toon_info_url;
 		$toon_faction = $toon_obj->faction;
 		$toon_icon = $icon_url.$toon_obj->thumbnail;
 		$toon_realm = $toon_obj->realm;
@@ -93,7 +94,10 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		$toon_realm_html = factionStylesRealm($toon_faction, $toon_realm);
 		$toon_icon_html = factionStylesIcon($toon_faction, $toon_icon, $toon_name, $toon_realm);
 		$toon_reps_obj = $toon_obj->reputation;
+		$toon_pri_profs_obj = $toon_obj->professions->primary;
 		$toon_sec_profs_obj = $toon_obj->professions->secondary;
+		$primary_profs_missing = 0;
+		$secondary_profs_missing = 0;
 		usort ($toon_sec_profs_obj, function($a, $b) {
 			return strcmp($a->id, $b->id);
 			});
@@ -125,49 +129,29 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		}
 		$toon_legend_need = legendCount($toonLgndCount);
 		$toon_legend_lvl_need = legendLevelCount($toonLgndLvlCount);
-		while ($primary_profs_counter <= 2) { //getting primary professions + lvl if not maxed
-			foreach ($toon_obj->professions->primary as $toon_pri_prof_obj) {
-				if ($toon_pri_prof_obj->rank >= 800) {
-					$toon_pri_profs .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toon_pri_prof_obj->name."</font></td>";
-					$primary_profs_counter++;
-				} elseif ($toon_pri_prof_obj->rank <= 799 && $toon_pri_prof_obj->rank >= 700) {
-					$toon_pri_profs .= "\n\t\t<td bgcolor=\"F4E938\">".$toon_pri_prof_obj->rank." - ".$toon_pri_prof_obj->name."</td>";
-					$primary_profs_counter++;
-				} elseif ($toon_pri_prof_obj->rank <= 699) {
-					$toon_pri_profs .= "\n\t\t<td bgcolor=\"C00808\"><font color=\"FFFFFF\">".$toon_pri_prof_obj->rank." - ".$toon_pri_prof_obj->name."</font></td>";
-					$primary_profs_counter++;
-				} else {
-					$toon_pri_profs .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-					$primary_profs_counter++;
-					}
-				}
-			if ($primary_profs_counter < 2) {
-				$primary_profs_missing = 2 - $primary_profs_counter;
-				$toon_pri_profs .= "\n\t\t<td colspan=\"".$primary_profs_missing."\" bgcolor=\"757B74\"></td>";
-				}
-			}
-		while ($secondary_profs_counter <= 4) { //Getting secondary professions +lvl if not maxed, no idea what happens if all are not taken
-			$toon_sec_profs = "";
-			foreach ($toon_sec_profs_obj as $toon_sec_prof_obj) {
-				if ($toon_sec_prof_obj->rank >= 800) {
-					$toon_sec_profs .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">Done</font></td>";
-					$secondary_profs_counter++;
-				} elseif ($toon_sec_prof_obj->rank <= 799 && $toon_sec_prof_obj->rank >= 700) {
-					$toon_sec_profs .= "\n\t\t<td bgcolor=\"F4E938\">".$toon_sec_prof_obj->rank."</td>";
-					$secondary_profs_counter++;
-				} elseif ($toon_sec_prof_obj->rank <= 699) {
-					$toon_sec_profs .= "\n\t\t<td bgcolor=\"C00808\"><font color=\"FFFFFF\">".$toon_sec_prof_obj->rank."</font></td>";
-					$secondary_profs_counter++;
-				} else {
-					$toon_sec_profs .= "\n\t\t<td bgcolor=\"000000\"> </td>";
-					$secondary_profs_counter++;
-					}
-				}
-			if ($secondary_profs_counter < 4) {
-				$secondary_profs_missing = 4 - $secondary_profs_counter;
-				$toon_sec_profs .= "\n\t\t<td colspan=\"".$secondary_profs_missing."\" bgcolor=\"757B74\"></td>";
-				}
-		}
+		$toon_pri_profs_html = legPrimaryProfs($toon_pri_profs_obj, $primary_profs_counter, $primary_profs_missing, $toon_pri_profs);
+		$toon_sec_profs_html = legSecondaryProfs($toon_sec_profs_obj, $secondary_profs_counter, $secondary_profs_missing, $toon_sec_profs);
+#		while ($secondary_profs_counter <= 4) { //Getting secondary professions +lvl if not maxed, no idea what happens if all are not taken
+#			foreach ($toon_sec_profs_obj as $toon_sec_prof_obj) {
+#				if ($toon_sec_prof_obj->rank >= 800) {
+#					$toon_sec_profs .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toon_sec_prof_obj->name."</font></td>";
+#					$secondary_profs_counter++;
+#				} elseif ($toon_sec_prof_obj->rank <= 799 && $toon_sec_prof_obj->rank >= 700) {
+#					$toon_sec_profs .= "\n\t\t<td bgcolor=\"F4E938\">".$toon_sec_prof_obj->rank."</td>";
+#					$secondary_profs_counter++;
+#				} elseif ($toon_sec_prof_obj->rank <= 699) {
+#					$toon_sec_profs .= "\n\t\t<td bgcolor=\"C00808\"><font color=\"FFFFFF\">".$toon_sec_prof_obj->rank."</font></td>";
+#					$secondary_profs_counter++;
+#				} else {
+#					$toon_sec_profs .= "\n\t\t<td bgcolor=\"000000\"> </td>";
+#					$secondary_profs_counter++;
+#					}
+#				}
+#			if ($secondary_profs_counter < 4) {
+#				$secondary_profs_missing = 4 - $secondary_profs_counter;
+#				$toon_sec_profs .= "\n\t\t<td colspan=\"".$secondary_profs_missing."\" bgcolor=\"757B74\"></td>";
+#				}
+#		}
 /* Begin Reputation Block */
 		$toonRepCount = count($toon_obj->reputation); // Counting all the reputations in the toon object
                 $htmlFactCounter = 0; // INitalize a counter to keep the HTML table uniform
@@ -189,7 +173,7 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 		$toonLgndLvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_legend_lvl_need."</font></td>";
 		$toonArtfRankCell = "\n\t\t<td ".$toonClassCellColor.$toon_artf_rank."</font></td>";
 		$toonIlvlCell = "\n\t\t<td ".$toonClassCellColor.$toon_obj->items->averageItemLevelEquipped."</font></td>";
-		$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toon_auto_complete.$toonLgndCountCell.$toonLgndLvlCell.$toon_pri_profs.$toon_sec_profs.$toonLegRepHtml.$toonArtfRankCell.$toonIlvlCell."\n\t</tr>\n";
+		$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toonLgndCountCell.$toonLgndLvlCell.$toon_pri_profs.$toon_sec_profs.$toonLegRepHtml.$toonArtfRankCell.$toonIlvlCell."\n\t</tr>\n";
 	}
 	sleep(0.15);
 }
