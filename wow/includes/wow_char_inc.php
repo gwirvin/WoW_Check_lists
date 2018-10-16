@@ -8,19 +8,6 @@
  * ready check list.
  * The other fields can be found at:
  * https://dev.battle.net/io-docs **/
-# BEGIN Block for testing
-#$toon_realm="area-52";
-#$toon_name="Luxalor";
-#$blizz_locale = "locale=en_us";
-#$wow_url = "https://us.api.battle.net/wow/";
-#$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
-#$toonLgndCount = 0;
-#$toonLgndLvlCount = 0;
-#$maxLgndLvl = 1000;
-#include "./leg_lgnd_inc.php";
-#$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
-# END BLOCK for testing
-
 # Using a curl function to get info
 function getToonInfo ($toon_info_url, array $get = NULL, array $options = array())
 {
@@ -43,10 +30,19 @@ function getToonInfo ($toon_info_url, array $get = NULL, array $options = array(
 	curl_close($ch);
 	return $result;
 }
+# BEGIN BLOCK for testing
+#$toon_realm="area-52";
+#$toon_name="Luxalor";
+#$blizz_locale = "locale=en_us";
+#$wow_url = "https://us.api.battle.net/wow/";
+#$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
+#$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
+
+# END BLOCK for testing
 
 # What can I do with the objects in the array
 #
-$toon_obj = json_decode(getToonInfo($toon_info_url));
+#$toon_obj = json_decode(getToonInfo($toon_info_url));
 #$toon_json = getToonInfo($toon_info_url);
 #echo gettype($toon_obj), "\n";
 #var_dump(get_object_vars($toon_obj)); echo "\n";
