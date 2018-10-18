@@ -1,5 +1,5 @@
 <?php
-namespace OAuth2\GrantType;
+#namespace OAuth2\GrantType;
 
 use OAuth2\InvalidArgumentException;
 

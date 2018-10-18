@@ -27,7 +27,7 @@
  * @author      Joe Foster (Ulminia) <ulminia@gmail.com>
  * @version     1.0 (beta)
  */
-namespace OAuth2;
+#namespace OAuth2;
 
 class Client
 {
