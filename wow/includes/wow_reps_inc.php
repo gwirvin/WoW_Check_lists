@@ -54,16 +54,16 @@ function bfaFactions($bfaReps, $wowFaction) {
 		} elseif ($bfaRep->id === 2163) {
 			switch ($bfaRep->standing) {
 				case 0:
-					$tortollanSeekers = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+					$tortollanSeekers = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max - $bfaRep->value)." to Hostile.</td>";
 					break;
 				case 1:
-					$tortollanSeekers = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
+					$tortollanSeekers = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max - $bfaRep->value)." to Unfriendly.</td>";
 					break;
 				case 2:
-					$tortollanSeekers = "\n\t\t<td bgcolor=\"F05406\">".($bfaRep->max-$bfaRep->value)." to Neutral.</td>";
+					$tortollanSeekers = "\n\t\t<td bgcolor=\"F05406\">".($bfaRep->max - $bfaRep->value)." to Neutral.</td>";
 					break;
 				case 3:
-					$tortollanSeekers = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaRep->max-$bfaRep->value)." to Friendly.</td>";
+					$tortollanSeekers = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaRep->max - $bfaRep->value)." to Friendly.</td>";
 					break;
 				case 4:
 					$tortollanSeekers = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaRep->max-$bfaRep->value)." to Honored.</td>";
@@ -85,7 +85,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			if ($bfaRep->id === 2157) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$honorbound = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$honorbound = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
 						$honorbound = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
@@ -115,7 +115,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			} elseif ($bfaRep->id === 2158) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$voldunai = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$voldunai = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
 						$voldunai = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
@@ -145,7 +145,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			} elseif ($bfaRep->id === 2156) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$talanjisExpedition = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$talanjisExpedition = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
 						$talanjisExpedition = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
@@ -175,7 +175,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			} elseif ($bfaRep->id === 2103) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$zandalariEmpire = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$zandalariEmpire = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
 						$zandalariEmpire = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
@@ -208,7 +208,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			if ($bfaRep->id === 2159) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$seventhLegion = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$seventhLegion = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
 						$seventhLegion = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
@@ -238,7 +238,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			} elseif ($bfaRep->id === 2160) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$proudmooreAdmiralty = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$proudmooreAdmiralty = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
 						$proudmooreAdmiralty = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
@@ -268,7 +268,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			} elseif ($bfaRep->id === 2161) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$orderOfEmbers = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$orderOfEmbers = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
 						$orderOfEmbers = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
@@ -298,7 +298,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			} elseif ($bfaRep->id === 2162) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$stormsWake = "\n\t\t<td bgcolor=\"C00808\">"($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$stormsWake = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
 						$stormsWake = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
@@ -329,7 +329,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			$factionReps = $seventhLegion.$proudmooreAdmiralty.$orderOfEmbers.$stormsWake;
 		}
 	}
-	return $champsOfAzeroth.$tortollanSeekers.$factionRepsi;
+	return $champsOfAzeroth.$tortollanSeekers.$factionReps;
 }
 
 # BEGIN BLOCK for testing
