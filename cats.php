@@ -24,6 +24,7 @@ $api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
 $wow_url = "https://us.api.battle.net/wow/";
 $icon_url = "http://render-us.worldofwarcraft.com/character/";
 $blizz_locale = "locale=en_US";
+$blizzardOauthUrl = "https://us.battle.net/oauth/token";
 
 // Navigation table
 $nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die(mysqli_error());
