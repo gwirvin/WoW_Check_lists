@@ -22,5 +22,6 @@ var_dump($_SESSION);
 print "<hr />";
 var_dump($_GET);
 print "<hr />";
-
+$profileApiCall = file_get_contents("https://us.battle.net/wow/user/characters");
+var_dump($profileApiCall);
 ?>
