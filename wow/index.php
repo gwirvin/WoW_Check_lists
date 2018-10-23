@@ -9,18 +9,7 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 }
 include "../cats.php";
 include "./includes/blz_oauth_inc.php";
-print "<br />";
-var_dump($_SESSION);
-print "<br />";
-$oauthToken = getOauthToken($blizzardOauthUrl);
-print "<br />";
-var_dump($oauthToken);
-print "<br />";
-#$_SESSION['oauth'] = $oauthToken;
-array_push($_SESSION, getOauthToken($blizzardOauthUrl));
-print "<br />";
-var_dump($_SESSION);
-print "<br />";
-print_r($_SESSION['oauth']['access_token']);
-print "<br />";
+$_SESSION = array_merge($_SESSION, getOauthToken($blizzardOauthUrl));
+
+
 ?>
