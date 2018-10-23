@@ -29,7 +29,7 @@ $blizzardOauthAuthUrl = "https://us.battle.net/oauth/authorize";
 $secret = "4lDDBAihtzLRkljrtYmwRTL1L6xZeOGv";
 $clientId = "2abc5bd3a1d64274a2aa9575404cf0e9";
 $latestUri = "https://www.grantsgrabbag.com/wow/latest.php";
-$wowUri -"https://www.grantsgrabbag.com/wow/wow.php";
+$wowUri = "https://www.grantsgrabbag.com/wow/wow.php";
 $wowIndexUri = "https://www.grantsgrabbag.com/wow/index.php";
 
 // Navigation table
