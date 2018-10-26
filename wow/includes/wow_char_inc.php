@@ -30,54 +30,28 @@ function getToonInfo ($toon_info_url, array $get = NULL, array $options = array(
 	curl_close($ch);
 	return $result;
 }
-# BEGIN BLOCK for testing
-#$toon_realm="area-52";
-#$toon_name="Luxalor";
-#$blizz_locale = "locale=en_us";
-#$wow_url = "https://us.api.battle.net/wow/";
-#$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
-#$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
 
-# END BLOCK for testing
+function getUserToons ($userID, $dbHost, $dbUser, $dbPass, $dbWow) {
+	$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbWow);
+	$myArray = array();
+	$toon_sql = ("SELECT toon_name, toon_realm FROM toon WHERE toon_owner=\"1\" ORDER BY toon_realm, toon_name");
+	if ($result = $mysqli->query($toon_sql)) {
+		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+			$myArray[] = $row;
+		}
+	$myArray = json_decode(json_encode($myArray));
+	return $myArray;
+	}
+	$result->close();
+	$mysqli->close();
+}
 
-# What can I do with the objects in the array
-#
-#$toon_obj = json_decode(getToonInfo($toon_info_url));
-#$toon_json = getToonInfo($toon_info_url);
-#echo gettype($toon_obj), "\n";
-#var_dump(get_object_vars($toon_obj)); echo "\n";
-#print_r($itemSlotsObj); echo "\n";
+function toonUrlArray ($checkResults, $wow_url, $wowFields, $api_key) {
+	$urlArray = array ();
+	foreach ($checkResults as $toon) {
+		$urlArray[] = $wow_url."character/".$toon->toon_realm."/".$toon->toon_name.$wowFields.$api_key;
+	}
+	return $urlArray;
+}
 
-
-# BEGIN Mounts Block
-#$mounts_count = count($toon_obj->mounts->collected);
-#$mountsFlying = 0;
-#$mountsGround = 0;
-#$mountsUcollected = $toon_obj->mounts->numNotCollected;
-#for ($mountCounter = 0; $mountCounter < $mounts_count; $mountCounter++) {
-#	if ( $toon_obj->mounts->collected[$mountCounter]->isFlying) {
-#		$mountsFlying++;
-#	} else {
-#		$mountsGround++;
-#	}
-#}
-#$totalMounts = $mountsFlying + $mountsGround." - Total mounts\n";
-# END Mounts Block
-
-# BEGIN Battle Pet Block
-#$bpet_count = count($toon_obj->pets->collected);
-#$max_lvl_pets = 0;
-#$nonBattlePets = 0;
-#$petsNeedLvl = 0;
-#for ($pet_counter = 0; $pet_counter < $bpet_count; $pet_counter++) {
-#	if ($toon_obj->pets->collected[$pet_counter]->stats->level === 25 && $toon_obj->pets->collected[$pet_counter]->stats->petQualityId === 3) {
-#		$max_lvl_pets++;
-#	} elseif ( !$toon_obj->pets->collected[$pet_counter]->canBattle /**== 'false'**/ ) {
-#		$nonBattlePets++;
-#	} else {
-#		$petsNeedLvl++;
-#	}
-#}
-#$totalPets = $nonBattlePets + $max_lvl_pets + $petsNeedLvl;
-# END Battle Pet Block
 ?>
