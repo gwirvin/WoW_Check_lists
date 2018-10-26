@@ -5,11 +5,11 @@
  * This is a function to get OAuth2 tokens that will later be put unto the _SESSION array
  * **/
 # Using a curl function to get info
-function getOauthToken ($blizzardOauthUrl) {
+function getOauthToken ($blizzardOauthTokenUrl) {
 	$secret = "4lDDBAihtzLRkljrtYmwRTL1L6xZeOGv";
 	$clientId = "2abc5bd3a1d64274a2aa9575404cf0e9";
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $blizzardOauthUrl);
+	curl_setopt($ch, CURLOPT_URL, $blizzardOauthTokenUrl);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
 	curl_setopt($ch, CURLOPT_POST, 1);
