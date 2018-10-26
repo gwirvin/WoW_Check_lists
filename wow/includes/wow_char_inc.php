@@ -31,7 +31,7 @@ function getToonInfo ($toon_info_url, array $get = NULL, array $options = array(
 	return $result;
 }
 
-function getUserToons ($userID, $dbHost, $dbUser, $dbPass, $dbWow) {
+function getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 	$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbWow);
 	$myArray = array();
 	$toon_sql = ("SELECT toon_name, toon_realm FROM toon WHERE toon_owner=\"1\" ORDER BY toon_realm, toon_name");
