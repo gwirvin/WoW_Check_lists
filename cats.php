@@ -31,6 +31,8 @@ $clientId = "2abc5bd3a1d64274a2aa9575404cf0e9";
 $latestUri = "https://www.grantsgrabbag.com/wow/latest.php";
 $wowUri = "https://www.grantsgrabbag.com/wow/wow.php";
 $wowIndexUri = "https://www.grantsgrabbag.com/wow/index.php";
+$wowAllFields = "?fields=reputation,professions,talents,mounts,pets,titles,guild,items&";
+$wowLimitedFields = "?fields=reputation,professions,talents,guild,items&";
 
 // Navigation table
 $nav_link_sql = mysqli_query($links_conn, "SELECT link_type, link_name, link_url FROM links WHERE link_cat=\"Navigation\" AND link_owner=\"".$_SESSION['user_id']."\" ORDER BY link_name") or die(mysqli_error());
