@@ -2,7 +2,7 @@
 /* file: legion.php */
 
 // Block for testing
-include "../../cats.php";
+/* include "../../cats.php";
 include "./wow_class_inc.php";
 include "./wow_classes_inc.php";
 include "./wow_char_inc.php";
@@ -12,20 +12,20 @@ include "./wow_profs_inc.php";
 include "./wow_rep_lvl_inc.php";
 include "./wow_fact_inc.php";
 include "./multiapi.php";
+$userId = 1;
+$toon_owner_first = "Grant"; */
 
 // Variables for the start
-#if(!isset($_SESSION) || empty($_SESSION)) {
-#	$userId = $_REQUEST['user_id'];
-#	} else {
-#	$userId = $_SESSION['user_id'];
-#	}
-#if (!isset($_SESSION) || empty($_SESSION)) {
-#	$toon_owner_first = $_REQUEST['user_first'];
-#	} else {
-#	$toon_owner_first = $_SESSION['user_first'];
-#	}
-$userId = 1;
-$toon_owner_first = "Grant";
+if(!isset($_SESSION) || empty($_SESSION)) {
+	$userId = $_REQUEST['user_id'];
+	} else {
+	$userId = $_SESSION['user_id'];
+	}
+if (!isset($_SESSION) || empty($_SESSION)) {
+	$toon_owner_first = $_REQUEST['user_first'];
+	} else {
+	$toon_owner_first = $_SESSION['user_first'];
+	}
 $blizzLocale = "locale=en_US";
 $toonCounter = 0;
 $char_url = $wow_url."character/";
@@ -51,21 +51,14 @@ $allToonDataArray = $allToonApiArray->get_process_requests();
 /* Converting the strings returned int he multiapi to an array fo objects */
 $allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
 
-var_dump($allToonsObjArray); print "\n";
-#var_dump($allUserToons); print "\n"; var_dump($allToonUrls); print "\n"; var_dump($userToonCount); print "\n";
+#var_dump($allToonsObjArray); print "\n";
 
-// Getting the data from the database for the rest to work
-/*** while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
-	$toonCount = count($toon_result); // $toonCount is the total bumber of resutls, toonCounter increments on each run through the script
-	for ($toonCounter = 0; $toonCounter < $toonCount; $toonCounter++) { //looping through each row of returned arrays
 /* Setting these variables at a higher level in the script did not get them emptied */
 // Variables that need some setting other than empty
 // Variables that should really be empty on each loop's start
-/***		$toonName = $toon_result[$toonCounter]['toon_name'];
-		$toonRealm = $toon_result[$toonCounter]['toon_realm'];
-		$toon_info_url = $wow_url."character/".$toonRealm."/".$toonName."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
-		$toonInfo = getToonInfo($toon_info_url);
-		$toonObj = json_decode($toonInfo);
+$toonCounter = 0;
+foreach ($allToonObjArray as $toonObj) {
+	var_dump($toonObj); } /*
 		$toonFaction = $toonObj->faction;
 		$toonIcon = $icon_url.$toonObj->thumbnail;
 		$toonRealm = $toonObj->realm;
