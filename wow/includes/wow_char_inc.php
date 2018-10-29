@@ -46,9 +46,9 @@ function getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 	$mysqli->close();
 }
 
-function toonUrlArray ($checkResults, $wow_url, $wowFields, $api_key) {
+function toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key) {
 	$urlArray = array ();
-	foreach ($checkResults as $toon) {
+	foreach ($allUserToons as $toon) {
 		$urlArray[] = $wow_url."character/".$toon->toon_realm."/".$toon->toon_name.$wowFields.$api_key;
 	}
 	return $urlArray;

@@ -41,8 +41,8 @@ function getClassInfo ($classUrl, array $get = NULL, array $options = array())
 	return $result;
 }
 
-$classJson = getClassInfo($classUrl);
-$classObj = json_decode($classJson);
-print_r($classObj);
+#$classJson = getClassInfo($classUrl);
+#$classObj = json_decode($classJson);
+#print_r($classObj);
 
 ?>
