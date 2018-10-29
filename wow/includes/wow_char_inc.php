@@ -49,9 +49,17 @@ function getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 function toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key) {
 	$urlArray = array ();
 	foreach ($allUserToons as $toon) {
-		$urlArray[] = $wow_url."character/".$toon->toon_realm."/".$toon->toon_name.$wowFields.$api_key;
+		$urlArray[] = $wow_url."character/".$toon->toon_realm."/".$toon->toon_name."?".$wowFields."&locale=en_US&".$api_key;
 	}
 	return $urlArray;
+}
+
+function getAllToonObjArray ($allUserToonData, $userToonCount) {
+	$allToonsObj = array();
+	for ($userToonCounter = 0; $userToonCounter < $userToonCount; $userToonCounter++) {
+		$allToonsObj[] = json_decode($allUserToonData[$userToonCounter]);
+	}
+	return $allToonsObj;
 }
 
 ?>
