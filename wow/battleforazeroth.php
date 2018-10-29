@@ -21,6 +21,7 @@ include "./includes/wow_html_inc.php";
 include "./includes/wow_profs_inc.php";
 include "./includes/wow_reps.inc.php";
 include "./includes/bfa_chk_lst.php";
+include "./includes/multiapi.php";
 
 // Variables for the start
 $toon_owner_id = $_SESSION['user_id'];
