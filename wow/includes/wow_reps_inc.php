@@ -332,42 +332,4 @@ function bfaFactions($bfaReps, $wowFaction) {
 	return $champsOfAzeroth.$tortollanSeekers.$factionReps;
 }
 
-# BEGIN BLOCK for testing
-#$toon_realm="area-52";
-#$toon_realm = "proudmoore";
-#$toon_name="Luxalor";
-#$toon_name="Luxnatur";
-#$blizz_locale = "locale=en_us";
-#$wow_url = "https://us.api.battle.net/wow/";
-#$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
-#$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
-
-# Using a curl function to get info
-#function getToonInfo ($toon_info_url, array $get = NULL, array $options = array())
-#{
-#	$defaults = array(
-#		CURLOPT_URL => $toon_info_url,
-#		CURLOPT_RETURNTRANSFER => true,
-#		CURLOPT_TIMEOUT => 30,
-#		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-#		CURLOPT_CUSTOMREQUEST => "GET",
-#		CURLOPT_HTTPHEADER => array(
-#			"cache-control: no-cache"
-#		),
-#	);
-#	$ch = curl_init();
-#	curl_setopt_array($ch, ($options + $defaults));
-#	if ( !$result = curl_exec($ch))
-#	{
-#		trigger_error(curl_error($ch));
-#	}
-#	curl_close($ch);
-#	return $result;
-#}
-# END BLOCK for testing
-#print $toon_info_url;
-#$toonObj = json_decode(file_get_contents($toon_info_url));
-#$toonReps = bfaFactions($toonObj->reputation, $toonObj->faction);
-#print_r($toonReps);
-
 ?>
