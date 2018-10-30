@@ -11,6 +11,7 @@ class account {
 	*	$class - type of call
 	*	$fields - array of data (name,server,size)
 	**/
+	$q = "";
 	public function _buildtype($class,$fields)
 	{
 		switch ($class)
