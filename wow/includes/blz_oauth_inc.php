@@ -41,7 +41,7 @@ function getOauthCode ($blizzardAuthorizeUrl, $redirectUri, $myOauthToken) {
 	$headers = array();
 	$headers[] = "Content-Type: application/x-www-form-urlencoded";
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
+	print "var_dump of \$ch with options:\n<pre"; var_dump($ch, CURLOPT_HTTPHEADER, $headers); print "</pre>\n<hr />\n";
 	$result = json_decode(curl_exec($ch));
 	if (curl_errno($ch)) {
 		echo 'Error:' . curl_error($ch);
