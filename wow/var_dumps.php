@@ -47,7 +47,7 @@ print "var_dump of \$_GET:\n<pre>"; var_dump($_GET); print "</pre>>\n<hr />\n";
 if (!isset($_GET['code']))
 {
 	$auth_url = $client->getAuthenticationUrl($client->baseurl[$client->region]['AUTHORIZATION_ENDPOINT'], $client->redirect_uri);
-	print "var_dump of \$auth_url:<pre>"; var_dump($auth_url; print "</pre>\n<hr />\n";
+	print "var_dump of \$auth_url:<pre>"; var_dump($auth_url); print "</pre>\n<hr />\n";
 	header('Location: ' . $auth_url);
 }
 else
