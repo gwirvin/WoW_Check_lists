@@ -18,6 +18,8 @@ error_reporting(E_ALL);
 require_once('Client.php');
 require_once('GrantType/IGrantType.php');
 require_once('GrantType/AuthorizationCode.php');
+include "includes/blz_oauth_inc.php";
+include "includes/blizzard_resources_inc.php";
 
 /**
 *	Required vars for the api to work
@@ -33,18 +35,15 @@ $redirect_uri			= 'https://www.grantsgrabbag.com/wow/var_dumps.php';
 // init the auth system client_id, client_secret, region, local all required
 $client = new OAuth2\Client($client_id, $client_secret, $region, $locale, $redirect_uri);
 
-print "var_dump of \$_SESSION:\n<pre> ";
-var_dump($_SESSION);
-print "</pre>>";
-	print "<hr />\n";
-print "var_dump of \$_REQUEST):\n<pre>";
-var_dump($_REQUEST);
-print "</pre>>";
-	print "<hr />\n";
-print "var_dump of \$_GET:\n<pre>";
-var_dump($_GET);
-print "</pre>>";
-	print "<hr />\n";
+$myOauth = getOauthToken($blizzardOauthTokenUrl);
+print "var_dump of \$myOauth:\n<pre>"; var_dump($myOauth); print "</pre>\n<hr />\n";
+
+print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>>\n<hr />\n";
+
+print "var_dump of \$_REQUEST):\n<pre>"; var_dump($_REQUEST); print "</pre>>\n<hr />\n";
+
+print "var_dump of \$_GET:\n<pre>"; var_dump($_GET); print "</pre>>\n<hr />\n";
+
 if (!isset($_GET['code']))
 {
 	$auth_url = $client->getAuthenticationUrl($client->baseurl[$client->region]['AUTHORIZATION_ENDPOINT'], $client->redirect_uri);
