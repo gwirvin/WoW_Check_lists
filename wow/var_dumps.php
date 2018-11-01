@@ -33,7 +33,7 @@ $locale				= 'en_US';
 $redirectUri			= 'https://www.grantsgrabbag.com/wow/var_dumps.php';
 
 // init the auth system client_id, client_secret, region, local all required
-$client = new OAuth2\Client($client_id, $client_secret, $region, $locale, $redirect_uri);
+$client = new OAuth2\Client($client_id, $client_secret, $region, $locale, $redirectUri);
 
 $myOauthToken = getOauthToken($blizzardOauthTokenUrl);
 print "var_dump of \$myOauth:\n<pre>"; var_dump($myOauthiToken); print "</pre>\n<hr />\n";
@@ -49,13 +49,13 @@ print "var_dump of \$_GET:\n<pre>"; var_dump($_GET); print "</pre>>\n<hr />\n";
 
 if (!isset($_GET['code']))
 {
-	$auth_url = $client->getAuthenticationUrl($client->baseurl[$client->region]['AUTHORIZATION_ENDPOINT'], $client->redirect_uri);
+	$auth_url = $client->getAuthenticationUrl($client->baseurl[$client->region]['AUTHORIZATION_ENDPOINT'], $client->redirectUri);
 	print "var_dump of \$auth_url:<pre>"; var_dump($auth_url); print "</pre>\n<hr />\n";
 	header('Location: ' . $auth_url);
 }
 else
 {
-	$params = array('code' => $_GET['code'], 'auth_flow' => 'auth_code', 'redirect_uri' => $client->redirect_uri);
+	$params = array('code' => $_GET['code'], 'auth_flow' => 'auth_code', 'redirect_uri' => $client->redirectUri);
 	print "var_dump of \$params:\n<pre>";
 	var_dump($params);
 	print "</pre>";
