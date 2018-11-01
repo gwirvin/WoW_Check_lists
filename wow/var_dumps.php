@@ -30,13 +30,16 @@ $client_id			= '2abc5bd3a1d64274a2aa9575404cf0e9';
 $client_secret			= '4lDDBAihtzLRkljrtYmwRTL1L6xZeOGv';
 $region				= 'US';
 $locale				= 'en_US';
-$redirect_uri			= 'https://www.grantsgrabbag.com/wow/var_dumps.php';
+$redirectUri			= 'https://www.grantsgrabbag.com/wow/var_dumps.php';
 
 // init the auth system client_id, client_secret, region, local all required
 $client = new OAuth2\Client($client_id, $client_secret, $region, $locale, $redirect_uri);
 
-$myOauth = getOauthToken($blizzardOauthTokenUrl);
-print "var_dump of \$myOauth:\n<pre>"; var_dump($myOauth); print "</pre>\n<hr />\n";
+$myOauthToken = getOauthToken($blizzardOauthTokenUrl);
+print "var_dump of \$myOauth:\n<pre>"; var_dump($myOauthiToken); print "</pre>\n<hr />\n";
+
+$myOauthCode = getOauthCode($blizzardOauthAuthUrl, $redirectUri, $_SESSION['access_token']);
+print "var_dump of \$myOauth:\n<pre>"; var_dump($myOauthCode); print "</pre>\n<hr />\n";
 
 print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>>\n<hr />\n";
 
