@@ -15,7 +15,7 @@ $clientId = "2abc5bd3a1d64274a2aa9575404cf0e9";
 $clientSecret = "4lDDBAihtzLRkljrtYmwRTL1L6xZeOGv";
 
 /* 
- * EXAMPLE CULR for WOW PRofile Data:
+ * EXAMPLE CURL for WOW PRofile Data:
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, "https://us.api.blizzard.com/wow/user/characters?locale=en_US");
