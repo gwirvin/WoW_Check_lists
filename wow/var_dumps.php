@@ -28,7 +28,7 @@ $client_id			= '2abc5bd3a1d64274a2aa9575404cf0e9';
 $client_secret			= '4lDDBAihtzLRkljrtYmwRTL1L6xZeOGv';
 $region				= 'US';
 $locale				= 'en_US';
-$redirect_uri			= 'https://www.grantsgrabbag.com/wow/index.php';
+$redirect_uri			= 'https://www.grantsgrabbag.com/wow/var_dumps.php';
 
 // init the auth system client_id, client_secret, region, local all required
 $client = new OAuth2\Client($client_id, $client_secret, $region, $locale, $redirect_uri);
