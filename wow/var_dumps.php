@@ -36,10 +36,10 @@ $redirect_uri			= 'https://www.grantsgrabbag.com/wow/var_dumps.php';
 $client = new OAuth2\Client($client_id, $client_secret, $region, $locale, $redirect_uri);
 
 $myOauthToken = getOauthToken($blizzardOauthTokenUrl);
-print "var_dump of \$myOauth:\n<pre>"; var_dump($myOauthiToken); print "</pre>\n<hr />\n";
+print "var_dump of \$myOauthToken:\n<pre>"; var_dump($myOauthToken); print "</pre>\n<hr />\n";
 
 $myOauthCode = getOauthCode($blizzardOauthAuthUrl, $redirect_uri, $_SESSION['access_token']);
-print "var_dump of \$myOauth:\n<pre>"; var_dump($myOauthCode); print "</pre>\n<hr />\n";
+print "var_dump of \$myOauthCode:\n<pre>"; var_dump($myOauthCode); print "</pre>\n<hr />\n";
 
 print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>>\n<hr />\n";
 
