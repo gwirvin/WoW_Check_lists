@@ -28,12 +28,12 @@ function bfaPrimaryProfs($priProfs) {
 			if (strpos ( $priProf->name, 'Kul Tiran') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') !== false) {
 					if ($priProf->rank < $priProf->max) {
-#						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
-						$gathering .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
+#						$gathering .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
-#						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
-						$gathering .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
+						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
+#						$gathering .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
 						$priProfCount++;
 					}
 #				} elseif (!== false) {
@@ -54,10 +54,10 @@ function bfaPrimaryProfs($priProfs) {
 #					}
 			} elseif (strpos ( $priProf->name, 'Kul Tiran' ) !== false) {
 				if ($priProf->rank < $priProf->max) {
-					$crafting .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
-					$crafting .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
+					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
 					$priProfCount++;
 				}
 			} else {
@@ -66,7 +66,7 @@ function bfaPrimaryProfs($priProfs) {
 			}
 		}
 	}
-	return $gathering.$crafting;
+	return $return;
 }
 
 function legPrimaryProfs($priProfs) {
