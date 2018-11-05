@@ -21,6 +21,8 @@
 
 function bfaPrimaryProfs($priProfs) {
 	$return = "";
+	$gathering = "";
+	$crafting = "";
 	$priProfCount = 0;
 		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Kul Tiran') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
