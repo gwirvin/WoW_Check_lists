@@ -25,8 +25,8 @@ function bfaPrimaryProfs($priProfs) {
 	$crafting = "";
 	$priProfCount = 0;
 		foreach ($priProfs as $priProf) {
-			if (strpos ( $priProf->name, 'Kul Tiran') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
-				if (strpos ( $priProf->name, 'Hebalism') !== false) {
+			if (strpos ( $priProf->name, 'Kul Tiran') !== false) {
+				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
 					if ($priProf->rank < $priProf->max) {
 						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 #						$gathering .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
