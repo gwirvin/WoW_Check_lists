@@ -57,19 +57,19 @@ print "var_dump of \$_REQUEST):\n<pre>"; var_dump($_REQUEST); print "</pre>>\n<h
 
 print "var_dump of \$_GET:\n<pre>"; var_dump($_GET); print "</pre>>\n<hr />\n";
 
-if (!isset($_GET['code']))
-{
-	$auth_url = $client->getAuthenticationUrl($client->baseurl[$client->region]['AUTHORIZATION_ENDPOINT'], $client->redirect_uri);
-	print "var_dump of \$auth_url:<pre>"; var_dump($auth_url); print "</pre>\n<hr />\n";
-	header('Location: ' . $auth_url);
-}
-else
-{
-	$params = array('code' => $_GET['code'], 'auth_flow' => 'auth_code', 'redirect_uri' => $client->redirect_uri);
-	print "var_dump of \$params:\n<pre>"; var_dump($params); print "</pre>\n<hr />\n";
-	$response = $client->getAccessToken($client->baseurl[$client->region]['TOKEN_ENDPOINT'], 'authorization_code', $params);
-	print 'var_dump of $response on else clause for an access token:\n<pre>'; var_dump($response); print "</pre>\n<hr />\n";
-	$client->setAccessToken($response['result']['access_token']);
-	$profileResponse = $client->fetch('user',array('source'=>'account'));
-	print '<pre>var_dump of \$profileResponse for user data'; var_dump($profileResponse); echo "</pre>\n<hr />\n";
-}
+#if (!isset($_GET['code']))
+#{
+#	$auth_url = $client->getAuthenticationUrl($client->baseurl[$client->region]['AUTHORIZATION_ENDPOINT'], $client->redirect_uri);
+#	print "var_dump of \$auth_url:<pre>"; var_dump($auth_url); print "</pre>\n<hr />\n";
+#	header('Location: ' . $auth_url);
+#}
+#else
+#{
+#	$params = array('code' => $_GET['code'], 'auth_flow' => 'auth_code', 'redirect_uri' => $client->redirect_uri);
+#	print "var_dump of \$params:\n<pre>"; var_dump($params); print "</pre>\n<hr />\n";
+#	$response = $client->getAccessToken($client->baseurl[$client->region]['TOKEN_ENDPOINT'], 'authorization_code', $params);
+#	print 'var_dump of $response on else clause for an access token:\n<pre>'; var_dump($response); print "</pre>\n<hr />\n";
+#	$client->setAccessToken($response['result']['access_token']);
+#	$profileResponse = $client->fetch('user',array('source'=>'account'));
+#	print '<pre>var_dump of \$profileResponse for user data'; var_dump($profileResponse); echo "</pre>\n<hr />\n";
+#}
