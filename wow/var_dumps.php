@@ -44,6 +44,10 @@ print "var_dump of \$myOauthToken:\n<pre>"; var_dump($myOauthToken); print "</pr
 $_SESSION = array_merge($_SESSION,$myOauthToken);
 print "var_dump of \$_SESSION after array_merge:\n<pre>\n"; var_dump($_SESSION); print "</pre>\n<hr />\n";
 
+$oauthToken = $myOauthToken['access_token'];
+$sessionOauthToken = $_SESSION['access_token'];
+print "access_token from myOauthToken: ".$oauthToken."\naccess_token from _SESSION: ".$sessionOauthToken."<hr />\n";
+
 $myOauthCode = getOauthCode($blizzardOauthAuthUrl, $redirect_uri, $myOauthToken['access_token']);
 print "var_dump of \$myOauthCode:\n<pre>"; var_dump($myOauthCode); print "</pre>\n<hr />\n";
 
