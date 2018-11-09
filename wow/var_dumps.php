@@ -71,5 +71,5 @@ else
 	print 'var_dump of $response on else clause for an access token:\n<pre>'; var_dump($response); print "</pre>\n<hr />\n";
 	$client->setAccessToken($response['result']['access_token']);
 	$profileResponse = $client->fetch('user',array('source'=>'account'));
-	print '<pre>var_dump of \$profileResponse for user data'; var_dump($response); echo "</pre>\n<hr />\n";
+	print '<pre>var_dump of \$profileResponse for user data'; var_dump($profileResponse); echo "</pre>\n<hr />\n";
 }
