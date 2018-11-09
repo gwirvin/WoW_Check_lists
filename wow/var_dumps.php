@@ -49,6 +49,9 @@ $oauthToken = $myOauthToken['access_token'];
 $sessionOauthToken = $_SESSION['access_token'];
 print "access_token from myOauthToken: ".$oauthToken."\n<br />access_token from _SESSION: ".$sessionOauthToken."<hr />\n";
 
+$tokenTime = date('Y-m-d H:i:s', $_SESSION['expires_in']);
+print "Trying to get a datetime format from expires_in (seconds): ".$tokenTime."<hr />\n";
+
 $myOauthCode = getOauthCode($blizzardOauthAuthUrl, $redirect_uri, $myOauthToken['access_token']);
 print "var_dump of \$myOauthCode:\n<pre>"; var_dump($myOauthCode); print "</pre>\n<hr />\n";
 
