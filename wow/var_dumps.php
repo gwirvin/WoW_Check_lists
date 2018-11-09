@@ -50,6 +50,9 @@ print "var_dump of \$myOauthCode:\n<pre>"; var_dump($myOauthCode); print "</pre>
 
 print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>>\n<hr />\n";
 
+array_push($_SESSION, ...$myOauthToken);
+print "var_dump of \$_SESSION after array_merge:\n<pre>\n"; var_dump($_SESSION); print "</pre>\n<hr />\n";
+
 print "var_dump of \$_REQUEST):\n<pre>"; var_dump($_REQUEST); print "</pre>>\n<hr />\n";
 
 print "var_dump of \$_GET:\n<pre>"; var_dump($_GET); print "</pre>>\n<hr />\n";
