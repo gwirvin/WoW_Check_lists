@@ -37,21 +37,21 @@ $wowIndexUri			= 'https://www.grantsgrabbag.com/wow/var_dumps.php';
 $client = new OAuth2\Client($client_id, $client_secret, $region, $locale, $redirect_uri);
 
 $myOauthToken = getOauthToken($blizzardOauthTokenUrl);
+print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>>\n<hr />\n";
+
 print "var_dump of \$myOauthToken:\n<pre>"; var_dump($myOauthToken); print "</pre>\n<hr />\n";
 
+$_SESSION = array_merge($_SESSION,$myOauthToken);
+print "var_dump of \$_SESSION after array_merge:\n<pre>\n"; var_dump($_SESSION); print "</pre>\n<hr />\n";
+
 $myOauthCode = getOauthCode($blizzardOauthAuthUrl, $redirect_uri, $myOauthToken['access_token']);
+print "var_dump of \$myOauthCode:\n<pre>"; var_dump($myOauthCode); print "</pre>\n<hr />\n";
 
 print "<a href=\"".$blizzardOauthAuthUrl."/?response_type=code&clientid=".$clientId."&redirect_uri=".$wowIndexUri."&scope=wow.profile&state=1234xyz\">Blizzard Login</a>";
 print "<hr />";
 print $blizzardOauthAuthUrl."/?response_type=code&clientid=".$clientId."&redirect_uri=".$wowIndexUri."&scope=wow.profile&state=1234xyz";
 print "<hr />";
 
-print "var_dump of \$myOauthCode:\n<pre>"; var_dump($myOauthCode); print "</pre>\n<hr />\n";
-
-print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>>\n<hr />\n";
-
-$_SESSION = array_merge($_SESSION,$myOauthToken);
-print "var_dump of \$_SESSION after array_merge:\n<pre>\n"; var_dump($_SESSION); print "</pre>\n<hr />\n";
 
 print "var_dump of \$_REQUEST):\n<pre>"; var_dump($_REQUEST); print "</pre>>\n<hr />\n";
 

@@ -34,14 +34,13 @@ function getOauthCode ($blizzardAuthorizeUrl, $redirectUri, $myOauthToken) {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $blizzardAuthorizeUrl);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, "redirect_uri=".$redirectUri."&scope=wow.profile&grant_type=authorization_code&code=".$myOauthToken);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, "scope=wow.profile&response_type=code&client_id=".$clientId."&redirect_uri=".$redirectUri."&state=123xyz");
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_USERPWD, $clientId . ":" . $secret);
 
 	$headers = array();
 	$headers[] = "Content-Type: application/x-www-form-urlencoded";
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	print "var_dump of \$ch with options:\n<pre"; var_dump($ch, CURLOPT_HTTPHEADER, $headers); print "</pre>\n<hr />\n";
 	$result = json_decode(curl_exec($ch));
 	if (curl_errno($ch)) {
 		echo 'Error:' . curl_error($ch);
