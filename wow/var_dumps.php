@@ -47,14 +47,14 @@ print "var_dump of \$_SESSION after array_merge:\n<pre>\n"; var_dump($_SESSION);
 
 $oauthToken = $myOauthToken['access_token'];
 $sessionOauthToken = $_SESSION['access_token'];
-print "access_token from myOauthToken: ".$oauthToken."\naccess_token from _SESSION: ".$sessionOauthToken."<hr />\n";
+print "access_token from myOauthToken: ".$oauthToken."\n<br />access_token from _SESSION: ".$sessionOauthToken."<hr />\n";
 
 $myOauthCode = getOauthCode($blizzardOauthAuthUrl, $redirect_uri, $myOauthToken['access_token']);
 print "var_dump of \$myOauthCode:\n<pre>"; var_dump($myOauthCode); print "</pre>\n<hr />\n";
 
-print "<a href=\"".$blizzardOauthAuthUrl."/?response_type=code&clientid=".$clientId."&redirect_uri=".$wowIndexUri."&scope=wow.profile&state=1234xyz\">Blizzard Login</a>";
+print "<a href=\"".$blizzardOauthAuthUrl."/?response_type=code&clientid=".$clientId."&redirect_uri=".$redirect_uri."&scope=wow.profile&state=1234xyz\">Blizzard Login</a>";
 print "<hr />";
-print $blizzardOauthAuthUrl."/?response_type=code&clientid=".$clientId."&redirect_uri=".$wowIndexUri."&scope=wow.profile&state=1234xyz";
+print $blizzardOauthAuthUrl."/?response_type=code&clientid=".$clientId."&redirect_uri=".$redirect_uri."&scope=wow.profile&state=1234xyz";
 print "<hr />";
 
 
