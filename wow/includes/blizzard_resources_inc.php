@@ -13,6 +13,7 @@ $blizzardUserInfoUrl = "https://us.battle.net/oauth/user/info";
 $blizzardWowProfileUrl = "https://us.api.blizzard.com/wow/user/characters?locale=en_US";
 $clientId = "2abc5bd3a1d64274a2aa9575404cf0e9";
 $clientSecret = "4lDDBAihtzLRkljrtYmwRTL1L6xZeOGv";
+$blizzardAuthorizeUrl = "https://us.battle.net/oauth/authorize";
 
 /* 
  * EXAMPLE CURL for WOW PRofile Data:
