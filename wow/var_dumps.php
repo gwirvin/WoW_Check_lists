@@ -63,20 +63,10 @@ if (!isset($_GET['code']))
 else
 {
 	$params = array('code' => $_GET['code'], 'auth_flow' => 'auth_code', 'redirect_uri' => $client->redirect_uri);
-	print "var_dump of \$params:\n<pre>";
-	var_dump($params);
-	print "</pre>";
-	print "<hr />\n";
+	print "var_dump of \$params:\n<pre>"; var_dump($params); print "</pre>\n<hr />\n";
 	$response = $client->getAccessToken($client->baseurl[$client->region]['TOKEN_ENDPOINT'], 'authorization_code', $params);
-echo 'print_r of $response on else clause:\n<pre>';
-print_r($response);
-echo '</pre>';
-	print "<hr />\n";
+	print 'var_dump of $response on else clause for an access token:\n<pre>'; var_dump($response); print "</pre>\n<hr />\n";
 	$client->setAccessToken($response['result']['access_token']);
-	print "<hr />\n";
-	$response = $client->fetch('user',array('source'=>'account'));
-	echo '<pre>';
-	print_r($response);
-	echo '</pre>';
-	print "<hr />\n";
+	$profileResponse = $client->fetch('user',array('source'=>'account'));
+	print '<pre>var_dump of \$profileResponse for user data'; var_dump($response); echo "</pre>\n<hr />\n";
 }
