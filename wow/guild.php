@@ -78,7 +78,7 @@ $members_list .= "\n</center></table>";
         <table>
             <tr>
                 <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td></div>
-                <div class="form-group"><td><center><form name="legion" method="POST" action="./legion.php"><input value="Legion - <?php echo $_SESSION['user_first']; ?>" type="submit"></form></td></div>
+                <div class="form-group"><td><center><form name="legion" method="POST" action="./latest.php"><input value="Legion - <?php echo $_SESSION['user_first']; ?>" type="submit"></form></td></div>
                 <div class="form-group"><td><center><form name="toons" method="POST" action="./wow.php"><input type="SUBMIT" value="<?php echo $_SESSION['user_first']; ?>'s characters"></form></td></div>
             </div>
             </tr>

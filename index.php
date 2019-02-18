@@ -48,7 +48,7 @@ $wow_check = mysqli_fetch_array($toon_chk_query);
         <div id="table-nav">
         <table><caption>World of Warcraft Things</caption>
             <tr>
-                <td><center><form name="leg_chk_lst" method="POST" action="./wow/legion.php"><input value="Legion - <?php echo $_SESSION['user_first']; ?>" type="SUBMIT"></form></center></td>
+                <td><center><form name="wow_chk_lst" method="POST" action="./wow/latest.php"><input value="WoW Latest - <?php echo $_SESSION['user_first']; ?>" type="SUBMIT"></form></center></td>
                 <td><center><form name="toon" method="POST" action="./wow/wow.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Characters" type="SUBMIT"></form></td>
                 <td><center><form name="add_toon" method="POST" action="./wow/add_toon.php"><input value="Add a character" type="SUBMIT"></form></td>
             </tr>

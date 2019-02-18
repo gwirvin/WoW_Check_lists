@@ -11,9 +11,9 @@ class account {
 	*	$class - type of call
 	*	$fields - array of data (name,server,size)
 	**/
-	$q = "";
 	public function _buildtype($class,$fields)
 	{
+		$q = "";
 		switch ($class)
 		{
 			/*
@@ -21,7 +21,7 @@ class account {
 			*/
 
 			case 'account':
-				$q = 'account/user';
+				$q = 'account/userinfo';
 				break;
 			case 'accountid':
 				$q = 'account/user/id';

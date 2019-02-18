@@ -8,10 +8,14 @@
   exit; */
 
 $dbhost = 'localhost';
+$dbHost = 'localhost';
 $dbuser = 'web_app';
+$dbUser = 'web_app';
 $dbpass = 'zoh6oePohb3a';
+$dbPass = 'zoh6oePohb3a';
 $dbusers = 'users';
 $dbwow = 'wow_api';
+$dbWow = 'wow_api';
 $dblinks = 'links';
 $users_conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbusers) or die   ('Could not connect to DB');
 $wow_conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbwow) or die   ('Could not connect to DB');
@@ -30,6 +34,7 @@ $secret = "4lDDBAihtzLRkljrtYmwRTL1L6xZeOGv";
 $clientId = "2abc5bd3a1d64274a2aa9575404cf0e9";
 $latestUri = "https://www.grantsgrabbag.com/wow/latest.php";
 $wowUri = "https://www.grantsgrabbag.com/wow/wow.php";
+$wowUrl = "https://us.api.blizzard.com/wow/";
 $wowIndexUri = "https://www.grantsgrabbag.com/wow/index.php";
 $wowAllFields = "?fields=reputation,professions,talents,mounts,pets,titles,guild,items&";
 $wowLimitedFields = "?fields=reputation,professions,talents,guild,items&";

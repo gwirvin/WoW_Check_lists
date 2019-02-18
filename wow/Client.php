@@ -254,7 +254,7 @@ class Client
         $parameters = array_merge(array(
             'response_type' => 'code',
             'client_id'     => $this->client_id,
-			'scope'			=> 'wow.profile+sc2.profile',
+			'scope'			=> 'wow.profile',
 			'auth_flow'		=> 'auth_code',
             'redirect_uri'  => $redirect_uri
         ), $extra_parameters);

@@ -12,16 +12,16 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 
 // Block for testing
 /*
-include "./includes/wow_char_inc.php";
 */
 include "../cats.php";
+include "./includes/wow_char_inc.php";
 include "./includes/wow_class_inc.php";
 include "./includes/wow_fact_inc.php";
 include "./includes/wow_html_inc.php";
 include "./includes/wow_profs_inc.php";
-include "./includes/wow_reps.inc.php";
+include "./includes/wow_reps_inc.php";
 include "./includes/bfa_chk_lst.php";
-include "./includes/multiapi.php";
+#include "./includes/multiapi.php";
 
 // Variables for the start
 $toon_owner_id = $_SESSION['user_id'];

@@ -12,7 +12,7 @@ $char_ins_sql = ("INSERT INTO toon (toon_name, toon_realm, toon_owner) VALUES (\
 $char_insert = mysqli_query($wow_conn, $char_ins_sql);
 
 if ($char_ins_sql) {
-    header ("Location: ./legion.php");
+    header ("Location: ./latest.php");
     } else {
     echo "ERROR: ".mysqli_error($wow_conn);
     }

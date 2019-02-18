@@ -20,6 +20,7 @@ include "../cats.php";
 include "./includes/wow_class_inc.php";
 include "./includes/wow_rep_lvl_inc.php";
 include "./includes/wow_fact_inc.php";
+include "./includes/wow_profs_inc.php";
 include "./includes/leg_html_inc.php";
 include "./includes/leg_lgnd_inc.php";
 include "./includes/leg_ac_inc.php";
