@@ -1,5 +1,5 @@
 <?php
-/* file: legion.php */
+/* file: bfa_chk_lst.php */
 
 // Variables for the start
 if(!isset($_SESSION) || empty($_SESSION)) {
