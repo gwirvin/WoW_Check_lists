@@ -7,6 +7,38 @@
 # 										#
 #   AUTHOR: Grant Irvin 11 October 2018 - v1.0					#
 #################################################################################
+function wowExaltedReputations($wowReputations) {
+	$exaltedCount = 0;
+	$notExaltedCount = 0;
+	foreach($wowReputations as $wowReputation) {
+		switch ($wowReputation->standing) {
+		case 7:
+			$exaltedCount++;
+		}
+		return $exaltedCount;
+	}
+}
+
+function wowNotExaltedReputations($wowReputations) {
+	$notExaltedCount = 0;
+	foreach ($wowReputations as $wowReputation) {
+		switch ($wowReputation->standing){
+		case 1:
+			$notExaltedCount++;
+		case 2:
+			$notExaltedCount++;
+		case 3:
+			$notExaltedCount++;
+		case 4:
+			$notExaltedCount++;
+		case 5:
+			$notExaltedCount++;
+		case 6:
+			$notExaltedCount++;
+		}
+		return $notExlatedCount;
+	}
+}
 
 function bfaFactions($bfaReps, $wowFaction) {
 	$champsOfAzeroth = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
