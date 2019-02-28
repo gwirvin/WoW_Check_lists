@@ -23,9 +23,15 @@ $char_owner = $_SESSION['user_id'];
 
 //includes
 include "../cats.php";
+include "includes/blizzard_resources_inc.php";
+include "includes/blz_oauth_inc.php";
+
+if(!isset($myOauthToken["access_token"]) || empty($myOauthToken["token_type"])) {
+	$myOathToken = getOauthToken($blizzardOauthTokenUrl);
+}
 
 // Getting realms for form
-$realms_url = $wow_url."realm/status?".$blizz_locale."&".$api_key;
+$realms_url = $wow_url."realm/index?namespace=dynamic-us&".$blizz_locale."&access_token=".$myOauthToken["access_token"];
 $realms_json = file_get_contents($realms_url);
 $realms_object = json_decode($realms_json);
 
