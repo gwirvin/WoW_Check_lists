@@ -8,6 +8,7 @@
 
 function wowRealmList ($realmsUrl) {
 	$realmSelect = "";
+	$realmsObject = json_decode(file_get_contents($realmsUrl);
 	foreach ($realmsObject->realms as $realmsValue) {
 		$realmName = $realms_value->name;
 		$realmSlug = $realms_value->slug;
