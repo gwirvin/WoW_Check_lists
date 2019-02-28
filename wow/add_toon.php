@@ -25,26 +25,23 @@ $char_owner = $_SESSION['user_id'];
 include "../cats.php";
 include "includes/blizzard_resources_inc.php";
 include "includes/blz_oauth_inc.php";
-
-if(!isset($myOauthToken["access_token"]) || empty($myOauthToken["token_type"])) {
-	$myOathToken = getOauthToken($blizzardOauthTokenUrl);
-}
+include "includes/wow_realms_inc.php";
 
 // Getting realms for form
-#$realms_url = /*$wow_url.*/"https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&".$blizz_locale."&access_token=".$myOauthToken["access_token"];
-$realms_url = "https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&locale=en_US&access_token=USsqVDmS9Y5o55auoJLCy9eVMMiRCcwxOA";
-$realms_json = file_get_contents($realms_url);
-$realms_object = json_decode($realms_json);
+$realms_url = "https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&".$blizz_locale."&access_token=".$_SESSION['access_token'];
+#$realms_json = file_get_contents($realms_url);
+#$realmsObject = json_decode(file_get_contents($realmsUrl);
+$realmsSelect = wowRealmList($realms_url);
 
 /* **************** TESTING *************** */
 //$user_id = 1;
 
 // Form processing
-foreach ($realms_object->realms as $realms_value) {
-    $realm_name = $realms_value->name;
-    $realm_slug = $realms_value->slug;
-    $realm_select .= "\r\n\t\t\t\t<option value=\"".$realm_slug."\">".$realm_name."</option>";
-    }
+#foreach ($realms_object->realms as $realms_value) {
+#    $realm_name = $realms_value->name;
+#    $realm_slug = $realms_value->slug;
+#    $realm_select .= "\r\n\t\t\t\t<option value=\"".$realm_slug."\">".$realm_name."</option>";
+#    }
 
 ?>
 
@@ -65,7 +62,7 @@ foreach ($realms_object->realms as $realms_value) {
     <div id="container">
         <form action="./insert_char.php" name="add_toon" method="POST">
             <div class="form-group"><label><font color="FFFFFF">Character Name:<sup>*</sup></label><input type="text" name="char_name"  width="20em" value=""></font><input type="hidden" name="char_owner" value="<?php print $char_owner; ?>">
-            <div class="form-group"><label><font color="FFFFFF">Character Realm:<sup>*</sup></font></label><select name="char_realm"><?php print $realm_select?><input type="submit" name="insert" value="ADD">
+            <div class="form-group"><label><font color="FFFFFF">Character Realm:<sup>*</sup></font></label><select name="char_realm"><?php print $realmsSelect?><input type="submit" name="insert" value="ADD">
             </div>
     <p />
     <p />
