@@ -12,7 +12,7 @@ function wowRealmList ($realmsUrl) {
 	foreach ($realmsObject->realms as $realmsValue) {
 		$realmName = $realms_value->name;
 		$realmSlug = $realms_value->slug;
-		$realmSelectHtml .= "\r\n\t\t\t\t<option value=\"".$realm_slug."\">".$realm_name."</option>";
+		$realmSelectHtml .= "\r\n\t\t\t\t<option value=\"".$realmSlug."\">".$realmName."</option>";
 	}
 	return $realmSelect;
 }
