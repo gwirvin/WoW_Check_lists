@@ -31,7 +31,7 @@ if(!isset($myOauthToken["access_token"]) || empty($myOauthToken["token_type"])) 
 }
 
 // Getting realms for form
-$realms_url = $wow_url."realm/index?namespace=dynamic-us&".$blizz_locale."&access_token=".$myOauthToken["access_token"];
+$realms_url = /*$wow_url.*/"https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&".$blizz_locale."&access_token=".$myOauthToken["access_token"];
 $realms_json = file_get_contents($realms_url);
 $realms_object = json_decode($realms_json);
 
