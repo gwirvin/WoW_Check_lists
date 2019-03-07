@@ -18,6 +18,7 @@ error_reporting(E_ALL);
 require_once('Client.php');
 require_once('GrantType/IGrantType.php');
 require_once('GrantType/AuthorizationCode.php');
+include "../cats.php";
 include "includes/blz_oauth_inc.php";
 include "includes/blizzard_resources_inc.php";
 
@@ -35,13 +36,19 @@ $redirect_uri			= urlencode($wowIndexUri);
 
 print "Value of \$wowIndexUri is: ".$wowIndexUri."<br />Value with urlencode is: ".$redirect_uri."<hr />\n";
 // init the auth system client_id, client_secret, region, local all required
-$client = new OAuth2\Client($client_id, $client_secret, $region, $locale, $redirect_uri);
 
 $myOauthToken = getOauthToken($blizzardOauthTokenUrl);
-print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>>\n<hr />\n";
 
 print "var_dump of \$myOauthToken:\n<pre>"; var_dump($myOauthToken); print "</pre>\n<hr />\n";
-
+$oauthFetchSql = ("SELECT oauth_user, oauth_token, oauth_token_expires FROM oauth_session WHERE ouath_user=\"".$user_id."\"");
+print "\rvar_dump of \$oauthFetchSql:\r<pre>"; var_dump($oauthFetchSql); print "\r</pre>\r<hr />\r"
+$oauthCheckQuery = mysqli_query($wow_conn, $oauthFetchSql);
+if(!isset($oauthCheckQuery['oauth_token']) || empty($oauthCheckQuery['oauth_token'])) {
+	$oauthInsertSql = ("INSERT INTO oauth_session (oauth_user, oauth_token, oauth_token_expires) VALUES (\"".$myOauthToken['access_token']."\", \"".$user_id."\", NOW()) ON DUPLICATE KEY UPDATE");
+	print "var_dump of \$oauthInsertSql:\r<pre>\r"; var_dump($oauthInsertSql); print "\r</pre>\r<hr />\r";
+#	$oauthInsertQuery = mysqli_query($wow_conn, $oauthInsertSql);
+}
+print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>>\n<hr />\n";
 $_SESSION = array_merge($_SESSION,$myOauthToken);
 print "var_dump of \$_SESSION after array_merge:\n<pre>\n"; var_dump($_SESSION); print "</pre>\n<hr />\n";
 
