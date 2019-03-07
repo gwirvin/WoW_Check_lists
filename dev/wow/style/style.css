@@ -1,0 +1,37 @@
+html {
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+h1 { font-family: Arial, Veranda, sans-serif; font-size: 24px; text-align: center; color: #FFFFFF
+	}
+h2 { font-family: Arial, Veranda, sans-serif; font-size: 20px; text-align: center; color: #FFFFFF; }
+body { background-color: #000000; }
+table { width: auto; border 2px; text-align:center; border-color #9999cc; border-style: outset; border-spacing: 1px; border-collapse: seperate; padding: none; margin-left:auto; margin-right:auto; }
+th { text-align:center; vertical-align:center; border: 1px; border-style:outset; border-width:1px; border-color:#000000; }
+tr { vertical-align:middle; border:2px; border-color:#000000; }
+td { vertical-align:middle; border:1px; border-style:inset; border-width:2px; border-color:#000000; padding:none; text-align:center; }
+/******************ID's****************/
+#nobg body { background-color: #000000; }
+#table-nav table { width: 502; border: 0px; text-align: center; border-spacing: 0px; border-collapse: seperate; padding: none; margin: 0 auto; }
+#table-nav th { text-align: center; vertical-align: middle; border: 0px;}
+#table-nav tr { vertical-align: middle; border: 0px;}
+#table-nav td { vertical-align: middle; font-size: 1em; border:0px; border-width: 0px; border-color: #000000; padding: none; text-align:center; }
+#table-body table { width: 100%; table-layout: fixed; border: 2px; text-align:center; border-color: #9999cc; border-style: outset; border-spacing: 1px; border-collapse: seperate; padding: none; word-wrap: break-word; margin-left:auto; margin-right:auto; overflow: scroll; margin-top:20px; font-size: 0.775em; overflow-x: auto}
+#table-scroll {width: 100%; height:100%; overflow:auto; border: 2px; text-align:center; border-color: #9999cc; border-style: outset; border-spacing: 1px; border-collapse: seperate; padding: none; word-wrap: break-word; margin-left:auto; margin-right:auto; overflow: scroll; margin-top:20px; font-size: 0.775em; overflow-x: auto;}
+#table-body th { text-align:center; margin-top: -20px; padding: none; vertical-align:center; border: 1px; border-style:outset; border-width:1px; border-color:#000000; position:relative; }
+#table-body tr { height: 45px; vertical-align:middle; border:2px; border-color:#000000; }
+#table-body td { vertical-align:middle; border:1px; border-style:inset; border-width:2px; border-color:#000000; padding:none; text-align:center; }
+#table-sr table { border: 0px solid black; border-collapse: collapse; vertical-align:middle; border-color: white; border-spacing: 2px; }
+#table-sr th { border: 0px solid black; border-collapse: collapse; text-align: center; vertical-align:middle; }
+#table-sr td { border: 0px solid black; border-collapse: collapse; padding: 5px; text-align: center; vertical-align: center; }
+.cascade { display: none; }
+#bg { position: fixed; top: -50%; left: -50%; width: 200%; height: 200% }
+#bg img {position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; min-width: 50%; min-height: 50%; }
+#body-add body {color: #FFFFFF; background-image:url("../images/WoW_7.3_Shadows_of_Argus_01_bmp_jpgcopy.jpg"); background-color: #000000; background-repeat:no-repeat; background-position:center; background-attachment:fixed; }
+#container{width: 100%;background-color: grey;float: left;}
+#container-table table {border: 0px; border-spacing: 0px; padding: 0px; margin: 0 auto}
+/***************** Classes *************/
+.legion-bg { height: auto; width: 100%; background: url("../images/WoW_7.3_Shadows_of_Argus_01_bmp_jpgcopy.jpg") no-repeat center center fixed; background-position: 50% 50%; background-size: 100% 100%; }
+.legion-add { height: auto; width: 100%; background: url("../images/WOW_SoA_Logo_WoW_NA_png_jpgcopy.jpg") no-repeat center fixed; background-position: 50% 50%; background-size: 100% 100%; }

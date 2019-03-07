@@ -17,6 +17,8 @@ include "./includes/leg_rep_inc.php";
 include "./includes/leg_fact_inc.php";
 */
 include "../cats.php";
+include "./includes/blz_oauth_inc.php";
+include "includes/blizzard_resources_inc.php";
 include "./includes/wow_class_inc.php";
 include "./includes/wow_rep_lvl_inc.php";
 include "./includes/wow_fact_inc.php";

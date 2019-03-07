@@ -13,9 +13,11 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 
 //includes
 include "../cats.php";
-include "./includes/leg_fact_inc.php";
-include "./includes/leg_html_inc.php";
-include "./includes/wow_class_inc.php";
+include "./includes/blz_oauth_inc.php";
+include "includes/blizzard_resources_inc.php";
+include "includes/wow_fact_inc.php";
+include "includes/leg_html_inc.php";
+include "includes/wow_class_inc.php";
 
 $toon_owner_id = $_SESSION['user_id'];
 $toon_owner_first = $_SESSION['user_first'];
@@ -49,7 +51,7 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
         $toon_titled = "";
         $toon_name = $toon_result[$db_toon_counter]['toon_name'];
         $toon_realm = $toon_result[$db_toon_counter]['toon_realm'];
-        $toon_info_url = $char_url.$toon_realm."/".$toon_name."?".$char_wow_fields."&".$blizz_locale."&".$api_key; // The magic from the Blizzard API
+        $toon_info_url = htmlspecialchars_decode($char_url.$toon_realm."/".$toon_name."?".$char_wow_fields."&".$blizz_locale."&".$api_key); // The magic from the Blizzard API
         $toon_json = file_get_contents($toon_info_url);
         $toon_info_object = json_decode($toon_json);
         $toon_faction = $toon_info_object->faction;

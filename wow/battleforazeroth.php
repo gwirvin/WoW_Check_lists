@@ -14,6 +14,8 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 /*
 */
 include "../cats.php";
+include "./includes/blz_oauth_inc.php";
+include "includes/blizzard_resources_inc.php";
 include "./includes/wow_char_inc.php";
 include "./includes/wow_class_inc.php";
 include "./includes/wow_fact_inc.php";

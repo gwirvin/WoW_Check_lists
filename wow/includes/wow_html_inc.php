@@ -1,15 +1,5 @@
 <?php
-/* File: wow_html_inc.php */
-
-/***** Functions for different image renders from Blizzard ******/
-function wowInsertUrl ($toonThumbnail) {
-	str_replace("avatar","inset", $toonThumbnail);
-	return "http://render-us.worldofwarcraft.com/character/".$toonThumbnail;
-}
-Function wowMainUrl ($toonThumbnail) {
-	str_replace("avatar", "main", $toonThumbnail);
-	return "http://render-us.worldofwarcraft.com/character/".$toonThumbnail;
-}
+/* File: leg_html_inc.php */
 
 // Generic HTML Variables
 $html_head_open = "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<link rel=\"stylesheet\" href=\"./style.css\">\r\n\t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css\">\r\n\t<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>";

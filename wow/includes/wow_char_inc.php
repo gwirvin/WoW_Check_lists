@@ -7,7 +7,7 @@
  * but I have no interest in that for a simple next expansion 
  * ready check list.
  * The other fields can be found at:
- * https://dev.blizzard.com/io-docs **/
+ * https://dev.battle.net/io-docs **/
 # Using a curl function to get info
 function getToonInfo ($toon_info_url, array $get = NULL, array $options = array())
 {
@@ -46,10 +46,12 @@ function getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 	$mysqli->close();
 }
 
-function toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key) {
+//function toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key) {
+function toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken) {
 	$urlArray = array ();
 	foreach ($allUserToons as $toon) {
-		$urlArray[] = $wow_url."character/".$toon->toon_realm."/".$toon->toon_name."?".$wowFields."&locale=en_US&".$api_key;
+//		$urlArray[] = $wow_url."character/".$toon->toon_realm."/".$toon->toon_name."?".$wowFields."&locale=en_US&".$api_key;
+		$urlArray[] = $wowUrl."character/".$toon->toon_realm."/".$toon->toon_name."?".$wowFields."&locale=en_US&access_token=".$myOauthToken;
 	}
 	return $urlArray;
 }
@@ -209,5 +211,32 @@ class multiapi
 	
 }
 $obj = new multiapi();
+///////////////////////////// POST  ////////////////////////////////////
+/*
+//SANI: request one
+$obj->data[0]['url'] 	 		  = 'https://www.xxx.com/xxxx';
+$obj->data[0]['post'] 			  = array();
+$obj->data[0]['post']['sec_key']  = 'xxxxxxx';
+$obj->data[0]['post']['xxxx']     = 'xxxxxxxxxx';
+//SANI: request two
+$obj->data[1]['url'] 	 		  		  = 'http://wwww.xxxxx.com/xxx';
+$obj->data[1]['post'] 			  		  = array();
+$obj->data[1]['post']['sec_key']   		  = 'xxxxxxx';
+$obj->data[1]['post']['xxxx']  	  		  = 'xxxxx';
+$obj->data[1]['post']['xxxxxxxx']	  	  = 'xxxxxxx';
+$result = $obj->post_process_requests();
+echo "<pre>"; print_r($result);
+*/
+///////////////////////////// GET  ////////////////////////////////////
+//SANI: GET DATA
+//$obj->data = array(
+//					  'http://wwww.xxxxx.com/xxxxx',
+//					  'http://wwww.xxxxx.com/xxxxx',
+//					  'http://wwww.xxxxx.com/xxxxx',
+//					);
+////SANI: GET DATA	
+//$result = $obj->get_process_requests();
+//echo "<pre>"; print_r($result);
+//////////////////////////////////////////////////////////////////////////////////
 
 ?>
