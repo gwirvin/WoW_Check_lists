@@ -27,7 +27,7 @@ $wow_item_url = $wow_url."item/";
 $char_url = $wow_url."character/";
 $guild = $_REQUEST['guild_name'];
 $realm = $_REQUEST['guild_realm'];
-$guild_url = "https://us.api.battle.net/wow/guild/";
+$guild_url = "https://us.api.blizzard.com/wow/guild/";
 $guild_fields = "fields=members";
 $guild_char_fields = "fields=titles,professions,talents";
 $guild_info_url = $guild_url.$realm."/".$guild."?".$guild_fields."&".$blizz_locale."&".$api_key;

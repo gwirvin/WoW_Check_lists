@@ -11,7 +11,7 @@
 
 
 # BEGIN: Block for testing
-$wow_url = "https://us.api.battle.net/wow/";
+$wow_url = "https://us.api.blizzard.com/wow/";
 $blizz_locale = "locale=en_US";
 $api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
 # END: Block for testing
@@ -41,8 +41,8 @@ function getClassInfo ($classUrl, array $get = NULL, array $options = array())
 	return $result;
 }
 
-#$classJson = getClassInfo($classUrl);
-#$classObj = json_decode($classJson);
-#print_r($classObj);
+$classJson = getClassInfo($classUrl);
+$classObj = json_decode($classJson);
+print_r($classObj);
 
 ?>

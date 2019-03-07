@@ -1,30 +1,22 @@
 <?php
 /* file: legion.php */
+
 // Initialize the session
 session_start();
 
 // If session variable is not set it will redirect to login page
 if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
-  header("location: /login.php");
+  header("location: ../login.php");
   exit;
 }
 
 
 // Block for testing
-/*
-include "./includes/wow_char_inc.php";
-include "./includes/leg_rep_inc.php";
-include "./includes/leg_fact_inc.php";
-*/
 include "../cats.php";
-include "./includes/blz_oauth_inc.php";
-include "includes/blizzard_resources_inc.php";
-include "./includes/wow_class_inc.php";
-include "./includes/wow_rep_lvl_inc.php";
-include "./includes/wow_fact_inc.php";
-include "./includes/wow_profs_inc.php";
 include "./includes/leg_html_inc.php";
 include "./includes/leg_lgnd_inc.php";
+include "./includes/leg_rep_inc.php";
+include "./includes/leg_fact_inc.php";
 include "./includes/leg_ac_inc.php";
 include "./includes/leg_chk_lst.php";
 
@@ -40,20 +32,19 @@ $toon_owner_first = $_SESSION['user_first'];
     <meta charset="UTF-8" http-equiv="refresh" content="7200">
     <title><?php echo $_SESSION['user_first']?>'s Legion Checklist</title>
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../scripts/jquery.tablesorter.js"></script>
 </head>
-<?php echo $nav_table?>
 <div id="body"><body>
     <h2><center>World of Warcraft: Legion Checklist</center></h2>
     <div id="table-nav">
         <table>
             <tr>
+                <div class="form-group"><td><center><form name="home" method="POST" action="../index.php"><input value="Home" type="submit"></form></center></td></div>
                 <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td></div>
                 <div class="form-group"><td><center><form name="toon" method="POST" action="./wow.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Characters" type="submit"></form></td></div>
                 <div class="form-group"><td><center><form name="refresh" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"><input value="Refresh" type="SUBMIT"></form></center></td></div>
+                <div class="form-group"><td><form name="logout" method="post" action="../logout.php"><input value="Logout" type="submit"></form></td></div>
             </div>
             </tr>
         </table>
