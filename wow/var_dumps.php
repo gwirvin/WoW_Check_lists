@@ -41,7 +41,7 @@ $myOauthToken = getOauthToken($blizzardOauthTokenUrl);
 
 print "var_dump of \$myOauthToken:\n<pre>"; var_dump($myOauthToken); print "</pre>\n<hr />\n";
 $oauthFetchSql = ("SELECT oauth_user, oauth_token, oauth_token_expires FROM oauth_session WHERE ouath_user=\"".$user_id."\"");
-print "\rvar_dump of \$oauthFetchSql:\r<pre>"; var_dump($oauthFetchSql); print "\r</pre>\r<hr />\r"
+print "\rvar_dump of \$oauthFetchSql:\r<pre>"; var_dump($oauthFetchSql); print "\r</pre>\r<hr />\r";
 $oauthCheckQuery = mysqli_query($wow_conn, $oauthFetchSql);
 if(!isset($oauthCheckQuery['oauth_token']) || empty($oauthCheckQuery['oauth_token'])) {
 	$oauthInsertSql = ("INSERT INTO oauth_session (oauth_user, oauth_token, oauth_token_expires) VALUES (\"".$myOauthToken['access_token']."\", \"".$user_id."\", NOW()) ON DUPLICATE KEY UPDATE");
