@@ -30,6 +30,13 @@ $toon_owner_id = $_SESSION['user_id'];
 $toon_owner_first = $_SESSION['user_first'];
 $myOauthTokenArr = getOauthToken($blizzardOauthTokenUrl);
 $myOauthToken = $myOauthTokenArr['access_token'];
+$redirectUri = "https://www.grantsgrabbag.com/wow/var_dumps.php";
+
+$myOauthCodeArr = getOauthCode($blizzardAuthorizeUrl, $redirectUri, $myOauthToken);
+
+print "<p />var_dump of \$myOauthCodeArr\r<pre>\n";
+var_dump($myOauthCodeArr);
+print "\n</pre>\n";
 
 $allUserToons = getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons

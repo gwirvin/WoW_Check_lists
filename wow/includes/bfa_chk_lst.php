@@ -46,7 +46,8 @@ $allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
 foreach ($allToonsObjArray as $toonObj) {
 	$toonFaction = $toonObj->faction;
 	$toonIcon = $icon_url.$toonObj->thumbnail;
-	$toonRealm = $toonObj->realm;
+	$toonName = $toonObj->name;
+	$toonRealm = preg_replace('/\s+/', '-',strtolower($toonObj->realm));
 	$toonTalents = $toonObj->talents;
 	$toon_realm_html = factionStylesRealm($toonFaction, $toonRealm);
 	$toon_icon_html = factionStylesIcon($toonFaction, $toonIcon, $toonName, $toonRealm);

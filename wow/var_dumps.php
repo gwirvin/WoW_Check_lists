@@ -21,6 +21,7 @@ require_once('GrantType/AuthorizationCode.php');
 include "../cats.php";
 include "includes/blz_oauth_inc.php";
 include "includes/blizzard_resources_inc.php";
+include "includes/wow_char_inc.php";
 
 /**
 *	Required vars for the api to work
@@ -33,6 +34,7 @@ $region				= 'US';
 $locale				= 'en_US';
 $wowIndexUri			= 'https://www.grantsgrabbag.com/wow/var_dumps.php';
 $redirect_uri			= urlencode($wowIndexUri);
+$userId				= 1;
 
 print "Value of \$wowIndexUri is: ".$wowIndexUri."<br />Value with urlencode is: ".$redirect_uri."<hr />\n";
 // init the auth system client_id, client_secret, region, local all required
@@ -44,7 +46,7 @@ $oauthFetchSql = ("SELECT oauth_user, oauth_token, oauth_token_expires FROM oaut
 print "\rvar_dump of \$oauthFetchSql:\r<pre>"; var_dump($oauthFetchSql); print "\r</pre>\r<hr />\r";
 $oauthCheckQuery = mysqli_query($wow_conn, $oauthFetchSql);
 if(!isset($oauthCheckQuery['oauth_token']) || empty($oauthCheckQuery['oauth_token'])) {
-	$oauthInsertSql = ("INSERT INTO oauth_session (oauth_user, oauth_token, oauth_token_expires) VALUES (\"".$myOauthToken['access_token']."\", \"".$_SESSION['user_id']."\", NOW()) ON DUPLICATE KEY UPDATE oauth_token=\"".$myOauthToken['access_token']."\", oauth_token_expires=NOW()");
+	$oauthInsertSql = ("INSERT INTO oauth_session (oauth_user, oauth_token, oauth_token_expires) VALUES (\"".$myOauthToken['access_token']."\", \"".$_SESSION['user_id']."\", NOW()) ON DUPLICATE KEY UPDATE");
 	print "var_dump of \$oauthInsertSql:\r<pre>\r"; var_dump($oauthInsertSql); print "\r</pre>\r<hr />\r";
 #	$oauthInsertQuery = mysqli_query($wow_conn, $oauthInsertSql);
 }
@@ -68,23 +70,36 @@ print $blizzardOauthAuthUrl."/?response_type=code&clientid=".$clientId."&redirec
 print "<hr />";
 
 
-print "var_dump of \$_REQUEST):\n<pre>"; var_dump($_REQUEST); print "</pre>>\n<hr />\n";
+print "var_dump of \$_REQUEST):\n<pre>"; var_dump($_REQUEST); print "</pre>\n<hr />\n";
 
-print "var_dump of \$_GET:\n<pre>"; var_dump($_GET); print "</pre>>\n<hr />\n";
+print "var_dump of \$_GET:\n<pre>"; var_dump($_GET); print "</pre>\n<hr />\n";
 
-#if (!isset($_GET['code']))
-#{
-#	$auth_url = $client->getAuthenticationUrl($client->baseurl[$client->region]['AUTHORIZATION_ENDPOINT'], $client->redirect_uri);
-#	print "var_dump of \$auth_url:<pre>"; var_dump($auth_url); print "</pre>\n<hr />\n";
-#	header('Location: ' . $auth_url);
-#}
-#else
-#{
-#	$params = array('code' => $_GET['code'], 'auth_flow' => 'auth_code', 'redirect_uri' => $client->redirect_uri);
-#	print "var_dump of \$params:\n<pre>"; var_dump($params); print "</pre>\n<hr />\n";
-#	$response = $client->getAccessToken($client->baseurl[$client->region]['TOKEN_ENDPOINT'], 'authorization_code', $params);
-#	print 'var_dump of $response on else clause for an access token:\n<pre>'; var_dump($response); print "</pre>\n<hr />\n";
-#	$client->setAccessToken($response['result']['access_token']);
-#	$profileResponse = $client->fetch('user',array('source'=>'account'));
-#	print '<pre>var_dump of \$profileResponse for user data'; var_dump($profileResponse); echo "</pre>\n<hr />\n";
-#}
+
+$blizzLocale = "locale=en_US";
+$toonCounter = 0;
+$char_url = $wowUrl."character/";
+$wowFields = "fields=reputation,professions,talents,titles,items";
+$toon_sql = ("SELECT toon_name, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" ORDER BY toon_realm, toon_name");
+$toonName = "";
+$toonRealm = "";
+$toonIcon = "";
+$toonCounter = 0;
+$myOauthTokenArr = getOauthToken($blizzardOauthTokenUrl);
+$myOauthToken = $myOauthTokenArr['access_token'];
+
+
+$allUserToons = getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
+$userToonCount = count($allUserToons); // Getting the count of the user's toons
+// $allToonUrls = toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key); // Creating an array of all the API calls
+$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
+
+/* Using the borrow MultiAPI classes to get all the toon data concurently */
+$allToonApiArray = new multiapi();
+$allToonApiArray->data = $allToonUrls;
+$allToonDataArray = $allToonApiArray->get_process_requests();
+/* MultiAPI Calls done */
+
+/* Converting the strings returned int he multiapi to an array fo objects */
+$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
+print "var_dump of \$allToonsObjArray:\n<pre>"; var_dump($allToonsObjArray); print "</pre>\n<hr />\n";
+?>
