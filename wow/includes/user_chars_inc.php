@@ -24,9 +24,9 @@ include "./wow_char_inc.php";
 include "./wow_class_inc.php";
 include "./wow_fact_inc.php";
 include "./wow_html_inc.php";
-include "./wow_profs_inc.php";
+#include "./wow_profs_inc.php";
 include "./wow_reps_inc.php";
-include "./bfa_chk_lst.php";
+#include "./bfa_chk_lst.php";
 #include "./multiapi.php";
 
 $userId = 1;
