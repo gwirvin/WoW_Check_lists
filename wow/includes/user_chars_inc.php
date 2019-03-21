@@ -69,7 +69,7 @@ foreach ($allToonsObjArray as $toonObj) {
 	$toonTalents		= $toonObj->talents;
 	$toonCollectedPets	= $toonObj->pets->numCollected;
 	$toonGuild		= $toonObj->guild->name;
-	print $toonObj->name." on the realm ".$toonObj->realm." is in the guild ".$toonObj->guild->name." and has collected ".$toonObj->pets->numCollected."pets and ".$toonObj->mounts->numCollected."mounts.\r<hr />\r";
+	print $toonObj->name." on the realm ".$toonObj->realm." (".$toonRealmSlug.") is in the guild ".$toonObj->guild->name." and has collected ".$toonObj->pets->numCollected."pets and ".$toonObj->mounts->numCollected."mounts.\r<hr />\r";
 #	$toon_realm_html = factionStylesRealm($toonFaction, $toonRealm);
 #	$toon_icon_html = factionStylesIcon($toonFaction, $toonIcon, $toonName, $toonRealm);
 #	$toonPriProfHtml = bfaPrimaryProfs($toonObj->professions->primary);
