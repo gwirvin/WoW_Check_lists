@@ -56,10 +56,9 @@ $allToonApiArray = new multiapi();
 $allToonApiArray->data = $allToonUrls;
 $allToonDataArray = $allToonApiArray->get_process_requests();
 /* MultiAPI Calls done */
-
+prinr "var_dump of \$allToonDataArray: \r<pre>\r"; var_dump($allToonDataArray); print "\r</pre>\r<hr /";
 /* Converting the strings returned int he multiapi to an array fo objects */
-$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
-print "A var_dump of \$allToonsObjArray: \r<pre>\r"; var_dump($allToonsObjArray); print "\r</pre>\r<hr />\r";
+#$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
 
 #foreach ($allToonsObjArray as $toonObj) {
 #	$toonFaction = $toonObj->faction;
