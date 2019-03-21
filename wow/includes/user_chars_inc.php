@@ -21,11 +21,11 @@ include "../../cats.php";
 include "blz_oauth_inc.php";
 include "blizzard_resources_inc.php";
 include "wow_char_inc.php";
-include "wow_class_inc.php";
-include "wow_fact_inc.php";
-include "wow_html_inc.php";
+#include "wow_class_inc.php";
+#include "wow_fact_inc.php";
+#include "wow_html_inc.php";
 #include "./wow_profs_inc.php";
-include "wow_reps_inc.php";
+#include "wow_reps_inc.php";
 #include "./bfa_chk_lst.php";
 #include "./multiapi.php";
 
@@ -58,7 +58,8 @@ $allToonDataArray = $allToonApiArray->get_process_requests();
 /* MultiAPI Calls done */
 print "var_dump of \$allToonDataArray: \r<pre>\r"; var_dump($allToonDataArray); print "\r</pre>\r<hr /";
 /* Converting the strings returned int he multiapi to an array fo objects */
-#$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
+$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
+print "var_dump of \$allToonsObjArray: \r<pre>\r"; var_dump($allToonsObjArray); print "\r</pre>\r<hr />\r";
 
 #foreach ($allToonsObjArray as $toonObj) {
 #	$toonFaction = $toonObj->faction;
