@@ -27,7 +27,7 @@ include "./wow_html_inc.php";
 #include "./wow_profs_inc.php";
 include "./wow_reps_inc.php";
 #include "./bfa_chk_lst.php";
-#include "./multiapi.php";
+include "./multiapi.php";
 
 $userId = 1;
 $toon_onwer_first = "Grant";
@@ -50,15 +50,16 @@ $toon_table = "";
 $allUserToons = getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons
 $allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
-print "var_dump of \$allToonUrls: \r<pre>\r"; var_dump($allToonUrls); print "</pre>\r<hr />\r";
+
 /* Using the borrow MultiAPI classes to get all the toon data concurently */
-#$allToonApiArray = new multiapi();
-#$allToonApiArray->data = $allToonUrls;
-#$allToonDataArray = $allToonApiArray->get_process_requests();
+$allToonApiArray = new multiapi();
+$allToonApiArray->data = $allToonUrls;
+$allToonDataArray = $allToonApiArray->get_process_requests();
 /* MultiAPI Calls done */
 
 /* Converting the strings returned int he multiapi to an array fo objects */
-#$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
+$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
+print "A var_dump of \$allToonsObjArray: \r<pre>\r"; var_dump($allToonsObjArray); print "\r</pre>\r<hr />\r";
 
 #foreach ($allToonsObjArray as $toonObj) {
 #	$toonFaction = $toonObj->faction;
