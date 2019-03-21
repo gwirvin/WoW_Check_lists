@@ -17,17 +17,17 @@ if (!isset($_SESSION) || empty($_SESSION)) {
 // Block for testing
 /*
 */
-include "../cats.php";
-include "./includes/blz_oauth_inc.php";
-include "includes/blizzard_resources_inc.php";
-include "./includes/wow_char_inc.php";
-include "./includes/wow_class_inc.php";
-include "./includes/wow_fact_inc.php";
-include "./includes/wow_html_inc.php";
-include "./includes/wow_profs_inc.php";
-include "./includes/wow_reps_inc.php";
-include "./includes/bfa_chk_lst.php";
-#include "./includes/multiapi.php";
+include "../../cats.php";
+include "./blz_oauth_inc.php";
+include "./blizzard_resources_inc.php";
+include "./wow_char_inc.php";
+include "./wow_class_inc.php";
+include "./wow_fact_inc.php";
+include "./wow_html_inc.php";
+include "./wow_profs_inc.php";
+include "./wow_reps_inc.php";
+include "./bfa_chk_lst.php";
+#include "./multiapi.php";
 
 $blizzLocale = "locale=en_US";
 $toonCounter = 0;
