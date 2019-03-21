@@ -13,6 +13,22 @@ if (!isset($_SESSION) || empty($_SESSION)) {
 	} else {
 	$toon_owner_first = $_SESSION['user_first'];
 	}
+
+// Block for testing
+/*
+*/
+include "../cats.php";
+include "./includes/blz_oauth_inc.php";
+include "includes/blizzard_resources_inc.php";
+include "./includes/wow_char_inc.php";
+include "./includes/wow_class_inc.php";
+include "./includes/wow_fact_inc.php";
+include "./includes/wow_html_inc.php";
+include "./includes/wow_profs_inc.php";
+include "./includes/wow_reps_inc.php";
+include "./includes/bfa_chk_lst.php";
+#include "./includes/multiapi.php";
+
 $blizzLocale = "locale=en_US";
 $toonCounter = 0;
 $char_url = $wowUrl."character/";
