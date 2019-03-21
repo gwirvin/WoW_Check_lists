@@ -3,16 +3,16 @@
 
 
 // Variables for the start
-if(!isset($_SESSION) || empty($_SESSION)) {
-	$userId = $_REQUEST['user_id'];
-	} else {
-	$userId = $_SESSION['user_id'];
-	}
-if (!isset($_SESSION) || empty($_SESSION)) {
-	$toon_owner_first = $_REQUEST['user_first'];
-	} else {
-	$toon_owner_first = $_SESSION['user_first'];
-	}
+#if(!isset($_SESSION) || empty($_SESSION)) {
+#	$userId = $_REQUEST['user_id'];
+#	} else {
+#	$userId = $_SESSION['user_id'];
+#	}
+#if (!isset($_SESSION) || empty($_SESSION)) {
+#	$toon_owner_first = $_REQUEST['user_first'];
+#	} else {
+#	$toon_owner_first = $_SESSION['user_first'];
+#	}
 
 // Block for testing
 /*
@@ -29,6 +29,8 @@ include "./wow_reps_inc.php";
 include "./bfa_chk_lst.php";
 #include "./multiapi.php";
 
+$userId = 1;
+$toon_onwer_first = "Grant";
 $blizzLocale = "locale=en_US";
 $toonCounter = 0;
 $char_url = $wowUrl."character/";
