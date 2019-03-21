@@ -49,10 +49,8 @@ $toon_table = "";
 
 $allUserToons = getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons
-print "var_dump of \$myOauthToken: <pre>\r"; var_dump($myOauthToken); print "</pre>\r<hr />\r";
-// $allToonUrls = toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key); // Creating an array of all the API calls
-#$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
-
+$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
+print "var_dump of \$allToonUrls: \r<pre>\r"; var_dump($allToonUrls); print "</pre>\r<hr />\r";
 /* Using the borrow MultiAPI classes to get all the toon data concurently */
 #$allToonApiArray = new multiapi();
 #$allToonApiArray->data = $allToonUrls;
