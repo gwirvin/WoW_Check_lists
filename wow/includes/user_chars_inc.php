@@ -49,19 +49,20 @@ $toon_table = "";
 
 $allUserToons = getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons
+print "var_dump of \$allUserToons: <pre>\r"; var_dump($allUserToons); print "</pre>\r<hr />\r";
 // $allToonUrls = toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key); // Creating an array of all the API calls
-$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
+#$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
 
 /* Using the borrow MultiAPI classes to get all the toon data concurently */
-$allToonApiArray = new multiapi();
-$allToonApiArray->data = $allToonUrls;
-$allToonDataArray = $allToonApiArray->get_process_requests();
+#$allToonApiArray = new multiapi();
+#$allToonApiArray->data = $allToonUrls;
+#$allToonDataArray = $allToonApiArray->get_process_requests();
 /* MultiAPI Calls done */
 
 /* Converting the strings returned int he multiapi to an array fo objects */
-$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
+#$allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
 
-foreach ($allToonsObjArray as $toonObj) {
+#foreach ($allToonsObjArray as $toonObj) {
 #	$toonFaction = $toonObj->faction;
 #	$toonIcon = $icon_url.$toonObj->thumbnail;
 #	$toonRealm = $toonObj->realm;
@@ -78,8 +79,8 @@ foreach ($allToonsObjArray as $toonObj) {
 #	$toonSpecCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->talents[0]->spec->name."</font></td>";
 #	$toonIlvlCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->items->averageItemLevelEquipped."</font></td>";
 #	$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toonPriProfHtml.$toonSecProfHtml.$toonRepHtml.$toonIlvlCell."\n\t</tr>\n";
-	print "\rvar_dump of \$toonObj: <pre>\r"; var_dump($toonObj); print "\r</pre>\r<hr .\r";
-}
-$toon_table .= "\n</table>\n</div>\n"; 
+#	print "\rvar_dump of \$toonObj: <pre>\r"; var_dump($toonObj); print "\r</pre>\r<hr .\r";
+#}
+#$toon_table .= "\n</table>\n</div>\n"; 
 
 ?>
