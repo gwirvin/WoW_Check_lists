@@ -59,9 +59,9 @@ $allToonDataArray = $allToonApiArray->get_process_requests();
 print "var_dump of \$allToonDataArray: \r<pre>\r"; var_dump($allToonDataArray); print "\r</pre>\r<hr /";
 /* Converting the strings returned int he multiapi to an array fo objects */
 $allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
-print "var_dump of \$allToonsObjArray: \r<pre>\r"; var_dump($allToonsObjArray); print "\r</pre>\r<hr />\r";
+#print "var_dump of \$allToonsObjArray: \r<pre>\r"; var_dump($allToonsObjArray); print "\r</pre>\r<hr />\r";
 
-#foreach ($allToonsObjArray as $toonObj) {
+foreach ($allToonsObjArray as $toonObj) {
 #	$toonFaction = $toonObj->faction;
 #	$toonIcon = $icon_url.$toonObj->thumbnail;
 #	$toonRealm = $toonObj->realm;
@@ -78,8 +78,8 @@ print "var_dump of \$allToonsObjArray: \r<pre>\r"; var_dump($allToonsObjArray); 
 #	$toonSpecCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->talents[0]->spec->name."</font></td>";
 #	$toonIlvlCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->items->averageItemLevelEquipped."</font></td>";
 #	$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toonPriProfHtml.$toonSecProfHtml.$toonRepHtml.$toonIlvlCell."\n\t</tr>\n";
-#	print "\rvar_dump of \$toonObj: <pre>\r"; var_dump($toonObj); print "\r</pre>\r<hr .\r";
-#}
+	print "\rvar_dump of \$toonObj: <pre>\r"; var_dump($toonObj); print "\r</pre>\r<hr .\r";
+}
 #$toon_table .= "\n</table>\n</div>\n"; 
 
 ?>
