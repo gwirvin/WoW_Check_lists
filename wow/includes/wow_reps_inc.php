@@ -227,6 +227,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 					case 6:
 						$theUnshackled = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Exalted.</td>";
 						break;
+				}
 			}
 			$factionReps = $theUnshackled.$zandalariEmpire.$talanjisExpedition.$voldunai.$honorbound;
 		} elseif ($wowFaction === 0) {
@@ -353,26 +354,27 @@ function bfaFactions($bfaReps, $wowFaction) {
 			} elseif ($bfaRep->id === 2400) {
 				switch ($bfaRep->standing) {
 					case 0:
-						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						$wavebladeAnkoan = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
 						break;
 					case 1:
-						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
+						$wavebladeAnkoan = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
 						break;
 					case 2:
-						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"F05406\">".($bfaRep->max-$bfaRep->value)." to Neutral.</td>";
+						$wavebladeAnkoan = "\n\t\t<td bgcolor=\"F05406\">".($bfaRep->max-$bfaRep->value)." to Neutral.</td>";
 						break;
 					case 3:
-						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaRep->max-$bfaRep->value)." to Friendly.</td>";
+						$wavebladeAnkoan = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaRep->max-$bfaRep->value)." to Friendly.</td>";
 						break;
 					case 4:
-						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaRep->max-$bfaRep->value)." to Honored.</td>";
+						$wavebladeAnkoan = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaRep->max-$bfaRep->value)." to Honored.</td>";
 						break;
 					case 5:
-						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"98F10E\">".($bfaRep->max-$bfaRep->value)." to Revered.</td>";
+						$wavebladeAnkoan = "\n\t\t<td bgcolor=\"98F10E\">".($bfaRep->max-$bfaRep->value)." to Revered.</td>";
 						break;
 					case 6:
-						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Exalted.</td>";
+						$wavebladeAnkoan = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Exalted.</td>";
 						break;
+				}
 			}
 			$factionReps = $wavebladeAnkoan.$proudmooreAdmiralty.$stormsWake.$orderOfEmbers.$seventhLegion;
 		}
