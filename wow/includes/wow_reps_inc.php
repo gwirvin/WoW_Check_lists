@@ -20,6 +20,8 @@ function bfaFactions($bfaReps, $wowFaction) {
 	$proudmooreAdmiralty = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	$orderOfEmbers = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	$stormsWake = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$theUnshackled = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$wavebladeAnkoan = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	foreach ($bfaReps as $bfaRep) {
 		if ($bfaRep->id === 2164) {
 			switch ($bfaRep->standing) {
@@ -202,8 +204,31 @@ function bfaFactions($bfaReps, $wowFaction) {
 						$zandalariEmpire = "<td bgcolor=\"000000\">Not Active</td>";
 						break;
 				}
+			} elseif ($bfaRep->id === 2373) {
+				switch ($bfaRep->standing) {
+					case 0:
+						$theUnshackled = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						break;
+					case 1:
+						$theUnshackled = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
+						break;
+					case 2:
+						$theUnshackled = "\n\t\t<td bgcolor=\"F05406\">".($bfaRep->max-$bfaRep->value)." to Neutral.</td>";
+						break;
+					case 3:
+						$theUnshackled = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaRep->max-$bfaRep->value)." to Friendly.</td>";
+						break;
+					case 4:
+						$theUnshackled = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaRep->max-$bfaRep->value)." to Honored.</td>";
+						break;
+					case 5:
+						$theUnshackled = "\n\t\t<td bgcolor=\"98F10E\">".($bfaRep->max-$bfaRep->value)." to Revered.</td>";
+						break;
+					case 6:
+						$theUnshackled = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Exalted.</td>";
+						break;
 			}
-			$factionReps = $honorbound.$zandalariEmpire.$talanjisExpedition.$voldunai;
+			$factionReps = $theUnshackled.$zandalariEmpire.$talanjisExpedition.$voldunai.$honorbound;
 		} elseif ($wowFaction === 0) {
 			if ($bfaRep->id === 2159) {
 				switch ($bfaRep->standing) {
@@ -325,11 +350,34 @@ function bfaFactions($bfaReps, $wowFaction) {
 						$stormsWake = "<td bgcolor=\"000000\">Not Active</td>";
 						break;
 				}
+			} elseif ($bfaRep->id === 2400) {
+				switch ($bfaRep->standing) {
+					case 0:
+						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max-$bfaRep->value)." to Hostile.</td>";
+						break;
+					case 1:
+						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max-$bfaRep->value)." to Unfriendly.</td>";
+						break;
+					case 2:
+						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"F05406\">".($bfaRep->max-$bfaRep->value)." to Neutral.</td>";
+						break;
+					case 3:
+						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaRep->max-$bfaRep->value)." to Friendly.</td>";
+						break;
+					case 4:
+						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaRep->max-$bfaRep->value)." to Honored.</td>";
+						break;
+					case 5:
+						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"98F10E\">".($bfaRep->max-$bfaRep->value)." to Revered.</td>";
+						break;
+					case 6:
+						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Exalted.</td>";
+						break;
 			}
-			$factionReps = $seventhLegion.$proudmooreAdmiralty.$stormsWake.$orderOfEmbers;
+			$factionReps = $wavebladeAnkoan.$proudmooreAdmiralty.$stormsWake.$orderOfEmbers.$seventhLegion;
 		}
 	}
-	return $champsOfAzeroth.$tortollanSeekers.$factionReps;
+	return $factionReps.$champsOfAzeroth.$tortollanSeekers;
 }
 
 # BEGIN BLOCK for testing
