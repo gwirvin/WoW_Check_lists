@@ -22,6 +22,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 	$stormsWake = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	$theUnshackled = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	$wavebladeAnkoan = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
+	$rustboltResistance = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	foreach ($bfaReps as $bfaRep) {
 		if ($bfaRep->id === 2164) {
 			switch ($bfaRep->standing) {
@@ -81,6 +82,36 @@ function bfaFactions($bfaReps, $wowFaction) {
 					break;
 				case NULL:
 					$tortollanSeekers = "<td bgcolor=\"000000\">Not Active</td>";
+					break;
+			}
+		} elseif ($bfaRep->id === 2391) {
+			switch ($bfaRep->standing) {
+				case 0:
+					$rustboltResistance = "\n\t\t<td bgcolor=\"C00808\">".($bfaRep->max - $bfaRep->value)." to Hostile.</td>";
+					break;
+				case 1:
+					$rustboltResistance = "\n\t\t<td bgcolor=\"F02206\">".($bfaRep->max - $bfaRep->value)." to Unfriendly.</td>";
+					break;
+				case 2:
+					$rustboltResistance = "\n\t\t<td bgcolor=\"F05406\">".($bfaRep->max - $bfaRep->value)." to Neutral.</td>";
+					break;
+				case 3:
+					$rustboltResistance = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaRep->max - $bfaRep->value)." to Friendly.</td>";
+					break;
+				case 4:
+					$rustboltResistance = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaRep->max-$bfaRep->value)." to Honored.</td>";
+					break;
+				case 5:
+					$rustboltResistance = "\n\t\t<td bgcolor=\"98F10E\">".($bfaRep->max-$bfaRep->value)." to Revered.</td>";
+					break;
+				case 6:
+					$rustboltResistance = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Exalted.</td>";
+					break;
+				case 7:
+					$rustboltResistance = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaRep->name."</font></td>";
+					break;
+				case NULL:
+					$rustboltResistance = "<td bgcolor=\"000000\">Not Active</td>";
 					break;
 			}
 		} elseif ($wowFaction === 1) {
@@ -379,7 +410,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			$factionReps = $wavebladeAnkoan.$proudmooreAdmiralty.$stormsWake.$orderOfEmbers.$seventhLegion;
 		}
 	}
-	return $factionReps.$champsOfAzeroth.$tortollanSeekers;
+	return $rustboltResistance.$factionReps.$champsOfAzeroth.$tortollanSeekers;
 }
 
 # BEGIN BLOCK for testing
