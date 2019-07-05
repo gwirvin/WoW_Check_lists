@@ -227,6 +227,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 					case 6:
 						$theUnshackled = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Exalted.</td>";
 						break;
+				}
 			}
 			$factionReps = $theUnshackled.$zandalariEmpire.$talanjisExpedition.$voldunai.$honorbound;
 		} elseif ($wowFaction === 0) {
@@ -373,6 +374,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 					case 6:
 						$wavebaldeAnkoan = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Exalted.</td>";
 						break;
+				}
 			}
 			$factionReps = $wavebladeAnkoan.$proudmooreAdmiralty.$stormsWake.$orderOfEmbers.$seventhLegion;
 		}
