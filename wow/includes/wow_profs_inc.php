@@ -27,34 +27,16 @@ function bfaPrimaryProfs($priProfs) {
 		foreach ($priProfs as $priProf) {
 			if (strpos ( $priProf->name, 'Kul Tiran') !== false) {
 				if (strpos ( $priProf->name, 'Hebalism') || strpos ( $priProf->name, 'Mining') || strpos ( $priProf->name, 'Skinning') !== false) {
-					if ($priProf->rank < $priProf->max) {
-						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
-#						$gathering .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
+					if ($priProf->rank < 175) {
+						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".(175 - $priProf->rank)." points left</td>";
 						$priProfCount++;
 					} else {
 						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
-#						$gathering .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
 						$priProfCount++;
 					}
-#				} elseif (!== false) {
-#					if ($priProf->rank < $priProf->max) {
-#						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
-#						$priProfCount++;
-#					} else {
-#						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
-#						$priProfCount++;
-#					}
-#				} elseif (!== false) {
-#					if ($priProf->rank < $priProf->max) {
-#						$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
-#						$priProfCount++;
-#					} else {
-#						$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
-#						$priProfCount++;
-#					}
 			} elseif (strpos ( $priProf->name, 'Kul Tiran' ) !== false) {
 				if ($priProf->rank < 175) {
-					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
+					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".(175 - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
 					$return .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$priProf->name."</font></td>";
@@ -274,19 +256,19 @@ function bfaSecondaryProfs($toonSecProfs) {
 	$archaeology = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	foreach ($toonSecProfs as $secProf) {
 		if (strpos ( $secProf->name, 'Kul Tiran Fishing') !== false) {
-				if ($secProf->rank < $secProf->max) {
-					$fishing = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+				if ($secProf->rank < 175) {
+					$fishing = "\n\t\t<td bgcolor=\"F4E938\">".(175 - $secProf->rank)." points left</td>";
 				} else {
 					$fishing = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
 				}
 		} elseif (strpos ($secProf->name, 'Kul Tiran Cooking') !== false) {
-				if ($secProf->rank < $secProf->max) {
-					$cooking = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
+				if ($secProf->rank < 175) {
+					$cooking = "\n\t\t<td bgcolor=\"F4E938\">".(175 - $secProf->rank)." points left</td>";
 				} else {
 					$cooking = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
 				}
 		} elseif (strpos($secProf->name, 'Archaeology') !== false) {
-			if ($secProf->rank < $secProf->max) {
+			if ($secProf->rank < 175) {
 				$archaeology = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
 			} else {
 				$archaeology = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
