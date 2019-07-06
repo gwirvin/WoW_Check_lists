@@ -53,7 +53,7 @@ function bfaPrimaryProfs($priProfs) {
 #						$priProfCount++;
 #					}
 			} elseif (strpos ( $priProf->name, 'Kul Tiran' ) !== false) {
-				if ($priProf->rank < $priProf->max) {
+				if ($priProf->rank < 175) {
 					$return .= "\n\t\t<td bgcolor=\"F4E938\">".$priProf->name." - ".($priProf->max - $priProf->rank)." points left</td>";
 					$priProfCount++;
 				} else {
