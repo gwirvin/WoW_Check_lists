@@ -268,7 +268,7 @@ function bfaSecondaryProfs($toonSecProfs) {
 					$cooking = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
 				}
 		} elseif (strpos($secProf->name, 'Archaeology') !== false) {
-			if ($secProf->rank < 175) {
+			if ($secProf->rank < $secProf->max) {
 				$archaeology = "\n\t\t<td bgcolor=\"F4E938\">".($secProf->max - $secProf->rank)." points left</td>";
 			} else {
 				$archaeology = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$secProf->name."</font></td>";
