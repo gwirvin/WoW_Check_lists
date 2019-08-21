@@ -47,10 +47,11 @@ foreach ($allToonsObjArray as $toonObj) {
 	$toonFaction = $toonObj->faction;
 	$toonIcon = $icon_url.$toonObj->thumbnail;
 	$toonName = $toonObj->name;
-	$toonRealm = preg_replace('/\s+/', '-',strtolower($toonObj->realm));
+	$toonRealm = $toonObj->realm;
+	$toonRealmSlug = preg_replace('/\s+/', '-',strtolower($toonObj->realm));
 	$toonTalents = $toonObj->talents;
 	$toon_realm_html = factionStylesRealm($toonFaction, $toonRealm);
-	$toon_icon_html = factionStylesIcon($toonFaction, $toonIcon, $toonName, $toonRealm);
+	$toon_icon_html = factionStylesIcon($toonFaction, $toonIcon, $toonName, $toonRealmSlug);
 	$toonPriProfHtml = bfaPrimaryProfs($toonObj->professions->primary);
 	$toonSecProfHtml = bfaSecondaryProfs($toonObj->professions->secondary);
 	$toonRepHtml = bfaFactions($toonObj->reputation, $toonObj->faction);
