@@ -116,15 +116,22 @@ function bfaFactions($bfaReps, $wowFaction) {
 					break;
 			}
 		} elseif ($bfaRep->id === 2392) {
+					} elseif ($bfaRep->id === 2392) {
 			switch ($bfaRep->standing) {
 				case 0:
-					$rustboltParagon = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Paragon.</td>";
+					$rustboltParagon = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaRep->max-$bfaRep->value)." to Paragon.</td>";
 					break;
 				case 1:
-					$rustboltParagon = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaRep->name."</font></td>";
+					$rustboltParagon = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaRep->max-$bfaRep->value)." to Paragon.</td>";
+					break;
+				case 2:
+					$rustboltParagon = "\n\t\t<td bgcolor=\"98F10E\">".($bfaRep->max-$bfaRep->value)." to Paragon.</td>";
+					break;
+				case 3:
+					$rustboltParagon = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Paragon.</td>";
 					break;
 				case NULL:
-					$rustboltParagon = "<td bgcolor=\"000000\">Not Active</td>";
+					$rustboltParagon = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaRep->name."</font></td>";
 					break;
 			}
 		} elseif ($wowFaction === 1) {
