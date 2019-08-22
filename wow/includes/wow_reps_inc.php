@@ -23,7 +23,6 @@ function bfaFactions($bfaReps, $wowFaction) {
 	$theUnshackled = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	$wavebladeAnkoan = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	$rustboltResistance = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
-	$rustboltParagon = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	foreach ($bfaReps as $bfaRep) {
 		if ($bfaRep->id === 2164) {
 			switch ($bfaRep->standing) {
@@ -113,18 +112,6 @@ function bfaFactions($bfaReps, $wowFaction) {
 					break;
 				case NULL:
 					$rustboltResistance = "<td bgcolor=\"000000\">Not Active</td>";
-					break;
-			}
-		} elseif ($bfaRep->id === 2392) {
-			switch ($bfaRep->standing) {
-				case 0:
-					$rustboltParagon = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Paragon.</td>";
-					break;
-				case 1:
-					$rustboltParagon = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaRep->name."</font></td>";
-					break;
-				case NULL:
-					$rustboltParagon = "<td bgcolor=\"000000\">Not Active</td>";
 					break;
 			}
 		} elseif ($wowFaction === 1) {
@@ -435,7 +422,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 			$factionReps = $wavebladeAnkoan.$proudmooreAdmiralty.$stormsWake.$orderOfEmbers.$seventhLegion;
 		}
 	}
-	return $rustboltParagon.$rustboltResistance.$factionReps.$champsOfAzeroth.$tortollanSeekers;
+	return $rustboltResistance.$factionReps.$champsOfAzeroth.$tortollanSeekers;
 }
 
 # BEGIN BLOCK for testing
