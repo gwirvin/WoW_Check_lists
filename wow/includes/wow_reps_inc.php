@@ -117,14 +117,11 @@ function bfaFactions($bfaReps, $wowFaction) {
 			}
 		} elseif ($bfaRep->id === 2392) {
 			switch ($bfaRep->standing) {
-				case 0:
+				case 7:
 					$rustboltParagon = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Paragon.</td>";
 					break;
-				case 1:
-					$rustboltParagon = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaRep->name."</font></td>";
-					break;
 				case NULL:
-					$rustboltParagon = "<td bgcolor=\"000000\">Not Active</td>";
+					$rustboltParagon = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaRep->name."</font></td>";
 					break;
 			}
 		} elseif ($wowFaction === 1) {
