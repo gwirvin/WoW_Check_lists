@@ -114,6 +114,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 					$rustboltResistance = "<td bgcolor=\"000000\">Not Active</td>";
 					break;
 			}
+
 		} elseif ($wowFaction === 1) {
 			if ($bfaRep->id === 2157) {
 				switch ($bfaRep->standing) {
