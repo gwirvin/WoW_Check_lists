@@ -130,6 +130,7 @@ function bfaFactions($bfaReps, $wowFaction) {
 				case 3:
 					$rustboltParagon = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaRep->max-$bfaRep->value)." to Paragon.</td>";
 					break;
+
 				case NULL:
 					$rustboltParagon = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaRep->name."</font></td>";
 					break;
