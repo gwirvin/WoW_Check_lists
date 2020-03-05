@@ -34,7 +34,7 @@ function getToonInfo ($toon_info_url, array $get = NULL, array $options = array(
 function getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 	$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbWow);
 	$myArray = array();
-	$toon_sql = ("SELECT toon_name, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" ORDER BY toon_realm, toon_name");
+	$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" ORDER BY toon_realm, toon_slug");
 	if ($result = $mysqli->query($toon_sql)) {
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 			$myArray[] = $row;
@@ -55,12 +55,12 @@ function toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken) {
 	return $urlArray;
 }
 
-function toonCommunityUrlArray ($allUserToons, $api_key) {
-	$urlArray = array ();
+function toonCommunityUrlArray ($allUserToons, $myOauthToken) {
+	$uriArray = array ();
 	foreach ($allUserToons as $toon) {
-		$uriArray[] = "https://us.api.blizzard.com/profilewow/character/".$toon->toon_realm."/".$toon->toon_name."/namespace=profile-us&locale-en_US&access_token=".$myOauthToken;
+		$uriArray[] = "https://us.api.blizzard.com/profile/wow/character/".$toon->toon_realm."/".$toon->toon_slug."?namespace=profile-us&locale-en_US&access_token=".$myOauthToken;
 	}
-	return $urlArray
+	return $uriArray;
 }
 
 function getAllToonObjArray ($allUserToonData, $userToonCount) {
