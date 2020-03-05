@@ -46,7 +46,6 @@ function getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 	$mysqli->close();
 }
 
-//function toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key) {
 function toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken) {
 	$urlArray = array ();
 	foreach ($allUserToons as $toon) {
@@ -54,6 +53,14 @@ function toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken) {
 		$urlArray[] = $wowUrl."character/".$toon->toon_realm."/".$toon->toon_name."?".$wowFields."&locale=en_US&access_token=".$myOauthToken;
 	}
 	return $urlArray;
+}
+
+function toonCommunityUrlArray ($allUserToons, $api_key) {
+	$urlArray = array ();
+	foreach ($allUserToons as $toon) {
+		$uriArray[] = "https://us.api.blizzard.com/profilewow/character/".$toon->toon_realm."/".$toon->toon_name."/namespace=profile-us&locale-en_US&access_token=".$myOauthToken;
+	}
+	return $urlArray
 }
 
 function getAllToonObjArray ($allUserToonData, $userToonCount) {
