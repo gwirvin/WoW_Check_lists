@@ -4,7 +4,8 @@
  * FILE: blizzard_resources_inc.php
  *
  * This file is a repository of all the things needed for use of the blizzard APIs
-*/
+ */
+$tokenbPrefix = "&access_token=";
 $wow_url = "https://us.api.battle.net/wow/";
 $wowUrl = "https://us.api.blizzard.com/wow/";
 $blizzardApiBase = "https://us.api.blizzard.com";
@@ -13,12 +14,14 @@ $blizzardOauthAuthUrl = "https://us.battle.net/oauth/authorize";
 $blizzardUserInfoUrl = "https://us.battle.net/oauth/user/info";
 $blizzardWowProfileUrl = "https://us.api.blizzard.com/wow/user/characters?locale=en_US";
 $blizzardProfileNamespace = "namespace=profile-us";
-$blizzardLocaleUs = "locale=en_US";
+$blizzardLocaleUs = "&locale=en_US";
 $clientId = "2abc5bd3a1d64274a2aa9575404cf0e9";
 $clientSecret = "4lDDBAihtzLRkljrtYmwRTL1L6xZeOGv";
 $blizzardAuthorizeUrl = "https://us.battle.net/oauth/authorize";
 $wowCommuniutyUserChars = "/wow/user/characters?";
-$wowProfileNamespace = "namespace=profile-us"
+$wowProfile = "/profile/wow/character/";
+$wowProfileNamespace = "?namespace=profile-us";
+/* NOTE: Character profile URLs built with $blizzardApiBase.$wowProfile.$realmSlug."/".$toonSlug.<"/FIELD">.$wowProfileNamespace.$blizzardLocaleUs.$tokenPrfix.$accessToken
 
 /* 
  * EXAMPLE CURL for WOW PRofile Data:
