@@ -61,7 +61,8 @@ while ($toon_result = mysqli_fetch_all($toon_query, MYSQLI_ASSOC)) {
 	$toonRealm = $toonProfileObj->realm->slug;
 	$toonLevel = $toonProfileObj->level;
 	$toonILvl = $toonProfileObj->equiped_item_level;
-	print "$toonName is a $toonFaction $toonGender $toonClass at level $toonLevel wearing gear totaling $toonILvl on $toonRealm\n<br>\n<hr />\n";
+	//	print "$toonName is a $toonFaction $toonGender $toonClass at level $toonLevel wearing gear totaling $toonILvl on $toonRealm\n<br>\n<hr />\n";
+	print "Value of \$toonProfileUrl is:\n<br>\n<pre>"; var_dump($toonProfileUrl); print "</pre>\n<br>\n==============================\n<br>\nValue of \$toonProfileObj is:\n<br>\n<pre>\n"; var_dump($toonProfileObj); print "\n</pre>\n<br>\n<hr />\n";
 	//$toon_json = file_get_contents($toon_info_url);
         //$toon_info_object = json_decode($toon_json);
         //$toon_faction = $toon_info_object->faction;
