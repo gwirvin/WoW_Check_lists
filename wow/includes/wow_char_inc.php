@@ -60,7 +60,7 @@ function toonCommunityUrlArray ($allUserToons, $api_key) {
 	foreach ($allUserToons as $toon) {
 		$uriArray[] = "https://us.api.blizzard.com/profilewow/character/".$toon->toon_realm."/".$toon->toon_name."/namespace=profile-us&locale-en_US&access_token=".$myOauthToken;
 	}
-	return $urlArray
+	return $urlArray;
 }
 
 function getAllToonObjArray ($allUserToonData, $userToonCount) {

@@ -73,7 +73,7 @@ $myOauthToken = $myOauthTokenArr['access_token'];
 
 $allUserToons = getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons
-$communityToonUrls = toonCommunityUrlArray = allUserToons, $api_key); // Creating an array of all the API calls
+$communityToonUrls = toonCommunityUrlArray ($allUserToons, $api_key); // Creating an array of all the API calls
 //$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
 
 /* Using the borrow MultiAPI classes to get all the toon data concurently */
