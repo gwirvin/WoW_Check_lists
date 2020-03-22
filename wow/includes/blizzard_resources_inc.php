@@ -5,7 +5,7 @@
  *
  * This file is a repository of all the things needed for use of the blizzard APIs
  */
-$tokenbPrefix = "&access_token=";
+$tokenPrefix = "&access_token=";
 $wow_url = "https://us.api.battle.net/wow/";
 $wowUrl = "https://us.api.blizzard.com/wow/";
 $blizzardApiBase = "https://us.api.blizzard.com";
