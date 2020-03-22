@@ -62,7 +62,7 @@ $blizzLocale = "locale=en_US";
 $toonCounter = 0;
 $char_url = $wowUrl."character/";
 $wowFields = "fields=reputation,professions,talents,titles,items";
-$toon_sql = ("SELECT toon_name, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" ORDER BY toon_realm, toon_name");
+$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" ORDER BY toon_realm, toon_slug");
 $toonName = "";
 $toonRealm = "";
 $toonIcon = "";
@@ -73,8 +73,8 @@ $myOauthToken = $myOauthTokenArr['access_token'];
 
 $allUserToons = getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons
-$communityToonUrls = toonCommunityUrlArray ($allUserToons, $api_key); // Creating an array of all the API calls
-//$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
+$communityToonUrls = toonCommunityUrlArray ($allUserToons, $myOauthToken); // Creating an array of all the API calls
+$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
 
 /* Using the borrow MultiAPI classes to get all the toon data concurently */
 $allToonApiArray = new multiapi();
@@ -85,9 +85,10 @@ $allToonDataArray = $allToonApiArray->get_process_requests();
 /* Converting the strings returned int he multiapi to an array fo objects */
 $allToonsObjArray = getAllToonObjArray($allToonDataArray, $userToonCount);
 
+print "<hr />\rValue of \$allUserToons is:\r<pre>"; var_dump($allUserToons)."</pre>\r<hr />\r";
 print "Value of \$wowIndexUri is: ".$wowIndexUri."<br />Value with urlencode is: ".$redirect_uri."<hr />\n";
 print "var_dump of \$myOauthToken:\n<pre>"; var_dump($myOauthToken); print "</pre>\n<hr />\n";
-print "\rvar_dump of \$oauthFetchSql:\r<pre>"; var_dump($oauthFetchSql); print "\r</pre>\r<hr />\r";
+print "var_dump of \$oauthFetchSql:\r<pre>"; var_dump($oauthFetchSql); print "\r</pre>\r<hr />\r";
 print "var_dump of \$_SESSION after array_merge:\n<pre>\n"; var_dump($_SESSION); print "</pre>\n<hr />\n";
 print "access_token from myOauthToken: ".$oauthToken."\n<br />access_token from _SESSION: ".$sessionOauthToken."<hr />\n";
 print "var_dump of \$allToonUrls:\n<pre>\n"; var_dump($allToonUrls); print "\n</pre>\n<hr />\n";
