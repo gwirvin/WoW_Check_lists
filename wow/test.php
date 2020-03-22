@@ -25,7 +25,7 @@ $db_toon_counter = 0;
 $wow_item_url = $wow_url."item/";
 $char_url = $wow_url."character/";
 $char_wow_fields = "fields=reputation,professions,talents,mounts,pets,titles,guild";
-$toon_sql = ("SELECT toon_name, toon_realm FROM toon WHERE toon_owner=\"".$toon_owner_id."\" ORDER BY toon_realm, toon_name");
+$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$toon_owner_id."\" ORDER BY toon_realm, toon_name");
 $toon_query = mysqli_query($wow_conn, $toon_sql);
 // Starting the toon table
 $toon_table = "<br><table><font color=\"FFFFFF\"><br>\t<caption><center><font color=\"FFFFFF\"><h3>".$_SESSION['user_first']."'s World of Warcraft Characters</h3></font></caption><br>\t<tr>";
