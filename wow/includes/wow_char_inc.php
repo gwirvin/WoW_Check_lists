@@ -31,6 +31,80 @@ function getToonInfo ($toon_info_url, array $get = NULL, array $options = array(
 	return $result;
 }
 
+function getToonRepInfo ($toonRepsUrl, array $get = NULL, array $options = array())
+{
+	$defaults = array(
+		CURLOPT_URL => $toonRepsUrl,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "GET",
+		CURLOPT_HTTPHEADER => array(
+			"cache-control: no-cache"
+		),
+	);
+	$ch = curl_init();
+	curl_setopt_array($ch, ($options + $defaults));
+	if ( !$result = curl_exec($ch))
+	{
+		trigger_error(curl_error($ch));
+	}
+	curl_close($ch);
+	return json_decode($result);
+}
+
+function getToonMediaInfo ($toonMediaUrl, array $get = NULL, array $options = array())
+{
+	$defaults = array(
+		CURLOPT_URL => $toonMediaUrl,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "GET",
+		CURLOPT_HTTPHEADER => array(
+			"cache-control: no-cache"
+		),
+	);
+	$ch = curl_init();
+	curl_setopt_array($ch, ($options + $defaults));
+	if ( !$result = curl_exec($ch))
+	{
+		trigger_error(curl_error($ch));
+	}
+	curl_close($ch);
+	return json_decode($result);
+}
+function getToonProfsInfo ($toonProfsUrl, array $get = NULL, array $options = array())
+{
+	$defaults = array(
+		CURLOPT_URL => $toonProfsUrl,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "GET",
+		CURLOPT_HTTPHEADER => array(
+			"cache-control: no-cache"
+		),
+	);
+	$ch = curl_init();
+	curl_setopt_array($ch, ($options + $defaults));
+	if ( !$result = curl_exec($ch))
+//	if ( !curl_errno($ch))
+	{
+		trigger_error(curl_error($ch));
+//		switch ($http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE))
+//		{
+//			case 200:
+//				break;
+//			default:
+//				"";
+//		}
+	}
+	curl_close($ch);
+	return json_decode($result);
+}
+
+
 function getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 	$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbWow);
 	$myArray = array();

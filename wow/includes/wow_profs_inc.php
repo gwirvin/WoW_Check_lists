@@ -43,11 +43,11 @@ function bfaPrimaryProfs($priProfs) {
 					$priProfCount++;
 				}
 			} else {
-				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
+				$return .= "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
 				$priProfCount++;
 			}
 		}
-	}
+	} while ($priProfCount < 2);
 	return $return;
 }
 
@@ -74,7 +74,8 @@ function legPrimaryProfs($priProfs) {
 					$priProfCount++;
 				}
 			} else {
-				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
+				$return .= "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
+//				$return .= "\n\t\t<td bgcolor=\"000000\"> </td>";
 				$priProfCount++;
 			}
 			}
@@ -369,7 +370,6 @@ function mopSecondaryProfs($toonSecProfs) {
 }
 
 function cataSecondaryProfs($toonSecProfs) {
-}
 	$fishing = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	$cooking = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
 	$archaeology = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
@@ -395,6 +395,7 @@ function cataSecondaryProfs($toonSecProfs) {
 		}
 	}
 	return $cooking.$fishing.$archaeology;
+}
 
 function wotlkSecondaryProfs($toonSecProfs) {
 	$fishing = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>";
