@@ -21,6 +21,7 @@ $blizzardAuthorizeUrl = "https://us.battle.net/oauth/authorize";
 $wowCommuniutyUserChars = "/wow/user/characters?";
 $wowProfile = "/profile/wow/character/";
 $wowProfileNamespace = "?namespace=profile-us";
+$wowRealmDataUrl = "/data/realm/index?namespace=dynamic-us";
 /* NOTE: Character profile URLs built with $blizzardApiBase.$wowProfile.$realmSlug."/".$toonSlug.<"/FIELD">.$wowProfileNamespace.$blizzardLocaleUs.$tokenPrfix.$accessToken
 
 /* 

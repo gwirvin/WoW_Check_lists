@@ -29,9 +29,11 @@ include "includes/wow_realms_inc.php";
 
 // Getting realms for form
 $realms_url = "https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&".$blizz_locale."&access_token=".$_SESSION['access_token'];
+$realmsUrl = $blizzardApiBase.$wowRealmDataUrl.$blizzardLocaleUs.$tokenPrefix.$myOauthToken;
 #$realms_json = file_get_contents($realms_url);
 #$realmsObject = json_decode(file_get_contents($realmsUrl);
-$realmsSelect = wowRealmList($realms_url);
+#$realmsSelect = wowRealmList($realms_url);
+$realmSelect = wowRealmsList($realmsUrl);
 
 /* **************** TESTING *************** */
 //$user_id = 1;
