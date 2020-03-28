@@ -18,7 +18,7 @@ $toonCounter = 0;
 $char_url = $wowUrl."character/";
 $wowFields = "fields=reputation,professions,talents,titles,items";
 //$wowLocale = "locale=en_US";
-$toon_sql = ("SELECT toon_name, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" ORDER BY toon_realm, toon_name");
+$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" AND toon_primary=\"Yes\" ORDER BY toon_realm, toon_name");
 $toonName = "";
 $toonRealm = "";
 $toonIcon = "";

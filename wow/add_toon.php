@@ -60,8 +60,9 @@ $realmsSelect = wowRealmList($realms_url);
 <center>
     <h2>Adding a character</h2>
     <div id="container">
-        <form action="./insert_char.php" name="add_toon" method="POST">
+        <form action="./insert_char.php" name="add_toon" method="POST" id="addtoon">
             <div class="form-group"><label><font color="FFFFFF">Character Name:<sup>*</sup></label><input type="text" name="char_name"  width="20em" value=""></font><input type="hidden" name="char_owner" value="<?php print $char_owner; ?>">
+	    <div class="form-group"><label for="char_primary"><font color="FFFFFF">Primary Character?<sup>*</sup></label><select id="primary" name="char_primary" form="addtoon"><option value="Yes">Yes</option><option value="No">No</option></select>
             <div class="form-group"><label><font color="FFFFFF">Character Realm:<sup>*</sup></font></label><select name="char_realm"><?php print $realmsSelect?><input type="submit" name="insert" value="ADD">
             </div>
     <p />
