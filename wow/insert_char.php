@@ -6,7 +6,7 @@ include "../cats.php";
 
 $toon_name = $_POST['char_name'];
 $toon_owner = $_REQUEST['char_owner'];
-$toon_slug = strtolower($_REQUEST['char_name'];
+$toon_slug = strtolower($_REQUEST['char_name']);
 $toon_primary = $_REQUEST['char_primary'];
 $toon_realm = $_POST['char_realm'];
 

@@ -9,8 +9,7 @@
  * The other fields can be found at:
  * https://dev.battle.net/io-docs **/
 # Using a curl function to get info
-function getToonInfo ($toon_info_url, array $get = NULL, array $options = array())
-{
+function getToonInfo ($toon_info_url, array $get = NULL, array $options = array()) {
 	$defaults = array(
 		CURLOPT_URL => $toon_info_url,
 		CURLOPT_RETURNTRANSFER => true,
@@ -105,10 +104,25 @@ function getToonProfsInfo ($toonProfsUrl, array $get = NULL, array $options = ar
 }
 
 
-function getUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
+function getUserPrimaryToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 	$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbWow);
 	$myArray = array();
-	$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" ORDER BY toon_realm, toon_slug");
+	$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" AND toon_primary=\"Yes\" ORDER BY toon_realm, toon_slug");
+	if ($result = $mysqli->query($toon_sql)) {
+		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+			$myArray[] = $row;
+		}
+	$myArray = json_decode(json_encode($myArray));
+	return $myArray;
+	}
+	$result->close();
+	$mysqli->close();
+}
+
+function getUserSecondaryToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
+	$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbWow);
+	$myArray = array();
+	$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" AND toon_primary=\"No\" ORDER BY toon_realm, toon_slug");
 	if ($result = $mysqli->query($toon_sql)) {
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 			$myArray[] = $row;

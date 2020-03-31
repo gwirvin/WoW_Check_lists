@@ -27,13 +27,16 @@ include "includes/blizzard_resources_inc.php";
 include "includes/blz_oauth_inc.php";
 include "includes/wow_realms_inc.php";
 
+$myOauthTokenArr = getOauthToken($blizzardOauthTokenUrl);
+$myOauthToken = $myOauthTokenArr['access_token'];
 // Getting realms for form
 $realms_url = "https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&".$blizz_locale."&access_token=".$_SESSION['access_token'];
-$realmsUrl = $blizzardApiBase.$wowRealmDataUrl.$blizzardLocaleUs.$tokenPrefix.$myOauthToken;
+//$realmsUrl = $blizzardApiBase.$wowRealmDataUrl.$blizzardLocaleUs.$tokenPrefix.$myOauthToken;
+$realmsUrl = "https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&locale=en_US&access_token=".$myOauthToken;
 #$realms_json = file_get_contents($realms_url);
 #$realmsObject = json_decode(file_get_contents($realmsUrl);
 #$realmsSelect = wowRealmList($realms_url);
-$realmSelect = wowRealmsList($realmsUrl);
+$realmsSelect = wowRealmList($realmsUrl);
 
 /* **************** TESTING *************** */
 //$user_id = 1;

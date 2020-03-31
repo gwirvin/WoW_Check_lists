@@ -18,7 +18,7 @@ $toonCounter = 0;
 $char_url = $wowUrl."character/";
 $wowFields = "fields=reputation,professions,talents,titles,items";
 //$wowLocale = "locale=en_US";
-$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" AND toon_primary=\"Yes\" ORDER BY toon_realm, toon_name");
+$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" AND toon_primary=\"No\" ORDER BY toon_realm, toon_name");
 $toonName = "";
 $toonRealm = "";
 $toonIcon = "";
@@ -27,9 +27,9 @@ $myOauthTokenArr = getOauthToken($blizzardOauthTokenUrl);
 $myOauthToken = $myOauthTokenArr['access_token'];
 
 // Starting the character table
-$toon_table = "<table>\n\t<caption><center><font color=\"FFFFFF\"><h3>Battle for Azeroth Checklist (Primary Characters) for ".$toon_owner_first."</h3></font></center></caption>\n\t<thead>\n\t<tr>\n\t\t<th rowspan=\"2\"bgcolor=\"BFBCBA\">Realm</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Character</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Icon</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Level</th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Current Spec</th>\n\t\t<th colspan=\"2\" rowspan=\"2\" bgcolor=\"6C00FF\"><font color=\"FFFFFF\">Primary Professions</font></th>\n\t\t<th colspan=\"3\" bgcolor=\"9E5FF4\"><font color=\"FFFFFF\">Secondary Professions</font></th>\n\t\t<th colspan=\"8\" bgcolor=\"0008FF\"><font color=\"FFFFFF\">Reputations</font></th>\n\t\t<th rowspan=\"2\" bgcolor=\"BFBCBA\">Equiped iLvl</th>\n\t</tr>\n\t<tr>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Cooking</font></th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Fishing</font></th>\n\t\t<th bgcolor=\"B180F4\"><font color=\"FFFFFF\">Archaeology</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Rustbolt Resistance</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Unshackled/Waveblade Ankoan</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Zandalari Empire/Proudmoore Admiralty</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Talanji's Expedition/Storm's Wake</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Voldunai/Order of Embers</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Honorbound\The 7<sup>th</sup> Legion</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Champions of Azeroth</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Tortallan Seekers</font></th>\n\t</tr>\n\t</thead>\n\t<tbody>";
+$toon_table = "<table>\n\t<caption><center><font color=\"FFFFFF\"><h3>Battle for Azeroth Checklist (Secondary Characters) for ".$toon_owner_first."</h3></font></center></caption>\n\t<thead>\n\t<tr>\n\t\t<th bgcolor=\"BFBCBA\">Realm</th>\n\t\t<th bgcolor=\"BFBCBA\">Character</th>\n\t\t<th bgcolor=\"BFBCBA\">Icon</th>\n\t\t<th bgcolor=\"BFBCBA\">Level</th>\n\t\t<th bgcolor=\"BFBCBA\">Current Spec</th>\n\t\t<th colspan=\"2\" bgcolor=\"6C00FF\"><font color=\"FFFFFF\">Primary Professions</font></th>\n\t\t<th bgcolor=\"BFBCBA\">Equiped iLvl</th>\n\t</tr>\n\t</thead>\n\t<tbody>";
 
-$allUserToons = getUserPrimaryToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
+$allUserToons = getUserSecondaryToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons
 // $allToonUrls = toonUrlArray ($allUserToons, $wow_url, $wowFields, $api_key); // Creating an array of all the API calls
 //$allToonUrls = toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken); // Creating an array of all the API calls using OAuth
@@ -71,19 +71,13 @@ foreach ($wowToonsObjArray as $toonObj) {
 	} else {
 		$toonPriProfHtml = bfaPrimaryProfs($toonProfsObj);
 	}
-	if (empty($toonProfsObj)) {
-		$toonSecProfHtml = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	} else {
-		$toonSecProfHtml = bfaSecondaryProfs($toonProfsObj);
-	}
-	$toonRepHtml = bfaFactions($toonRepsObj, count($toonRepsObj->reputations), $toonObj->faction->type);
 	$toon_bg_color = wowClassColors($toonObj->character_class->name->en_US);
 	$toonClassCellColor = wowClassColors($toonObj->character_class->name->en_US);
 	$toonNameCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->name."</font></td>";
 	$toonLvlCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->level."</font></td>";
 	$toonSpecCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->active_spec->name->en_US."</font></td>";
 	$toonIlvlCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->equipped_item_level."</font></td>";
-	$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toonPriProfHtml.$toonSecProfHtml.$toonRepHtml.$toonIlvlCell."\n\t</tr>\n";
+	$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toonPriProfHtml./*$toonSecProfHtml.$toonRepHtml.*/$toonIlvlCell."\n\t</tr>\n";
 }
 $toon_table .= "\n</table>\n</div>\n"; 
 

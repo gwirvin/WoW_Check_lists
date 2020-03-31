@@ -22,7 +22,7 @@ include "./includes/wow_fact_inc.php";
 include "./includes/wow_html_inc.php";
 include "./includes/wow_profs_inc.php";
 include "./includes/wow_reps_inc.php";
-include "./includes/bfa_chk_lst.php";
+include "./includes/bfa_2ndry_chk_lst.php";
 #include "./includes/multiapi.php";
 
 // Variables for the start
@@ -49,7 +49,7 @@ $toon_owner_first = $_SESSION['user_first'];
         <table>
             <tr>
                 <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td></div>
-                <div class="form-group"><td><center><form name="toon" method="POST" action="./secondarycharacters.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Secondary Characters" type="submit"></form></td></div>
+                <div class="form-group"><td><center><form name="toon" method="POST" action="./latest.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Main Characters" type="submit"></form></td></div>
                 <div class="form-group"><td><center><form name="refresh" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"><input value="Refresh" type="SUBMIT"></form></center></td></div>
             </div>
             </tr>
