@@ -71,7 +71,7 @@ foreach ($wowToonsObjArray as $toonObj) {
 //	$toonRealmSlug = $toonObj->realm));
 //	$toonTalents = $toonObj->talents;
 	$toon_realm_html = factionStylesRealm($toonObj->faction->type, $toonObj->realm->name->en_US);
-	$toon_icon_html = factionStylesIcon($toonObj->faction->type, $toonIcon, $toonObj->name, $toonObj->realm->slug);
+	$toon_icon_html = factionStylesIcon($toonObj->faction->type, $toonMediaObj->avatar_url, $toonObj->name, $toonObj->realm->slug);
 	if (isset($toonProfsObj->code)) {
 		$toonPriProfHtml = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
 	} else {

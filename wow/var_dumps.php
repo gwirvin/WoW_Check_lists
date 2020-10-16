@@ -22,7 +22,8 @@ include "../cats.php";
 include "includes/blz_oauth_inc.php";
 include "includes/blizzard_resources_inc.php";
 include "includes/wow_char_inc.php";
-include "includes/wow_reps_inc.php";
+//include "includes/wow_reps_inc.php";
+include "includes/wow_profs_inc.php";
 
 /**
 *	Required vars for the api to work
@@ -87,9 +88,34 @@ $commToonDataArray = $commToonApiArray->get_process_requests();
 
 /* Converting the strings returned int he multiapi to an array fo objects */
 $allPrimaryToonsObjArray = getAllToonObjArray($commToonDataArray, $userPrimaryToonCount);
+
+
+
+print "<h1>VAR DUMPS</h1>\n<hr />\n";
+//print "var_dump of Toon Professions:\n<br>\r";
+print "var_dump of \$toonMediaObj looking for avatar_url with isset:\r<br>\r"; 
+foreach ($allPrimaryToonsObjArray as $toonObj)
+{
+	$toonMediaObj = getToonMediaInfo($toonObj->media->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken);
+	$toonRepsObj = getToonRepInfo($toonObj->reputations->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken);
+	$toonProfsObj = getToonProfsInfo($toonObj->professions->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken);
+	$profsResponse = get_headers($toonObj->professions->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken, 1);
+if (isset($toonMediaObj->avatar_url)) {print "<b>$toonObj->name</b> with <b>avatar_url</b> found:\r<pre>\r"; var_dump($toonMediaObj->avatar_url); print "\r</pre>\r"; } else { print "<b>$toonObj->name</b> without <b>avatar_url</b>:\r<pre>\r"; var_dump($toonMediaObj->assets[0]->value); print "\r</pre>\r`";}
+//	if (strpos( $profsResponse[0], '200 OK')) {
+//		$toonPriProfsHtml = bfaPrimaryProfs($toonProfsObj);
+//		print $toonPriProfsHtml."<br>"; 
+//		$toonSecProfsHtml = bfaSecondaryProfs($toonProfsObj);
+//		print $toonSecProfsHtml."<br>"; }
+//	else {
+//		print "No API Professions data found for ".$toonObj->name."<br>";
+//	}
+print "<br>";
+}
+print "<hr />";
+//print "var_dump of \$allPrimaryToonsObjArray:\n<pre>\n"; var_dump($allPrimaryToonsObjArray->name); print "</pre>\n<hr />\n";
+//print "<hr />\rValue of \$allUserToons is:\r<pre>"; var_dump($allUserToons)."</pre>\r<hr />\r";
 print "var_dump of \$_SESSION:\n<pre> "; var_dump($_SESSION); print "</pre>\n<hr />\n";
 print "var_dump of \$oauthInsertSql:\r<pre>\r"; var_dump($oauthInsertSql); print "\r</pre>\r<hr />\r";
-//print "<hr />\rValue of \$allUserToons is:\r<pre>"; var_dump($allUserToons)."</pre>\r<hr />\r";
 print "\n<br>\n<hr />\nValue of \$wowIndexUri is: ".$wowIndexUri."<br />Value with urlencode is: ".$redirect_uri."<hr />\n";
 print "var_dump of \$myOauthToken:\n<pre>"; var_dump($myOauthToken); print "</pre>\n<hr />\n";
 print "var_dump of \$oauthFetchSql:\r<pre>"; var_dump($oauthFetchSql); print "\r</pre>\r<hr />\r";
