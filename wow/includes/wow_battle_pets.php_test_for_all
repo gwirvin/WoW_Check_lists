@@ -1,0 +1,143 @@
+<?php
+############################# FILE: wow_profs_inc.php ###################
+##
+# Grouping of functions based on how blizzard split out professions.#
+# We will be gathering data on Primary and Seconday Professions and #
+# using that data to populate the "Checklist" for each expansion now#
+# that Blizzard has seperated professions by expansion. Each return#
+# should show either complete, or currnet rank in each profession.#
+# #
+# NOTE: I have attempted to put some order to the return, as much as #
+# possible. From Primary professions, Gathering should always be in the #
+# first slot on the return. For secondary, I tried to make Archaeology#
+# return last, but all my tests have shown it to return second after#
+# Fishing. I do not yet know why.#
+#########################################################################
+/* STARTING PRIMARY PROFESSIONS HERE */
+function bfaPrimaryProfs ($toonProfsObj) {
+		$return = "";
+		$priProfsCount = count($toonProfsObj->primaries);
+		$priProfsCounter = 0;
+		$gathering = "";
+		$production ="";
+		$herbalism = "";
+		$priProfsHtml = "";
+		for ($priProfsCounter = 0; $priProfsCounter < $priProfsCount; $priProfsCounter++) {
+			if ($toonProfsObj->primaries[$priProfsCounter]->profession->id == 164 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 165 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 171 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 197 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 202 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 333 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 755 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 773 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 182 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 186 || $toonProfsObj->primaries[$priProfsCounter]->profession->id == 393) {
+				$priProfsTierCount = count($toonProfsObj->primaries[$priProfsCounter]->tiers);
+				for ($priProfsTierCounter = 0; $priProfsTierCounter < $priProfsTierCount; $priProfsTierCounter++) {
+					if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2437 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2525 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2478 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2533 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2499 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2486 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2517 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2507 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2549 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2565 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2557) {
+						if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points < $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points - $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points)." points left in ".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name."</td>"; }
+						elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points >= $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$priProfsHtml .= "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>"; }
+					} elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2454 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2526 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2479 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2534 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2500 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2487 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2518 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2508 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2550 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2566 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2558) {
+						if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points < $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points - $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points)." points left in".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name."</td>"; }
+						elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points >= $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$priProfsHtml .= "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>"; }
+					} elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2472 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2527 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2480 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2535 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2501 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2488 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2519 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2509 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2551 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2567 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2559) {
+						if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points < $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points - $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points)." points left in".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name."</td>"; }
+						elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points >= $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$priProfsHtml .= "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>"; }
+					} elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2473 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2528 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2481 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2536 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2502 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2489 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2520 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2510 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2552 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2568 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2560) {
+						if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points < $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points - $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points)." points left in".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name."</td>"; }
+						elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points >= $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$priProfsHtml .= "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>"; }
+					} elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2474 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2529 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2482 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2537 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2503 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2491 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2521 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2511 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2553 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2569 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2561) {
+						if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points < $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points - $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points)." points left in".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name."</td>"; }
+						elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points >= $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$priProfsHtml .= "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>"; }
+					} elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2475 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2530 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2483 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2538 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2504 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2492 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2522 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2512 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2554 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2570 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2562) {
+						if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points < $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points - $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points)." points left in".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name."</td>"; }
+						elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points >= $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$priProfsHtml .= "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>"; }
+					} elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2476 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2531 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2484 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2539 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2505 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2493 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2523 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2513 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2555 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2571 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2563) {
+						if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points < $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points - $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points)." points left in".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name."</td>"; }
+						elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points >= $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$priProfsHtml .= "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>"; }
+					} elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2477 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2532 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2485 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2540 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2506 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2494 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2524 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2514 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2556 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2572 || $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->id == 2564) {
+						if ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points < $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points - $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points)." points left in".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name."</td>"; }
+						elseif ($toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->skill_points >= $toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->max_skill_points) {
+							$priProfsHtml .= "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->primaries[$priProfsCounter]->tiers[$priProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$priProfsHtml .= "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Not Active</font></td>"; }
+					}
+				}
+			}
+		}
+		/*return $gathering.$production;*/return $priProfsHtml; }
+
+
+/* Starting Secondary Professions HERE */
+function bfaSecondaryProfs ($toonProfsObj) {
+		$secProfsCount = count($toonProfsObj->secondaries);
+		$return = "";
+	$cooking = "";
+	$fishing = "";
+	$archaeology = "";
+		$secProfsCounter = 0;
+		for ($secProfsCounter = 0; $secProfsCounter < $secProfsCount; $secProfsCounter++) {
+			if ($toonProfsObj->secondaries[$secProfsCounter]->profession->id == 185) {
+				$secProfsTierCount = count($toonProfsObj->secondaries[$secProfsCounter]->tiers);
+				for ($secProfsTierCounter = 0; $secProfsTierCounter < $secProfsTierCount; $secProfsTierCounter++) {
+					if ($toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->tier->id == 2541) {
+						if ($toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->skill_points < $toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->max_skill_points) {
+							$cooking = "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->max_skill_points - $toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->skill_points)." points left in ".$toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->tier->name."</td>\r"; }
+						elseif ($toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->skill_points >= $toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->max_skill_points){
+							$cooking = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$cooking = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Cooking - Not Active</font></td>"; }
+						}/* $return .= $cooking;*/
+					}
+				}
+			}
+		for ($secProfsCounter = 0; $secProfsCounter < $secProfsCount; $secProfsCounter++) {
+			if ($toonProfsObj->secondaries[$secProfsCounter]->profession->id == 356) {
+			$secProfsTierCount = count($toonProfsObj->secondaries[$secProfsCounter]->tiers);
+			for ($secProfsTierCounter = 0; $secProfsTierCounter < $secProfsTierCount; $secProfsTierCounter++) {
+				if ($toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->tier->id == 2585) {
+					if ($toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->skill_points < $toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->max_skill_points) {
+						$fishing = "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->max_skill_points - $toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->skill_points)." points left in ".$toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->tier->name."</td>\r"; }
+						elseif ($toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->skill_points >= $toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->max_skill_points){
+						$fishing = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->secondaries[$secProfsCounter]->tiers[$secProfsTierCounter]->tier->name." maxed</font></td>"; }
+						else {
+							$fishing = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Fishing - Not Active</font></td>"; }
+					}/* $return .= $fishing;*/
+				}
+			}
+		}
+		for ($secProfsCounter = 0; $secProfsCounter < $secProfsCount; $secProfsCounter++) {
+			if ($toonProfsObj->secondaries[$secProfsCounter]->profession->id == 794) {
+				if ($toonProfsObj->secondaries[$secProfsCounter]->skill_points < $toonProfsObj->secondaries[$secProfsCounter]->max_skill_points) {
+					$archaeology = "\n\t\t<td bgcolor=\"F4E938\">".($toonProfsObj->secondaries[$secProfsCounter]->max_skill_points - $toonProfsObj->secondaries[$secProfsCounter]->skill_points)." points left in ".$toonProfsObj->secondaries[$secProfsCounter]->profession->name."</td>"; }
+				elseif ($toonProfsObj->secondaries[$secProfsCounter]->skill_points >= $toonProfsObj->secondaries[$secProfsCounter]->max_skill_points) {
+					$archaeology = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$toonProfsObj->secondaries[$secProfsCounter]->profession->name."</font></td>"; }
+				else {
+					$archaeology = "\r\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Archaeology - Not Active</font></td>"; }
+				/*$return .= $archaeology; */}
+			}
+		return $cooking.$fishing.$archaeology;
+		}
+	/*}*/
+?>
