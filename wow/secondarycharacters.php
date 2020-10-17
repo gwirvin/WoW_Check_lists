@@ -1,1 +1,1 @@
-bfa_secondary_characters.php
+/opt/bitnami/apache2/htdocs/wow/bfa_secondary_characters.php

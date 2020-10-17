@@ -75,32 +75,30 @@ function getToonMediaInfo ($toonMediaUrl, array $get = NULL, array $options = ar
 }
 function getToonProfsInfo ($toonProfsUrl, array $get = NULL, array $options = array())
 {
-	$defaults = array(
-		CURLOPT_URL => $toonProfsUrl,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_TIMEOUT => 30,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => "GET",
-		CURLOPT_HTTPHEADER => array(
-			"cache-control: no-cache"
-		),
-	);
-	$ch = curl_init();
-	curl_setopt_array($ch, ($options + $defaults));
-	if ( !$result = curl_exec($ch))
-//	if ( !curl_errno($ch))
+	$apiResponse = get_headers($toonProfsUrl, 1);
+	if (strpos ( $apiResponse[0], '200OK'))
 	{
-		trigger_error(curl_error($ch));
-//		switch ($http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE))
-//		{
-//			case 200:
-//				break;
-//			default:
-//				"";
-//		}
+		$defaults = array(
+			CURLOPT_URL => $toonProfsUrl,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"cache-control: no-cache"
+			),
+		);
+		$ch = curl_init();
+		curl_setopt_array($ch, ($options + $defaults));
+		if ( !$result = curl_exec($ch))
+		{
+			trigger_error(curl_error($ch));
+		}
+		curl_close($ch);
+		return json_decode($result);
+	} else {
+		return null;
 	}
-	curl_close($ch);
-	return json_decode($result);
 }
 
 
