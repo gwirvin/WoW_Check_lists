@@ -132,6 +132,21 @@ function getUserSecondaryToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
 	$mysqli->close();
 }
 
+function getAllUserToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow) {
+	$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbWow);
+	$myArray = array();
+	$toon_sql = ("SELECT toon_name, toon_slug, toon_realm FROM toon WHERE toon_owner=\"".$userId."\" ORDER BY toon_realm, toon_slug");
+	if ($result = $mysqli->query($toon_sql)) {
+		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+			$myArray[] = $row;
+		}
+	$myArray = json_decode(json_encode($myArray));
+	return $myArray;
+	}
+	$result->close();
+	$mysqli->close();
+}
+
 function toonUrlArray ($allUserToons, $wowUrl, $wowFields, $myOauthToken) {
 	$urlArray = array ();
 	foreach ($allUserToons as $toon) {
