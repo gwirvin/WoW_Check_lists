@@ -55,7 +55,7 @@ $toon_owner_first = $_SESSION['user_first'];
             </tr>
         </table>
     </div>
-    <div id="container">
+<!--    <div id="container"> -->
     <div id="table-scroll">
 <script>
 $(document).ready(function() {
@@ -122,7 +122,7 @@ function sortTable(n) {
 }
 </script>
     </div>
-    </div>
+<!--    </div> -->
     <div id="table-nav">
         <table>
             <tr>
