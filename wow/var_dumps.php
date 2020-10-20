@@ -88,25 +88,31 @@ $commToonDataArray = $commToonApiArray->get_process_requests();
 
 /* Converting the strings returned int he multiapi to an array fo objects */
 $allPrimaryToonsObjArray = getAllToonObjArray($commToonDataArray, $userPrimaryToonCount);
-
+$testProfsUrl="https://us.api.blizzard.com/profile/wow/character/area-52/luxafer/professions?namespace=profile-us&locale=en_US&access_token=US6zGHACtlXANzlfAQhpXW0UwXdjg3AFKy";
 
 
 print "<h1>VAR DUMPS</h1>\n<hr />\n";
 //print "var_dump of Toon Professions:\n<br>\r";
-print "var_dump of \$toonMediaObj looking for avatar_url with isset:\r<br>\r"; 
+// print "var_dump of \$toonMediaObj looking for avatar_url with isset:\r<br>\r"; 
+var_dump(get_headers($testProfsUrl, 1));
+print "<br> <hr />";
 foreach ($allPrimaryToonsObjArray as $toonObj)
 {
 	$toonMediaObj = getToonMediaInfo($toonObj->media->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken);
 	$toonRepsObj = getToonRepInfo($toonObj->reputations->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken);
 	$toonProfsObj = getToonProfsInfo($toonObj->professions->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken);
 	$profsResponse = get_headers($toonObj->professions->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken, 1);
-if (isset($toonMediaObj->avatar_url)) {print "<b>$toonObj->name</b> with <b>avatar_url</b> found:\r<pre>\r"; var_dump($toonMediaObj->avatar_url); print "\r</pre>\r"; } else { print "<b>$toonObj->name</b> without <b>avatar_url</b>:\r<pre>\r"; var_dump($toonMediaObj->assets[0]->value); print "\r</pre>\r`";}
+//	if (isset($toonMediaObj->avatar_url)) {print "<b>$toonObj->name</b> with <b>avatar_url</b> found:\r<pre>\r"; var_dump($toonMediaObj->avatar_url); print "\r</pre>\r"; } else { print "<b>$toonObj->name</b> without <b>avatar_url</b>:\r<pre>\r"; var_dump($toonMediaObj->assets[0]->value); print "\r</pre>\r`";}
+	print "<br>The url for professions object is: ".$toonObj->professions->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken."<br>";
 //	if (strpos( $profsResponse[0], '200 OK')) {
+//		print "--------------------------------------------------------<br />";
+//		var_dump(getToonProfsInfo($toonObj->professions->href.$blizzardLocaleUs.$tokenPrefix.$myOauthToken));
+//		print "<br />--------------------------------------------------------";
 //		$toonPriProfsHtml = bfaPrimaryProfs($toonProfsObj);
 //		print $toonPriProfsHtml."<br>"; 
 //		$toonSecProfsHtml = bfaSecondaryProfs($toonProfsObj);
 //		print $toonSecProfsHtml."<br>"; }
-//	else {
+//	 } else {
 //		print "No API Professions data found for ".$toonObj->name."<br>";
 //	}
 print "<br>";
