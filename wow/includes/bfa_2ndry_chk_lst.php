@@ -27,7 +27,7 @@ $myOauthTokenArr = getOauthToken($blizzardOauthTokenUrl);
 $myOauthToken = $myOauthTokenArr['access_token'];
 
 // Starting the character table
-$toon_table = "<table>\n\t<caption><center><font color=\"FFFFFF\"><h3>Battle for Azeroth Checklist (Secondary Characters) for ".$toon_owner_first."</h3></font></center></caption>\n\t<thead>\n\t<tr>\n\t\t<th bgcolor=\"BFBCBA\">Realm</th>\n\t\t<th bgcolor=\"BFBCBA\">Character</th>\n\t\t<th bgcolor=\"BFBCBA\">Icon</th>\n\t\t<th bgcolor=\"BFBCBA\">Level</th>\n\t\t<th bgcolor=\"BFBCBA\">Current Spec</th>\n\t\t<th colspan=\"2\" bgcolor=\"6C00FF\"><font color=\"FFFFFF\">Primary Professions</font></th>\n\t\t<th bgcolor=\"BFBCBA\">Guild</th>\n\t\t<th bgcolor=\"BFBCBA\">Equiped iLvl</th>\n\t</tr>\n\t</thead>\n\t<tbody>";
+$toon_table = "<table>\n\t<caption><center><font color=\"FFFFFF\"><h3>Battle for Azeroth Checklist (Secondary Characters) for ".$toon_owner_first."</h3></font></center></caption>\n\t<thead>\n\t<tr>\n\t\t<th bgcolor=\"BFBCBA\">Realm</th>\n\t\t<th bgcolor=\"BFBCBA\">Character</th>\n\t\t<th bgcolor=\"BFBCBA\">Icon</th>\n\t\t<th bgcolor=\"BFBCBA\">Level</th>\n\t\t<th bgcolor=\"BFBCBA\">Current Spec</th>\n\t\t<th colspan=\"2\" bgcolor=\"6C00FF\"><font color=\"FFFFFF\">Primary Professions</font></th>\n\t\t<th bgcolor=\"BFBCBA\">Equiped iLvl</th>\n\t</tr>\n\t</thead>\n\t<tbody>";
 
 $allUserToons = getUserSecondaryToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons
@@ -61,18 +61,18 @@ foreach ($wowToonsObjArray as $toonObj) {
 	$toonFaction = $toonObj->faction->name->en_US;
 	$toonIcon = "";
 	if (isset($toonMediaObj->avatar_url))
-		{
-			$toonIcon = $toonMediaObj->avatar_url;
-		} else {
-			$toonIcon = $toonMediaObj->assets[0]->value;
-		}
+	{
+		$toonIcon = $toonMediaObj->avatar_url;
+	} else {
+		$toonIcon = $toonMediaObj->assets[0]->value;
+	}
 	$toonName = $toonObj->name;
 	$toonRealm = $toonObj->realm->name->en_US;
 //	$toonRealmSlug = $toonObj->realm));
 //	$toonTalents = $toonObj->talents;
 	$toon_realm_html = factionStylesRealm($toonObj->faction->type, $toonObj->realm->name->en_US);
 	$toon_icon_html = factionStylesIcon($toonObj->faction->type, $toonIcon, $toonObj->name, $toonObj->realm->slug);
-	if (empty($toonProfsObj)) {
+	if (isset($toonProfsObj->code)) {
 		$toonPriProfHtml = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
 	} else {
 		$toonPriProfHtml = bfaPrimaryProfs($toonProfsObj);
@@ -82,9 +82,8 @@ foreach ($wowToonsObjArray as $toonObj) {
 	$toonNameCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->name."</font></td>";
 	$toonLvlCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->level."</font></td>";
 	$toonSpecCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->active_spec->name->en_US."</font></td>";
-	$toonGuildCell = factionStylesGuild($toonObj->faction->type, $toonObj->guild->name);
 	$toonIlvlCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->equipped_item_level."</font></td>";
-	$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toonPriProfHtml.$toonGuildCell.$toonIlvlCell."\n\t</tr>\n";
+	$toon_table .= "\n\t<tr>".$toon_realm_html.$toonNameCell.$toon_icon_html.$toonLvlCell.$toonSpecCell.$toonPriProfHtml./*$toonSecProfHtml.$toonRepHtml.*/$toonIlvlCell."\n\t</tr>\n";
 }
 $toon_table .= "\n</table>\n</div>\n"; 
 

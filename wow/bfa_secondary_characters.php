@@ -35,7 +35,7 @@ $toon_owner_first = $_SESSION['user_first'];
 <html lang="en">
 <head>
     <meta charset="UTF-8" http-equiv="refresh" content="7200">
-    <title><?php echo $_SESSION['user_first']?>'s Secondary Character Checklist</title>
+    <title><?php echo $_SESSION['user_first']?>'s Battle for Azeroth Checklist</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
@@ -44,7 +44,7 @@ $toon_owner_first = $_SESSION['user_first'];
 </head>
 <?php echo $nav_table?>
 <div id="body"><body>
-    <h2><center>World of Warcraft: BfA Secondary Toon Checklist</center></h2>
+    <h2><center>World of Warcraft: BfA Checklist</center></h2>
     <div id="table-nav">
         <table>
             <tr>
@@ -55,7 +55,7 @@ $toon_owner_first = $_SESSION['user_first'];
             </tr>
         </table>
     </div>
-<!--    <div id="container"> -->
+    <div id="container">
     <div id="table-scroll">
 <script>
 $(document).ready(function() {

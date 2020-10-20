@@ -29,36 +29,4 @@ function factionStylesIcon ($toonFaction, $toonIcon, $toonName, $toonRealmSlug) 
 		}
 	}
 
-function factionStylesGuild ($toonFaction, $toonGuild) {
-	$return = "";
-	switch ($toonFaction) {
-		case "ALLIANCE":
-			$return = "\n\t\t<td bgcolor=\"2133E7\"><font color=\"FFFFFF\">".$toonGuild."</font></td>";
-			break;
-		case "HORDE": //Putting a faction color on the realm name
-			$return =  "\n\t\t<td bgcolor=\"C80A04\"><font color=\"FFFFFF\">".$toonGuild."</font></td>";
-			break;
-		default:
-			$return  = "\n\t\t<td bgcolor=\"EFDD05\"><font color=\"000000\">UNGUILDED</font></td>";
-			break;
-		}
-		return $return;
-	}
-
-function factionStylesGender ($toonFaction, $toonGender) {
-	$return = "";
-	switch ($toonFaction) {
-		case "ALLIANCE":
-			$return = "\n\t\t<td bgcolor=\"2133E7\"><font color=\"FFFFFF\">".$toonGender."</font></td>";
-			break;
-		case "HORDE": //Putting a faction color on the realm name
-			$return =  "\n\t\t<td bgcolor=\"C80A04\"><font color=\"FFFFFF\">".$toonGender."</font></td>";
-			break;
-		default:
-			$return  = "\n\t\t<td bgcolor=\"EFDD05\"><font color=\"000000\">UNGUILDED</font></td>";
-			break;
-		}
-		return $return;
-	}
-
 ?>

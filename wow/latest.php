@@ -1,1 +1,1 @@
-battleforazeroth.php
+/opt/bitnami/apache2/htdocs/wow/battleforazeroth.php
