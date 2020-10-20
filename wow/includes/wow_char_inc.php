@@ -73,6 +73,7 @@ function getToonMediaInfo ($toonMediaUrl, array $get = NULL, array $options = ar
 	curl_close($ch);
 	return json_decode($result);
 }
+
 function getToonProfsInfo ($toonProfsUrl, array $get = NULL, array $options = array())
 {
 	$apiResponse = get_headers($toonProfsUrl, 1);
@@ -99,6 +100,28 @@ function getToonProfsInfo ($toonProfsUrl, array $get = NULL, array $options = ar
 	} else {
 		return null;
 	}
+}
+
+function getToonQuestsInfo ($toonQuestsUrl, array $get = NULL, array $options = array())
+{
+	$defaults = array(
+		CURLOPT_URL => $toonQuestsUrl,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "GET",
+		CURLOPT_HTTPHEADER => array(
+			"cache-control: no-cache"
+		),
+	);
+	$ch = curl_init();
+	curl_setopt_array($ch, ($options + $defaults));
+	if ( !$result = curl_exec($ch))
+	{
+		trigger_error(curl_error($ch));
+	}
+	curl_close($ch);
+	return json_decode($result);
 }
 
 
