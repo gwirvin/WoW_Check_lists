@@ -49,7 +49,8 @@ $toon_owner_first = $_SESSION['user_first'];
         <table>
             <tr>
                 <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td></div>
-                <div class="form-group"><td><center><form name="toon" method="POST" action="./latest.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Main Characters" type="submit"></form></td></div>
+                <div class="form-group"><td><center><form name="pri_toons" method="POST" action="./latest.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Primary Characters" type="submit"></form></td></div>
+                <div class="form-group"><td><center><form name="all_toons" method="POST" action="./wow.php"><input value="All <?php echo $_SESSION['user_first']; ?>'s Characters" type="submit"></form></td></div>
                 <div class="form-group"><td><center><form name="refresh" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"><input value="Refresh" type="SUBMIT"></form></center></td></div>
             </div>
             </tr>
