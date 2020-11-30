@@ -428,15 +428,15 @@ function bfaFactions($bfaReps, $toonRepCount, $wowFaction) {
 	return $rustboltResistance.$factionReps.$champsOfAzeroth.$tortollanSeekers;
 }
 
-function slFactions($slReps, $toonRepCount, $wowFaction) {
-	$toonRepCount = count($slReps->reputations);
+function slFactions($slReps, $toonRepCount/*, $wowFaction*/) {
+/*	$toonRepCount = count($slReps->reputations); */
 	$factionReps = "";
 	$ascended = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$avowed = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
+/*	$avowed = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>"; */
 	$courthofHarvesters = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
 	$undyingArmy = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
 	$wildHunt= "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$venari = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
+/*	$venari = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>"; */
 	for ($toonRepCounter = 0; $toonRepCounter < $toonRepCount; $toonRepCounter++) {
 		if ($bfaReps->reputations[$toonRepCounter]->faction->id === 2407) {
 			switch ($bfaReps->reputations[$toonRepCounter]->standing->tier) {
@@ -468,36 +468,6 @@ function slFactions($slReps, $toonRepCount, $wowFaction) {
 					$ascended = "<td bgcolor=\"000000\">No API Data</td>";
 					break;
 			}
-			} elseif ($bfaReps->reputations[$toonRepCounter]->faction->id === 2439) {
-				switch ($bfaReps->reputations[$toonRepCounter]->standing->tier) {
-					case 0:
-						$avowed = "\n\t\t<td bgcolor=\"C00808\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
-						break;
-					case 1:
-						$avowed = "\n\t\t<td bgcolor=\"F02206\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
-						break;
-					case 2:
-						$avowed = "\n\t\t<td bgcolor=\"F05406\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
-						break;
-					case 3:
-						$avowed = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
-						break;
-					case 4:
-						$avowed = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
-						break;
-					case 5:
-						$avowed = "\n\t\t<td bgcolor=\"98F10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
-						break;
-					case 6:
-						$avowed = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
-						break;
-					case 7:
-						$avowed = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaReps->reputations[$toonRepCounter]->faction->name."</font></td>";
-						break;
-					case NULL:
-						$avowed = "<td bgcolor=\"000000\">No API Data</td>";
-						break;
-				}
 			} elseif ($bfaReps->reputations[$toonRepCounter]->faction->id === 2413) {
 				switch ($bfaReps->reputations[$toonRepCounter]->standing->tier) {
 					case 0:
@@ -619,48 +589,13 @@ function slFactions($slReps, $toonRepCount, $wowFaction) {
 						break;
 				}
 			}
-			$factionReps = $ascended.$avowed.$courtOfHarvesters.$undyingArmy.$wildHunt.$venari;
+			$factionReps = $ascended.$courtOfHarvesters.$undyingArmy.$wildHunt.$venari;
 		}
 	}
 	return $factionReps;
 }
 
 # BEGIN BLOCK for testing
-#$toon_realm="area-52";
-#$toon_realm = "proudmoore";
-#$toon_name="Luxalor";
-#$toon_name="Luxnatur";
-#$blizz_locale = "locale=en_us";
-#$wow_url = "https://us.api.battle.net/wow/";
-#$api_key = "apikey=fkff3mjw67rm6eqzsf2u9vxgfk4y5b88";
-#$toon_info_url = $wow_url."character/".$toon_realm."/".$toon_name."?fields=reputation,professions,talents,mounts,pets,titles,guild,items&".$blizz_locale."&".$api_key;
-
-# Using a curl function to get info
-#function getToonInfo ($toon_info_url, array $get = NULL, array $options = array())
-#{
-#	$defaults = array(
-#		CURLOPT_URL => $toon_info_url,
-#		CURLOPT_RETURNTRANSFER => true,
-#		CURLOPT_TIMEOUT => 30,
-#		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-#		CURLOPT_CUSTOMREQUEST => "GET",
-#		CURLOPT_HTTPHEADER => array(
-#			"cache-control: no-cache"
-#		),
-#	);
-#	$ch = curl_init();
-#	curl_setopt_array($ch, ($options + $defaults));
-#	if ( !$result = curl_exec($ch))
-#	{
-#		trigger_error(curl_error($ch));
-#	}
-#	curl_close($ch);
-#	return $result;
-#}
 # END BLOCK for testing
-#print $toon_info_url;
-#$toonObj = json_decode(file_get_contents($toon_info_url));
-#$toonReps = bfaFactions($toonObj->reputation, $toonObj->faction);
-#print_r($toonReps);
 
 ?>
