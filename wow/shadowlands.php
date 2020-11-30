@@ -1,6 +1,5 @@
 <?php
-/* file: character.php */
-
+/* file: legion.php */
 // Initialize the session
 session_start();
 
@@ -16,14 +15,14 @@ if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])){
 */
 include "../cats.php";
 include "./includes/blz_oauth_inc.php";
-include "./includes/blizzard_resources_inc.php";
+include "includes/blizzard_resources_inc.php";
 include "./includes/wow_char_inc.php";
 include "./includes/wow_class_inc.php";
 include "./includes/wow_fact_inc.php";
 include "./includes/wow_html_inc.php";
 include "./includes/wow_profs_inc.php";
 include "./includes/wow_reps_inc.php";
-include "./includes/user_chars_inc.php";
+include "./includes/sl_chk_lst.php";
 #include "./includes/multiapi.php";
 
 // Variables for the start
@@ -36,27 +35,27 @@ $toon_owner_first = $_SESSION['user_first'];
 <html lang="en">
 <head>
     <meta charset="UTF-8" http-equiv="refresh" content="7200">
-    <title><?php echo $_SESSION['user_first']?>'s World of Warcraft Characters</title>
+    <title><?php echo $_SESSION['user_first']?>'s Shadowlands Checklist</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../scripts/jquery.tablesorter.js"></script>
 </head>
-<div id="body">
-<body>
 <?php echo $nav_table?>
-    <div id="table-nav"><table>
-        <tr>
-            <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td></div>
-            <div class="form-group"><td><center><form name="legion" method="POST" action="./latest.php"><input value="Legion - <?php echo $_SESSION['user_first']; ?>" type="submit"></form></td></div>
-            <div class="form-group"><td><center><form name="toon" method="POST" action="./wow.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Characters" type="submit"></form></td></div>
-        </tr></table>
+<div id="body"><body>
+    <h2><center>World of Warcraft: Shadowlands Checklist</center></h2>
+    <div id="table-nav">
+        <table>
+            <tr>
+                <div class="form-group"><td><center><form name="add_toon" method="POST" action="./add_toon.php"><input value="Add a character" type="submit"></form></td></div>
+                <div class="form-group"><td><center><form name="sec_toons" method="POST" action="./secondarycharacters.php"><input value="<?php echo $_SESSION['user_first']; ?>'s Secondary Characters" type="submit"></form></td></div>
+                <div class="form-group"><td><center><form name="all_toons" method="POST" action="./wow.php"><input value="All <?php echo $_SESSION['user_first']; ?>'s Characters" type="submit"></form></td></div>
+                <div class="form-group"><td><center><form name="refresh" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"><input value="Refresh" type="SUBMIT"></form></center></td></div>
+            </tr>
+        </table>
     </div>
-</div>
-<!--<hr /> -->
-    <h2><center>World of Warcraft: <?php echo $_SESSION['user_first']?>'s Characters</center></h2>
-<!--    <div id="container"> -->
+    <div id="container">
     <div id="table-scroll">
 <script>
 $(document).ready(function() {
@@ -65,14 +64,14 @@ $(document).ready(function() {
       });
    });
 </script>
-        <?php print $basicToonTable?>
+        <?php print $toon_table?>
 <script>
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("table-scroll");
   switching = true;
   // Set the sorting direction to ascending:
-  dir = "asc";
+  dir = "asc"; 
   /* Make a loop that will continue until
   no switching has been done: */
   while (switching) {
@@ -110,7 +109,7 @@ function sortTable(n) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       // Each time a switch is done, increase this count by 1:
-      switchcount ++;
+      switchcount ++; 
     } else {
       /* If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again. */
@@ -122,6 +121,7 @@ function sortTable(n) {
   }
 }
 </script>
+    </div>
     </div>
     <div id="table-nav">
         <table>
@@ -135,11 +135,12 @@ function sortTable(n) {
                     <td><center><form name="warcraft-pets" method="POST" action="https://www.warcraftpets.com/" target="_blank"><input type="SUBMIT" value="Warcraft Pets"></form></center></td>
                     <td><center><form name="wow-professions" method="POST" action="http://www.wow-professions.com/" target="_blank"><input type="SUBMIT" value="WoW Professions"></form></center></td>
                 </div>
-            </tr>
+            </tr> 
         </table>
     </div>
     <p />
     <p />
     <p />
+    </div>
 </body></div>
 </html>

@@ -67,14 +67,14 @@ foreach ($wowToonsObjArray as $toonObj) {
 	if (isset($toonProfsObj->code)) {
 		$toonPriProfHtml = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
 	} else {
-		$toonPriProfHtml = bfaPrimaryProfs($toonProfsObj)/*"\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Grant can't make it work</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Grant can't make it work</font></td>"*/;
+		$toonPriProfHtml = slPrimaryProfs($toonProfsObj)/*"\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Grant can't make it work</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">Grant can't make it work</font></td>"*/;
 	}
 	if (isset($toonProfsObj->code)) {
 		$toonSecProfHtml = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
 	} else {
-		$toonSecProfHtml = bfaSecondaryProfs($toonProfsObj);
+		$toonSecProfHtml = slSecondaryProfs($toonProfsObj);
 	}
-	$toonRepHtml = bfaFactions($toonRepsObj, count($toonRepsObj->reputations), $toonObj->faction->type);
+	$toonRepHtml = slFactions($toonRepsObj, count($toonRepsObj->reputations), $toonObj->faction->type);
 	$toon_bg_color = wowClassColors($toonObj->character_class->name->en_US);
 	$toonClassCellColor = wowClassColors($toonObj->character_class->name->en_US);
 	$toonNameCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->name."</font></td>";
