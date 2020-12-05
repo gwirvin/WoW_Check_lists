@@ -8,22 +8,189 @@
 #   AUTHOR: Grant Irvin 11 October 2018 - v1.0					#
 #################################################################################
 
+function slFactions($slReps, $toonRepCount/*, $wowFaction*/) {
+/*	$toonRepCount = count($slReps->reputations); */
+	$factionReps = "";
+	$ascended = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$courtOfHarvesters = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$undyingArmy = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$wildHunt= "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$venari = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	for ($toonRepCounter = 0; $toonRepCounter < $toonRepCount; $toonRepCounter++) {
+		if ($slReps->reputations[$toonRepCounter]->faction->id === 2407) {
+			switch ($slReps->reputations[$toonRepCounter]->standing->tier) {
+				case 0:
+					$ascended = "\n\t\t<td bgcolor=\"C00808\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
+					break;
+				case 1:
+					$ascended = "\n\t\t<td bgcolor=\"F02206\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
+					break;
+				case 2:
+					$ascended = "\n\t\t<td bgcolor=\"F05406\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
+					break;
+				case 3:
+					$ascended = "\n\t\t<td bgcolor=\"F1D50E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
+					break;
+				case 4:
+					$ascended = "\n\t\t<td bgcolor=\"BDF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
+					break;
+				case 5:
+					$ascended = "\n\t\t<td bgcolor=\"98F10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
+					break;
+				case 6:
+					$ascended = "\n\t\t<td bgcolor=\"5AF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
+					break;
+				case 7:
+					$ascended = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$slReps->reputations[$toonRepCounter]->faction->name."</font></td>";
+					break;
+				case NULL:
+					$ascended = "<td bgcolor=\"000000\">No API Data</td>";
+					break;
+			}
+			} elseif ($slReps->reputations[$toonRepCounter]->faction->id === 2413) {
+				switch ($slReps->reputations[$toonRepCounter]->standing->tier) {
+					case 0:
+						$courtOfHarvesters = "\n\t\t<td bgcolor=\"C00808\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
+						break;
+					case 1:
+						$courtOfHarvesters = "\n\t\t<td bgcolor=\"F02206\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
+						break;
+					case 2:
+						$courtOfHarvesters = "\n\t\t<td bgcolor=\"F05406\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
+						break;
+					case 3:
+						$courtOfHarvesters = "\n\t\t<td bgcolor=\"F1D50E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
+						break;
+					case 4:
+						$courtOfHarvesters = "\n\t\t<td bgcolor=\"BDF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
+						break;
+					case 5:
+						$courtOfHarvesters = "\n\t\t<td bgcolor=\"98F10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
+						break;
+					case 6:
+						$courtOfHarvesters = "\n\t\t<td bgcolor=\"5AF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
+						break;
+					case 7:
+						$courtOfHarvesters = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$slReps->reputations[$toonRepCounter]->faction->name."</font></td>";
+						break;
+					case NULL:
+						$courtOfHarvesters = "<td bgcolor=\"000000\">No API Data</td>";
+						break;
+				}
+			} elseif ($slReps->reputations[$toonRepCounter]->faction->id === 2410) {
+				switch ($slReps->reputations[$toonRepCounter]->standing->tier) {
+					case 0:
+						$undyingArmy = "\n\t\t<td bgcolor=\"C00808\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
+						break;
+					case 1:
+						$undyingArmy = "\n\t\t<td bgcolor=\"F02206\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
+						break;
+					case 2:
+						$undyingArmy = "\n\t\t<td bgcolor=\"F05406\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
+						break;
+					case 3:
+						$undyingArmy = "\n\t\t<td bgcolor=\"F1D50E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
+						break;
+					case 4:
+						$undyingArmy = "\n\t\t<td bgcolor=\"BDF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
+						break;
+					case 5:
+						$undyingArmy = "\n\t\t<td bgcolor=\"98F10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
+						break;
+					case 6:
+						$undyingArmy = "\n\t\t<td bgcolor=\"5AF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
+						break;
+					case 7:
+						$undyingArmy = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$slReps->reputations[$toonRepCounter]->faction->name."</font></td>";
+						break;
+					case NULL:
+						$undyingArmy = "<td bgcolor=\"000000\">No API Data</td>";
+						break;
+				}
+			} elseif ($slReps->reputations[$toonRepCounter]->faction->id === 2465) {
+				switch ($slReps->reputations[$toonRepCounter]->standing->tier) {
+					case 0:
+						$wildHunt = "\n\t\t<td bgcolor=\"C00808\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
+						break;
+					case 1:
+						$wildHunt = "\n\t\t<td bgcolor=\"F02206\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
+						break;
+					case 2:
+						$wildHunt = "\n\t\t<td bgcolor=\"F05406\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
+						break;
+					case 3:
+						$wildHunt = "\n\t\t<td bgcolor=\"F1D50E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
+						break;
+					case 4:
+						$wildHunt = "\n\t\t<td bgcolor=\"BDF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
+						break;
+					case 5:
+						$wildHunt = "\n\t\t<td bgcolor=\"98F10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
+						break;
+					case 6:
+						$wildHunt = "\n\t\t<td bgcolor=\"5AF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
+						break;
+					case 7:
+						$wildHunt = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$slReps->reputations[$toonRepCounter]->faction->name."</font></td>";
+						break;
+					case NULL:
+						$wildHunt = "<td bgcolor=\"000000\">No API Data</td>";
+						break;
+				}
+			} elseif ($slReps->reputations[$toonRepCounter]->faction->id === 2432) {
+				switch ($slReps->reputations[$toonRepCounter]->standing->tier) {
+					case 0:
+						$venari = "\n\t\t<td bgcolor=\"C00808\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
+						break;
+					case 1:
+						$venari = "\n\t\t<td bgcolor=\"F02206\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
+						break;
+					case 2:
+						$venari = "\n\t\t<td bgcolor=\"F05406\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
+						break;
+					case 3:
+						$venari = "\n\t\t<td bgcolor=\"F1D50E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
+						break;
+					case 4:
+						$venari = "\n\t\t<td bgcolor=\"BDF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
+						break;
+					case 5:
+						$venari = "\n\t\t<td bgcolor=\"98F10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
+						break;
+					case 6:
+						$venari = "\n\t\t<td bgcolor=\"5AF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
+						break;
+					case 7:
+						$venari = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$slReps->reputations[$toonRepCounter]->faction->name."</font></td>";
+						break;
+					case NULL:
+						$venari = "<td bgcolor=\"000000\">No API Data</td>";
+						break;
+				}
+			}
+			$factionReps = $ascended.$courtOfHarvesters.$undyingArmy.$wildHunt.$venari;
+		}
+	return $factionReps;
+	}
+//}
+
+
 function bfaFactions($bfaReps, $toonRepCount, $wowFaction) {
 	$toonRepCount = count($bfaReps->reputations);
-	$champsOfAzeroth = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$tortollanSeekers = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
+	$champsOfAzeroth = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$tortollanSeekers = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
 	$factionReps = "";
-	$honorbound = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$talanjisExpedition = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$voldunai = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$zandalariEmpire = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$seventhLegion = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$proudmooreAdmiralty = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$orderOfEmbers = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$stormsWake = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$theUnshackled = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$wavebladeAnkoan = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$rustboltResistance = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
+	$honorbound = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$talanjisExpedition = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$voldunai = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$zandalariEmpire = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$seventhLegion = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$proudmooreAdmiralty = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$orderOfEmbers = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$stormsWake = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$theUnshackled = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$wavebladeAnkoan = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
+	$rustboltResistance = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No Reputation</font></td>";
 	for ($toonRepCounter = 0; $toonRepCounter < $toonRepCount; $toonRepCounter++) {
 //	foreach ($bfaReps->reputations as $bfaRep) {
 		if ($bfaReps->reputations[$toonRepCounter]->faction->id === 2164) {
@@ -427,174 +594,6 @@ function bfaFactions($bfaReps, $toonRepCount, $wowFaction) {
 	}
 	return $rustboltResistance.$factionReps.$champsOfAzeroth.$tortollanSeekers;
 }
-
-function slFactions($slReps, $toonRepCount/*, $wowFaction*/) {
-/*	$toonRepCount = count($slReps->reputations); */
-	$factionReps = "";
-	$ascended = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-/*	$avowed = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>"; */
-	$courthofHarvesters = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$undyingArmy = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-	$wildHunt= "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>";
-/*	$venari = "\n\t\t<td bgcolor=\"000000\"><font color=\"FFFFFF\">No API Data</font></td>"; */
-	for ($toonRepCounter = 0; $toonRepCounter < $toonRepCount; $toonRepCounter++) {
-		if ($bfaReps->reputations[$toonRepCounter]->faction->id === 2407) {
-			switch ($bfaReps->reputations[$toonRepCounter]->standing->tier) {
-				case 0:
-					$ascended = "\n\t\t<td bgcolor=\"C00808\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
-					break;
-				case 1:
-					$ascended = "\n\t\t<td bgcolor=\"F02206\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
-					break;
-				case 2:
-					$ascended = "\n\t\t<td bgcolor=\"F05406\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
-					break;
-				case 3:
-					$ascended = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
-					break;
-				case 4:
-					$ascended = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
-					break;
-				case 5:
-					$ascended = "\n\t\t<td bgcolor=\"98F10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
-					break;
-				case 6:
-					$ascended = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
-					break;
-				case 7:
-					$ascended = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaReps->reputations[$toonRepCounter]->faction->name."</font></td>";
-					break;
-				case NULL:
-					$ascended = "<td bgcolor=\"000000\">No API Data</td>";
-					break;
-			}
-			} elseif ($bfaReps->reputations[$toonRepCounter]->faction->id === 2413) {
-				switch ($bfaReps->reputations[$toonRepCounter]->standing->tier) {
-					case 0:
-						$courtOfHarvesters = "\n\t\t<td bgcolor=\"C00808\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
-						break;
-					case 1:
-						$courtOfHarvesters = "\n\t\t<td bgcolor=\"F02206\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
-						break;
-					case 2:
-						$courtOfHarvesters = "\n\t\t<td bgcolor=\"F05406\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
-						break;
-					case 3:
-						$courtOfHarvesters = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
-						break;
-					case 4:
-						$courtOfHarvesters = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
-						break;
-					case 5:
-						$courtOfHarvesters = "\n\t\t<td bgcolor=\"98F10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
-						break;
-					case 6:
-						$courtOfHarvesters = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
-						break;
-					case 7:
-						$courtOfHarvesters = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaReps->reputations[$toonRepCounter]->faction->name."</font></td>";
-						break;
-					case NULL:
-						$courtOfHarvesters = "<td bgcolor=\"000000\">No API Data</td>";
-						break;
-				}
-			} elseif ($bfaReps->reputations[$toonRepCounter]->faction->id === 2410) {
-				switch ($bfaReps->reputations[$toonRepCounter]->standing->tier) {
-					case 0:
-						$undyingArmy = "\n\t\t<td bgcolor=\"C00808\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
-						break;
-					case 1:
-						$undyingArmy = "\n\t\t<td bgcolor=\"F02206\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
-						break;
-					case 2:
-						$undyingArmy = "\n\t\t<td bgcolor=\"F05406\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
-						break;
-					case 3:
-						$undyingArmy = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
-						break;
-					case 4:
-						$undyingArmy = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
-						break;
-					case 5:
-						$undyingArmy = "\n\t\t<td bgcolor=\"98F10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
-						break;
-					case 6:
-						$undyingArmy = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
-						break;
-					case 7:
-						$undyingArmy = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaReps->reputations[$toonRepCounter]->faction->name."</font></td>";
-						break;
-					case NULL:
-						$undyingArmy = "<td bgcolor=\"000000\">No API Data</td>";
-						break;
-				}
-			} elseif ($bfaReps->reputations[$toonRepCounter]->faction->id === 2465) {
-				switch ($bfaReps->reputations[$toonRepCounter]->standing->tier) {
-					case 0:
-						$wildHunt = "\n\t\t<td bgcolor=\"C00808\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
-						break;
-					case 1:
-						$wildHunt = "\n\t\t<td bgcolor=\"F02206\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
-						break;
-					case 2:
-						$wildHunt = "\n\t\t<td bgcolor=\"F05406\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
-						break;
-					case 3:
-						$wildHunt = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
-						break;
-					case 4:
-						$wildHunt = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
-						break;
-					case 5:
-						$wildHunt = "\n\t\t<td bgcolor=\"98F10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
-						break;
-					case 6:
-						$wildHunt = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
-						break;
-					case 7:
-						$wildHunt = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaReps->reputations[$toonRepCounter]->faction->name."</font></td>";
-						break;
-					case NULL:
-						$wildHunt = "<td bgcolor=\"000000\">No API Data</td>";
-						break;
-				}
-			} elseif ($bfaReps->reputations[$toonRepCounter]->faction->id === 2432) {
-				switch ($bfaReps->reputations[$toonRepCounter]->standing->tier) {
-					case 0:
-						$venari = "\n\t\t<td bgcolor=\"C00808\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
-						break;
-					case 1:
-						$venari = "\n\t\t<td bgcolor=\"F02206\">":($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
-						break;
-					case 2:
-						$venari = "\n\t\t<td bgcolor=\"F05406\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
-						break;
-					case 3:
-						$venari = "\n\t\t<td bgcolor=\"F1D50E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
-						break;
-					case 4:
-						$venari = "\n\t\t<td bgcolor=\"BDF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
-						break;
-					case 5:
-						$venari = "\n\t\t<td bgcolor=\"98F10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
-						break;
-					case 6:
-						$venari = "\n\t\t<td bgcolor=\"5AF10E\">".($bfaReps->reputations[$toonRepCounter]->standing->max-$bfaReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
-						break;
-					case 7:
-						$venari = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$bfaReps->reputations[$toonRepCounter]->faction->name."</font></td>";
-						break;
-					case NULL:
-						$venari = "<td bgcolor=\"000000\">No API Data</td>";
-						break;
-				}
-			}
-			$factionReps = $ascended.$courtOfHarvesters.$undyingArmy.$wildHunt.$venari;
-		}
-	}
-	return $factionReps;
-}
-
 # BEGIN BLOCK for testing
 # END BLOCK for testing
 
