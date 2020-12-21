@@ -22,6 +22,7 @@ include "./includes/wow_fact_inc.php";
 include "./includes/wow_html_inc.php";
 include "./includes/wow_profs_inc.php";
 include "./includes/wow_reps_inc.php";
+include "./includes/covenant.php";
 include "./includes/sl_chk_lst.php";
 #include "./includes/multiapi.php";
 
