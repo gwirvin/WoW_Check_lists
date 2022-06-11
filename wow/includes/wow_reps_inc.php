@@ -167,8 +167,38 @@ function slFactions($slReps, $toonRepCount/*, $wowFaction*/) {
 						$venari = "<td bgcolor=\"000000\">No API Data</td>";
 						break;
 				}
+                        } elseif ($slReps->reputations[$toonRepCounter]->faction->id === 2478) {
+                                switch ($slReps->reputations[$toonRepCounter]->standing->tier) {
+                                        case 0:
+                                                $theEnlightened = "\n\t\t<td bgcolor=\"C00808\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Hostile.</td>";
+                                                break;
+                                        case 1:
+                                                $theEnlightened = "\n\t\t<td bgcolor=\"F02206\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Unfriendly.</td>";
+                                                break;
+                                        case 2:
+                                                $theEnlightened = "\n\t\t<td bgcolor=\"F05406\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Neutral.</td>";
+                                                break;
+                                        case 3:
+                                                $theEnlightened = "\n\t\t<td bgcolor=\"F1D50E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Friendly.</td>";
+                                                break;
+                                        case 4:
+                                                $theEnlightened = "\n\t\t<td bgcolor=\"BDF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Honored.</td>";
+                                                break;
+                                        case 5:
+                                                $theEnlightened = "\n\t\t<td bgcolor=\"98F10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Revered.</td>";
+                                                break;
+                                        case 6:
+                                                $theEnlightened = "\n\t\t<td bgcolor=\"5AF10E\">".($slReps->reputations[$toonRepCounter]->standing->max-$slReps->reputations[$toonRepCounter]->standing->value)." to Exalted.</td>";
+                                                break;
+                                        case 7:
+                                                $theEnlightened = "\n\t\t<td bgcolor=\"10AA06\"><font color=\"FFFFFF\">".$slReps->reputations[$toonRepCounter]->faction->name."</font></td>";
+                                                break;
+                                        case NULL:
+                                                $theEnlightened = "<td bgcolor=\"000000\">No API Data</td>";
+                                                break;
+                                }			
 			}
-			$factionReps = $ascended.$courtOfHarvesters.$undyingArmy.$wildHunt.$venari;
+			$factionReps = $ascended.$courtOfHarvesters.$undyingArmy.$wildHunt.$venari.$theEnlightened;
 		}
 	return $factionReps;
 	}

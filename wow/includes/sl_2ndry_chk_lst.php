@@ -27,7 +27,7 @@ $myOauthTokenArr = getOauthToken($blizzardOauthTokenUrl);
 $myOauthToken = $myOauthTokenArr['access_token'];
 
 // Starting the character table
-$toon_table = "<table>\n\t<caption><center><font color=\"FFFFFF\"><h3>Battle for Azeroth Checklist (Secondary Characters) for ".$toon_owner_first."</h3></font></center></caption>\n\t<thead>\n\t<tr>\n\t\t<th bgcolor=\"BFBCBA\">Realm</th>\n\t\t<th bgcolor=\"BFBCBA\">Character</th>\n\t\t<th bgcolor=\"BFBCBA\">Icon</th>\n\t\t<th bgcolor=\"BFBCBA\">Level</th>\n\t\t<th bgcolor=\"BFBCBA\"></th>\n\t\t<th bgcolor=\"BFBCBA\">Current Spec</th>\n\t\t<th colspan=\"2\" bgcolor=\"6C00FF\"><font color=\"FFFFFF\">Primary Professions</font></th>\n\t\t<th bgcolor=\"BFBCBA\">Equiped iLvl</th>\n\t</tr>\n\t</thead>\n\t<tbody>";
+$toon_table = "<table>\n\t<caption><center><font color=\"FFFFFF\"><h3>Battle for Azeroth Checklist (Secondary Characters) for ".$toon_owner_first."</h3></font></center></caption>\n\t<thead>\n\t<tr>\n\t\t<th bgcolor=\"BFBCBA\">Realm</th>\n\t\t<th bgcolor=\"BFBCBA\">Character</th>\n\t\t<th bgcolor=\"BFBCBA\">Icon</th>\n\t\t<th bgcolor=\"BFBCBA\">Level</th>\n\t\t<th bgcolor=\"BFBCBA\"></th>\n\t\t<th bgcolor=\"BFBCBA\">Current Spec</th>\n\t\t<th colspan=\"2\" bgcolor=\"6C00FF\"><font color=\"FFFFFF\">Primary Professions</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Ascended</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Court of Harvesters</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Undying Army</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Wild Hunt</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">Ve'nari</font></th>\n\t\t<th bgcolor=\"5D63FF\"><font color=\"FFFFFF\">The Enlightened\n\t</th></tr>\n\t\t<th bgcolor=\"BFBCBA\">Equiped iLvl</th>\n\t</tr>\n\t</thead>\n\t<tbody>";
 
 $allUserToons = getUserSecondaryToons ($userId, $dbHost, $dbUser, $dbPass, $dbWow); // Getting the users info from the DB
 $userToonCount = count($allUserToons); // Getting the count of the user's toons
@@ -64,6 +64,7 @@ foreach ($wowToonsObjArray as $toonObj) {
 	} else {
 		$toonPriProfHtml = slPrimaryProfs($toonProfsObj);
 	}
+	$toonRepHtml = slFactions($toonRepsObj, count($toonRepsObj->reputations), $toonObj->faction->type);
 	$toon_bg_color = wowClassColors($toonObj->character_class->name->en_US);
 	$toonClassCellColor = wowClassColors($toonObj->character_class->name->en_US);
 	$toonNameCell = "\n\t\t<td ".$toonClassCellColor.$toonObj->name."</font></td>";
