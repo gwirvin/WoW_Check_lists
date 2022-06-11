@@ -198,7 +198,7 @@ function slFactions($slReps, $toonRepCount/*, $wowFaction*/) {
                                                 break;
                                 }			
 			}
-			$factionReps = $ascended.$courtOfHarvesters.$undyingArmy.$wildHunt.$venari;
+			$factionReps = $ascended.$courtOfHarvesters.$undyingArmy.$wildHunt.$venari.$theEnlightened;
 		}
 	return $factionReps;
 	}
