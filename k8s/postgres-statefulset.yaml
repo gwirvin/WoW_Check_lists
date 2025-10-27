@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: wow-postgres
+  namespace: wow-checklists
+spec:
+  selector:
+    matchLabels:
+      app: wow-postgres
+  serviceName: wow-postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wow-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15-alpine
+          env:
+            - name: POSTGRES_DB
+              value: wow_auth
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: wow-postgres-secret
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wow-postgres-secret
+                  key: password
+          ports:
+            - containerPort: 5432
+              name: postgres
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wow-postgres
+  namespace: wow-checklists
+spec:
+  selector:
+    app: wow-postgres
+  ports:
+    - port: 5432
+      targetPort: postgres
+      name: postgres

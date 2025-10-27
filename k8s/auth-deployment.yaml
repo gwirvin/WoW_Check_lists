@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wow-auth
+  namespace: wow-checklists
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wow-auth
+  template:
+    metadata:
+      labels:
+        app: wow-auth
+    spec:
+      containers:
+        - name: auth
+          image: ghcr.io/example/wow-auth:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "3000"
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: wow-auth-secret
+                  key: sessionSecret
+            - name: DATABASE_URL
+              value: postgres://$(DB_USER):$(DB_PASSWORD)@wow-postgres:5432/wow_auth
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: wow-postgres-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wow-postgres-secret
+                  key: password
+            - name: BNET_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: wow-auth-secret
+                  key: bnetClientId
+            - name: BNET_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: wow-auth-secret
+                  key: bnetClientSecret
+            - name: BNET_CALLBACK_URL
+              value: https://auth.local.example.com/auth/bnet/callback
+            - name: ZWAVE_GATEWAY
+              value: http://zwave-gateway.wow.svc.cluster.local
+            - name: ZIGBEE_GATEWAY
+              value: http://zigbee-gateway.wow.svc.cluster.local
+            - name: CIFS_HOST
+              value: nas.local
+            - name: CIFS_SHARE
+              value: wow-media
+            - name: CIFS_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: wow-auth-secret
+                  key: cifsUsername
+            - name: CIFS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wow-auth-secret
+                  key: cifsPassword
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wow-auth
+  namespace: wow-checklists
+spec:
+  selector:
+    app: wow-auth
+  ports:
+    - port: 80
+      targetPort: 3000
+      name: http
